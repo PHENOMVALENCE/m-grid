@@ -1,0 +1,87 @@
+/**
+ * M-GRID brand layer on top of the Flexy Bootstrap bundle.
+ * Gold, soft pink, charcoal — credible, warm, institutional.
+ */
+
+:root {
+  --mgrid-gold: #c9a227;
+  --mgrid-gold-dark: #9a7b1c;
+  --mgrid-pink: #f4d4dc;
+  --mgrid-pink-deep: #e8b4c2;
+  --mgrid-charcoal: #2b2f36;
+  --mgrid-ink: #1a1d22;
+}
+
+body.mgrid-public {
+  font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--mgrid-charcoal);
+  background: linear-gradient(180deg, #fffdfb 0%, #fff 40%, #fdf8fa 100%);
+}
+
+.mgrid-hero {
+  background: radial-gradient(1200px 500px at 10% -10%, rgba(232, 180, 194, 0.35), transparent 55%),
+    radial-gradient(900px 400px at 90% 0%, rgba(201, 162, 39, 0.18), transparent 50%),
+    linear-gradient(135deg, #2b2f36 0%, #3a3540 45%, #2b2f36 100%);
+  color: #fff;
+}
+
+.mgrid-hero .display-5 {
+  letter-spacing: -0.02em;
+}
+
+.mgrid-gold {
+  color: var(--mgrid-gold) !important;
+}
+
+.mgrid-btn-gold {
+  background: linear-gradient(135deg, var(--mgrid-gold) 0%, var(--mgrid-gold-dark) 100%);
+  border: none;
+  color: #1a1d22 !important;
+  font-weight: 600;
+}
+
+.mgrid-btn-gold:hover {
+  filter: brightness(1.05);
+  color: #1a1d22 !important;
+}
+
+.mgrid-section-title {
+  font-weight: 700;
+  color: var(--mgrid-charcoal);
+}
+
+.mgrid-card-soft {
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  box-shadow: 0 12px 40px rgba(43, 47, 54, 0.06);
+  border-radius: 1rem;
+}
+
+.mgrid-faq .accordion-button:not(.collapsed) {
+  background-color: rgba(244, 212, 220, 0.35);
+  color: var(--mgrid-charcoal);
+}
+
+.mgrid-footer {
+  background: var(--mgrid-charcoal);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.mgrid-footer a {
+  color: var(--mgrid-gold);
+  text-decoration: none;
+}
+
+.mgrid-footer a:hover {
+  text-decoration: underline;
+}
+
+.mgrid-badge-soft {
+  background: rgba(244, 212, 220, 0.5);
+  color: var(--mgrid-charcoal);
+  border: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+/* Dashboard accent (user + admin) */
+.mgrid-dash-hero {
+  border-left: 4px solid var(--mgrid-gold);
+}

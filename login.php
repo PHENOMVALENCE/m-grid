@@ -1,0 +1,123 @@
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/includes/init.php';
+
+if (auth_actor() !== null) {
+    $u = auth_actor();
+    redirect(($u['account_type'] ?? 'user') === 'admin' ? 'admin/dashboard.php' : 'user/dashboard.php');
+}
+
+$errors = [];
+$loginValue = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!csrf_verify($_POST['_csrf'] ?? null)) {
+        $errors[] = 'Invalid security token. Please try again.';
+    } else {
+        $loginValue = clean_string($_POST['login'] ?? '');
+        $password = (string) ($_POST['password'] ?? '');
+
+        if ($loginValue === '' || $password === '') {
+            $errors[] = 'Enter your email or phone and password.';
+        } else {
+            $pdo = db();
+
+            $adminStmt = $pdo->prepare('
+                SELECT id, admin_id, full_name, email, password_hash, status
+                FROM admins
+                WHERE email = :login OR admin_id = :admin_id
+                LIMIT 1
+            ');
+            $adminStmt->execute([
+                'login' => strtolower($loginValue),
+                'admin_id' => strtoupper($loginValue),
+            ]);
+            $admin = $adminStmt->fetch();
+            if ($admin && password_verify($password, (string) $admin['password_hash'])) {
+                if (($admin['status'] ?? '') !== 'active') {
+                    $errors[] = 'Admin account is not active.';
+                } else {
+                    auth_login_admin($admin);
+                    flash_set('success', 'Welcome back, ' . $admin['full_name'] . '.');
+                    redirect('admin/dashboard.php');
+                }
+            }
+
+            $stmt = $pdo->prepare('
+                SELECT id, m_id, full_name, phone, email, password_hash, status
+                FROM users
+                WHERE email = :email OR phone = :phone
+                LIMIT 1
+            ');
+            $stmt->execute([
+                'email' => strtolower($loginValue),
+                'phone' => normalise_phone($loginValue),
+            ]);
+            $row = $stmt->fetch();
+            if (!$row || !password_verify($password, (string) $row['password_hash'])) {
+                $errors[] = 'We could not match those details. Check and try again.';
+            } elseif (($row['status'] ?? '') === 'suspended') {
+                $errors[] = 'This account is suspended. Please contact support.';
+            } else {
+                auth_login_user($row);
+                if (($row['status'] ?? '') !== 'active') {
+                    flash_set('success', 'Welcome. Please upload your National ID for admin approval.');
+                    redirect('user/verify-id.php');
+                }
+                flash_set('success', 'Welcome back, ' . $row['full_name'] . '.');
+                redirect('user/dashboard.php');
+            }
+        }
+    }
+}
+
+$mgrid_page_title = 'Sign in — M-GRID';
+$mgrid_layout = 'auth';
+require __DIR__ . '/includes/header.php';
+?>
+
+<div class="row justify-content-center w-100 px-2">
+  <div class="col-md-8 col-lg-6 col-xxl-4">
+    <div class="card mb-0 shadow-sm border-0">
+      <div class="card-body p-4">
+        <a href="<?= e(url('index.php')) ?>" class="text-center d-block py-2 text-decoration-none">
+          <span class="fw-bold fs-3 text-dark">M-GRID</span>
+        </a>
+        <p class="text-center text-muted small mb-4">Member access to your M-Profile</p>
+
+        <?php if ($msg = flash_get('success')): ?>
+          <div class="alert alert-success small"><?= e($msg) ?></div>
+        <?php endif; ?>
+        <?php if ($msg = flash_get('error')): ?>
+          <div class="alert alert-danger small"><?= e($msg) ?></div>
+        <?php endif; ?>
+        <?php foreach ($errors as $err): ?>
+          <div class="alert alert-danger small py-2"><?= e($err) ?></div>
+        <?php endforeach; ?>
+
+        <form method="post" novalidate>
+          <?= csrf_field() ?>
+          <div class="mb-3">
+            <label for="login" class="form-label">Email or phone</label>
+            <input type="text" class="form-control" id="login" name="login" autocomplete="username"
+              value="<?= e($loginValue) ?>" required>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-3 rounded-2">Sign in</button>
+          <div class="d-flex align-items-center justify-content-center flex-wrap gap-1">
+            <span class="fs-4 mb-0">New to M-GRID?</span>
+            <a class="text-primary fw-bold" href="<?= e(url('register.php')) ?>">Create your M-ID</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php
+require __DIR__ . '/includes/footer.php';

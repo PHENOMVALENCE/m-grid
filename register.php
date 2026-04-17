@@ -1,0 +1,256 @@
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/includes/init.php';
+
+if (auth_actor() !== null) {
+    $u = auth_actor();
+    redirect(($u['account_type'] ?? 'user') === 'admin' ? 'admin/dashboard.php' : 'user/dashboard.php');
+}
+
+$errors = [];
+$form = [
+    'full_name' => '',
+    'phone' => '',
+    'email' => '',
+    'region' => '',
+    'date_of_birth' => '',
+    'age_range' => '',
+    'business_status' => '',
+    'preferred_language' => 'en',
+];
+
+$regions = [
+    'Arusha', 'Dar es Salaam', 'Dodoma', 'Geita', 'Iringa', 'Kagera', 'Katavi', 'Kigoma', 'Kilimanjaro',
+    'Lindi', 'Manyara', 'Mara', 'Mbeya', 'Mjini Magharibi', 'Morogoro', 'Mtwara', 'Mwanza', 'Njombe',
+    'Pemba North', 'Pemba South', 'Pwani', 'Rukwa', 'Ruvuma', 'Shinyanga', 'Simiyu', 'Singida', 'Songwe',
+    'Tabora', 'Tanga', 'Other / Diaspora',
+];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!csrf_verify($_POST['_csrf'] ?? null)) {
+        $errors[] = 'Invalid security token. Please try again.';
+    } else {
+        foreach (array_keys($form) as $k) {
+            if (isset($_POST[$k])) {
+                $form[$k] = clean_string((string) $_POST[$k]);
+            }
+        }
+        $password = (string) ($_POST['password'] ?? '');
+        $confirm = (string) ($_POST['confirm_password'] ?? '');
+
+        if ($form['full_name'] === '' || mb_strlen($form['full_name']) < 2) {
+            $errors[] = 'Please enter your full name.';
+        }
+        if ($form['phone'] === '') {
+            $errors[] = 'Phone number is required.';
+        }
+        $phoneNorm = normalise_phone($form['phone']);
+        if ($form['email'] === '' || !filter_var($form['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'A valid email address is required.';
+        } else {
+            $form['email'] = strtolower($form['email']);
+        }
+        if ($form['region'] === '') {
+            $errors[] = 'Please select your region.';
+        }
+        if ($form['business_status'] === '') {
+            $errors[] = 'Please select your business status.';
+        }
+        if (!in_array($form['preferred_language'], ['en', 'sw'], true)) {
+            $errors[] = 'Please choose a preferred language.';
+        }
+        if ($form['date_of_birth'] === '' && $form['age_range'] === '') {
+            $errors[] = 'Provide either your date of birth or an age range.';
+        }
+        if ($form['date_of_birth'] !== '') {
+            $d = DateTime::createFromFormat('Y-m-d', $form['date_of_birth']);
+            if (!$d || $d->format('Y-m-d') !== $form['date_of_birth']) {
+                $errors[] = 'Date of birth must be a valid YYYY-MM-DD value.';
+            }
+        }
+        if (strlen($password) < 8) {
+            $errors[] = 'Password must be at least 8 characters.';
+        }
+        if (!hash_equals($password, $confirm)) {
+            $errors[] = 'Password confirmation does not match.';
+        }
+
+        if ($errors === []) {
+            $pdo = db();
+            $chk = $pdo->prepare('SELECT id FROM users WHERE email = :e OR phone = :p LIMIT 1');
+            $chk->execute(['e' => $form['email'], 'p' => $phoneNorm]);
+            if ($chk->fetch()) {
+                $errors[] = 'An account already exists with this email or phone.';
+            }
+        }
+
+        if ($errors === []) {
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $dobSql = $form['date_of_birth'] !== '' ? $form['date_of_birth'] : null;
+            $ageSql = $form['age_range'] !== '' ? $form['age_range'] : null;
+
+            try {
+                $pdo = db();
+                $pdo->beginTransaction();
+
+                $mId = m_id_allocate_next($pdo);
+
+                $ins = $pdo->prepare('
+                    INSERT INTO users (m_id, full_name, phone, email, password_hash, status, preferred_language)
+                    VALUES (:m_id, :full_name, :phone, :email, :ph, "pending", :lang)
+                ');
+                $ins->execute([
+                    'm_id' => $mId,
+                    'full_name' => $form['full_name'],
+                    'phone' => $phoneNorm,
+                    'email' => $form['email'],
+                    'ph' => $hash,
+                    'lang' => $form['preferred_language'],
+                ]);
+                $userId = (int) $pdo->lastInsertId();
+
+                $prof = $pdo->prepare('
+                    INSERT INTO user_profiles (user_id, region, date_of_birth, age_range, business_status, bio, profile_photo, profile_completion)
+                    VALUES (:uid, :region, :dob, :age, :bs, NULL, NULL, 15)
+                ');
+                $prof->execute([
+                    'uid' => $userId,
+                    'region' => $form['region'],
+                    'dob' => $dobSql,
+                    'age' => $ageSql,
+                    'bs' => $form['business_status'],
+                ]);
+
+                $sc = $pdo->prepare('
+                    INSERT INTO m_scores (user_id, score, tier, last_calculated_at)
+                    VALUES (:uid, NULL, "pending", NULL)
+                ');
+                $sc->execute(['uid' => $userId]);
+
+                $pdo->commit();
+                flash_set('success', 'Your M-ID is ' . $mId . '. Sign in and upload your National ID for admin approval.');
+                redirect('login.php');
+            } catch (Throwable $e) {
+                $tx = db();
+                if ($tx->inTransaction()) {
+                    $tx->rollBack();
+                }
+                $errors[] = 'Registration could not be completed. Please try again or contact support.';
+            }
+        }
+    }
+}
+
+$mgrid_page_title = 'Create your M-ID — M-GRID';
+$mgrid_layout = 'auth';
+require __DIR__ . '/includes/header.php';
+?>
+
+<div class="row justify-content-center w-100 px-2">
+  <div class="col-xl-9 col-xxl-7">
+    <div class="card mb-0 shadow-sm border-0">
+      <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+          <a href="<?= e(url('index.php')) ?>" class="text-decoration-none fw-bold fs-3 text-dark">M-GRID</a>
+          <p class="text-muted small mb-0">Join with accurate details — your M-ID is issued automatically.</p>
+        </div>
+
+        <?php foreach ($errors as $err): ?>
+          <div class="alert alert-danger small py-2"><?= e($err) ?></div>
+        <?php endforeach; ?>
+
+        <form method="post" class="row g-3" novalidate>
+          <?= csrf_field() ?>
+          <div class="col-md-6">
+            <label class="form-label" for="full_name">Full name</label>
+            <input class="form-control" type="text" id="full_name" name="full_name" required value="<?= e($form['full_name']) ?>">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="phone">Phone</label>
+            <input class="form-control" type="text" id="phone" name="phone" required value="<?= e($form['phone']) ?>"
+              placeholder="+255…">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" required value="<?= e($form['email']) ?>">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="region">Region</label>
+            <select class="form-select" id="region" name="region" required>
+              <option value="">Choose…</option>
+              <?php foreach ($regions as $r): ?>
+                <option value="<?= e($r) ?>" <?= $form['region'] === $r ? 'selected' : '' ?>><?= e($r) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="date_of_birth">Date of birth <span class="text-muted">(optional if age range given)</span></label>
+            <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value="<?= e($form['date_of_birth']) ?>">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="age_range">Age range</label>
+            <select class="form-select" id="age_range" name="age_range">
+              <option value="">Choose…</option>
+              <?php
+                $ranges = ['18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
+foreach ($ranges as $ar) {
+    ?>
+                <option value="<?= e($ar) ?>" <?= $form['age_range'] === $ar ? 'selected' : '' ?>><?= e($ar) ?></option>
+              <?php
+}
+?>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="business_status">Business status</label>
+            <select class="form-select" id="business_status" name="business_status" required>
+              <option value="">Choose…</option>
+              <?php
+    $bss = [
+        'employed' => 'Employed',
+        'self_employed' => 'Self-employed',
+        'student' => 'Student',
+        'homemaker' => 'Homemaker / caregiver',
+        'seeking' => 'Seeking opportunity',
+        'other' => 'Other',
+    ];
+foreach ($bss as $val => $label) {
+    ?>
+                <option value="<?= e($val) ?>" <?= $form['business_status'] === $val ? 'selected' : '' ?>><?= e($label) ?></option>
+              <?php
+}
+?>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="preferred_language">Preferred language</label>
+            <select class="form-select" id="preferred_language" name="preferred_language">
+              <option value="en" <?= $form['preferred_language'] === 'en' ? 'selected' : '' ?>>English</option>
+              <option value="sw" <?= $form['preferred_language'] === 'sw' ? 'selected' : '' ?>>Kiswahili</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" autocomplete="new-password" required minlength="8">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label" for="confirm_password">Confirm password</label>
+            <input class="form-control" type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary w-100 py-3 rounded-2">Create account &amp; receive M-ID</button>
+            <div class="text-center mt-3">
+              <span class="text-muted">Already registered?</span>
+              <a class="fw-bold" href="<?= e(url('login.php')) ?>">Sign in</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php
+require __DIR__ . '/includes/footer.php';
