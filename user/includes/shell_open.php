@@ -8,7 +8,7 @@ declare(strict_types=1);
  */
 
 if (!isset($mgrid_page_title)) {
-    $mgrid_page_title = 'M-GRID Member';
+    $mgrid_page_title = 'Malkia Grid';
 }
 $mgrid_layout = 'user';
 $mgrid_sidebar_context = 'user';

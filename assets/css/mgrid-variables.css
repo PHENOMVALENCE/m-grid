@@ -1,0 +1,55 @@
+/**
+ * Malkia Grid — design tokens (ink & brass, parchment surfaces)
+ */
+:root {
+  --gold: #b8963d;
+  --gold-light: #d4c06e;
+  --gold-dark: #8a6a24;
+  --gold-muted: #f3ead4;
+
+  --charcoal: #101218;
+  --charcoal-mid: #252830;
+  --charcoal-soft: #5a5d66;
+
+  --blush: #efe8f0;
+  --blush-mid: #d8c4d4;
+  --blush-accent: #8f4a63;
+
+  --white: #ffffff;
+  --off-white: #f8f6f1;
+  --surface: #f0ede6;
+  --surface-2: #e4e0d6;
+
+  --bronze: #b8722e;
+  --silver: #9ea0a8;
+  --gold-tier: #b8963d;
+  --diamond: #4a7fd4;
+
+  --success: #2a6b48;
+  --success-bg: #e8f2ec;
+  --warning: #a85a08;
+  --warning-bg: #fdf3e4;
+  --danger: #a61d1d;
+  --danger-bg: #fdecec;
+  --info: #1a4f8c;
+  --info-bg: #e8f0fa;
+
+  --focus-ring: rgba(184, 150, 61, 0.45);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-ui: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --font-mono-id: "JetBrains Mono", "Courier New", monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 0 rgba(16, 18, 24, 0.04);
+  --shadow-md: 0 1px 0 rgba(16, 18, 24, 0.06);
+  --shadow-lg: 0 1px 0 rgba(16, 18, 24, 0.08);
+  --shadow-gold: none;
+}

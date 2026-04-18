@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * Opens HTML document. Set before include:
- * - $mgrid_page_title (string)
+ * - $mgrid_page_title (string) — browser title; default "Malkia Grid"
  * - $mgrid_layout: public | auth | user | admin
  * - $mgrid_sidebar_context: user | admin (for user/admin layouts)
  */
@@ -13,7 +13,7 @@ if (!isset($mgrid_layout)) {
     $mgrid_layout = 'public';
 }
 if (!isset($mgrid_page_title)) {
-    $mgrid_page_title = 'M-GRID';
+    $mgrid_page_title = 'Malkia Grid';
 }
 if (!isset($mgrid_sidebar_context)) {
     $mgrid_sidebar_context = $mgrid_layout === 'admin' ? 'admin' : 'user';
@@ -29,12 +29,19 @@ if (!isset($mgrid_sidebar_context)) {
   <link rel="shortcut icon" type="image/png" href="<?= e(asset('images/logos/favicon.png')) ?>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400..600;1,9..40,400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= e(asset('css/styles.min.css')) ?>" />
-  <link rel="stylesheet" href="<?= e(asset('css/m-grid.css')) ?>" />
 </head>
 
-<body class="<?= $mgrid_layout === 'public' ? 'mgrid-public' : '' ?>">
+<body class="<?php
+  if ($mgrid_layout === 'public') {
+      echo 'mgrid-public';
+  } elseif ($mgrid_layout === 'auth') {
+      echo 'mgrid-auth';
+  } else {
+      echo 'mgrid-app mgrid-dash' . ($mgrid_layout === 'admin' ? ' mgrid-admin' : '');
+  }
+?>">
 
 <?php if ($mgrid_layout === 'public'): ?>
   <?php require __DIR__ . '/navbar.php'; ?>
@@ -53,6 +60,6 @@ if (!isset($mgrid_sidebar_context)) {
     <div class="body-wrapper">
       <?php require __DIR__ . '/topbar.php'; ?>
       <div class="body-wrapper-inner">
-        <div class="container-fluid py-4">
+        <div class="container-fluid px-3 px-lg-4 pb-4 mgrid-dash-main">
 
 <?php endif; ?>

@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-    color: $primary;
+  color: $link-hover-color;
 }
 
 ul {
@@ -21,9 +21,13 @@ ul {
     padding-left: 0;
 }
 
-:focus {
-    outline: 0;
-    box-shadow: none !important;
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 1px rgba(184, 150, 61, 0.5) !important;
 }
 
 .cursor-pointer {

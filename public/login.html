@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in — M-Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-animations.css" rel="stylesheet" />
+  </head>
+  <body class="mgrid-login-pattern min-vh-100 d-flex align-items-center py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5 col-xl-4">
+          <div class="card border-0 shadow-lg mgrid-modal-rounded p-4 p-md-5">
+            <div class="text-center mb-4">
+              <div class="mgrid-logo-pulse d-inline-block mb-3" aria-hidden="true">
+                <span class="mgrid-logo-text">M·GRID</span>
+              </div>
+              <h1 class="h3 mgrid-section-heading mb-0" data-i18n="login.welcome">Welcome Back, Malkia</h1>
+            </div>
+
+            <div class="btn-group w-100 mb-4" role="group" aria-label="Login role">
+              <input type="radio" class="btn-check" name="loginRole" id="roleUser" value="user" checked autocomplete="off" />
+              <label class="btn btn-outline-primary" for="roleUser" data-i18n="login.user">User</label>
+              <input type="radio" class="btn-check" name="loginRole" id="roleAdmin" value="admin" autocomplete="off" />
+              <label class="btn btn-outline-primary" for="roleAdmin" data-i18n="login.admin">Admin</label>
+            </div>
+
+            <form id="formUserLogin" class="needs-validation" novalidate data-mgrid-demo data-success-msg="Signed in (demo).">
+              <div class="mb-3">
+                <label class="form-label" for="userLogin">Phone number or email</label>
+                <input type="text" class="form-control" id="userLogin" name="userLogin" autocomplete="username" required />
+                <div class="invalid-feedback">Please enter your phone or email.</div>
+              </div>
+              <div class="mb-2">
+                <label class="form-label" for="userPassword">Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="userPassword" name="userPassword" autocomplete="current-password" required />
+                  <button class="btn btn-outline-secondary" type="button" data-mgrid-toggle-pw="userPassword" aria-pressed="false" aria-label="Show password">
+                    Show
+                  </button>
+                </div>
+              </div>
+              <div class="text-end mb-4">
+                <a class="small" href="#">Forgot password?</a>
+              </div>
+              <button type="submit" class="btn btn-primary w-100 mb-3">Sign in</button>
+              <p class="text-center small text-muted mb-0">
+                New here? <a href="register.html">Get Your M-ID</a>
+              </p>
+            </form>
+
+            <form id="formAdminLogin" class="d-none needs-validation" novalidate data-mgrid-demo data-success-msg="Admin session (demo).">
+              <div class="mb-3">
+                <label class="form-label" for="adminEmail">Admin email</label>
+                <input type="email" class="form-control" id="adminEmail" name="adminEmail" autocomplete="username" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="adminPassword">Admin password</label>
+                <input type="password" class="form-control" id="adminPassword" name="adminPassword" autocomplete="current-password" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="adminOtp">Admin access code</label>
+                <div class="d-flex gap-2 justify-content-between" role="group" aria-label="Six digit code">
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp1" aria-label="Digit 1" />
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp2" aria-label="Digit 2" />
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp3" aria-label="Digit 3" />
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp4" aria-label="Digit 4" />
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp5" aria-label="Digit 5" />
+                  <input class="form-control text-center" maxlength="1" inputmode="numeric" pattern="[0-9]" id="otp6" aria-label="Digit 6" />
+                </div>
+                <input type="hidden" name="adminOtp" id="adminOtp" />
+              </div>
+              <button type="submit" class="btn btn-dark w-100 rounded-pill">Admin sign in</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+    <script src="../assets/js/mgrid-login.js"></script>
+  </body>
+</html>

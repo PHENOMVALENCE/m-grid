@@ -6,9 +6,9 @@ declare(strict_types=1);
   <div class="container">
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="fw-bold fs-4 mb-2">M-GRID</div>
+        <div class="fw-bold fs-4 mb-2">Malkia Grid</div>
         <p class="small mb-0 opacity-75">
-          A digital home for women’s economic dignity — M-ID, M-Profile, and future pathways to opportunity.
+          Tanzania’s membership platform for women entrepreneurs — verified <strong>M-ID</strong>, <strong>M-Profile</strong>, and trusted pathways to opportunity.
         </p>
       </div>
       <div class="col-md-4">
@@ -25,6 +25,6 @@ declare(strict_types=1);
       </div>
     </div>
     <hr class="border-secondary opacity-25 my-4">
-    <p class="small text-center mb-0 opacity-75">&copy; <?= (int) date('Y') ?> M-GRID. All rights reserved.</p>
+    <p class="small text-center mb-0 opacity-75">&copy; <?= (int) date('Y') ?> Malkia Grid. All rights reserved.</p>
   </div>
 </footer>

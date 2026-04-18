@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings — M-Grid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="d-flex min-vh-100">
+      <nav class="mgrid-dash-sidebar d-none d-xl-flex flex-column p-3" aria-label="Main navigation">
+        <div class="mgrid-sidebar-brand mb-4">M·GRID</div>
+        <ul class="nav nav-pills flex-column gap-1">
+          <li><a class="nav-link" href="home.html">Overview</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+          <li><a class="nav-link" href="score.html">M-Score</a></li>
+          <li><a class="nav-link" href="documents.html">Documents</a></li>
+          <li><a class="nav-link" href="loans.html">Loans</a></li>
+          <li><a class="nav-link" href="partners.html">Partners</a></li>
+          <li><a class="nav-link" href="benefits.html">Benefits</a></li>
+          <li><a class="nav-link active" href="settings.html">Settings</a></li>
+        </ul>
+        <div class="mt-auto pt-4"><a class="btn btn-outline-danger btn-sm w-100" href="../public/login.html">Logout</a></div>
+      </nav>
+      <main class="flex-grow-1 p-3 p-md-4">
+        <h1 class="mgrid-page-header-title mb-4">Settings</h1>
+        <div class="accordion" id="setAcc">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">Account</button>
+            </h2>
+            <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#setAcc">
+              <div class="accordion-body">
+                <form data-mgrid-demo data-success-msg="Account updated (demo).">
+                  <div class="mb-3">
+                    <label class="form-label" for="em">Email</label>
+                    <input type="email" class="form-control" id="em" value="amina@example.com" />
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">Notifications</button>
+            </h2>
+            <div id="a2" class="accordion-collapse collapse" data-bs-parent="#setAcc">
+              <div class="accordion-body">
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="n1" checked />
+                  <label class="form-check-label" for="n1">Email alerts</label>
+                </div>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="n2" />
+                  <label class="form-check-label" for="n2">SMS alerts</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">Language</button>
+            </h2>
+            <div id="a3" class="accordion-collapse collapse" data-bs-parent="#setAcc">
+              <div class="accordion-body">
+                <div class="btn-group">
+                  <input type="radio" class="btn-check" name="mgridLang" id="swe" value="en" checked />
+                  <label class="btn btn-outline-primary" for="swe">English</label>
+                  <input type="radio" class="btn-check" name="mgridLang" id="sws" value="sw" />
+                  <label class="btn btn-outline-primary" for="sws">Kiswahili</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item border-danger">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#a4">Danger zone</button>
+            </h2>
+            <div id="a4" class="accordion-collapse collapse" data-bs-parent="#setAcc">
+              <div class="accordion-body">
+                <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delModal">Delete account</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content mgrid-modal-rounded">
+          <div class="modal-header">
+            <h2 class="modal-title h5" id="delModalLabel">Confirm deletion</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="small text-muted mb-0">This action is permanent (demo — no data removed).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+  </body>
+</html>

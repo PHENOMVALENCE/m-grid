@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="nav.home">Malkia Grid — Women&apos;s economic network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-animations.css" rel="stylesheet" />
+  </head>
+  <body class="bg-white">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm" id="mgridMainNav">
+      <div class="container py-2">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <span class="d-inline-flex align-items-center justify-content-center mgrid-brand-mark">M</span>
+          <span class="mgrid-brand-lockup">
+            <span class="mgrid-brand-name">Malkia Grid</span>
+            <span class="mgrid-brand-tagline d-none d-sm-block">Women&apos;s economic network</span>
+          </span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+          aria-controls="navMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#partners" data-i18n="nav.partners">Partners</a></li>
+            <li class="nav-item"><a class="nav-link" href="#tiers">M-Score</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="btn-group mgrid-lang-toggle" role="group" aria-label="Language">
+              <input type="radio" class="btn-check" name="mgridLang" id="langEn" value="en" checked />
+              <label class="btn btn-sm btn-outline-secondary" for="langEn">EN</label>
+              <input type="radio" class="btn-check" name="mgridLang" id="langSw" value="sw" />
+              <label class="btn btn-sm btn-outline-secondary" for="langSw">SW</label>
+            </div>
+            <a class="btn btn-primary" href="register.html" data-i18n="nav.get_mid">Get Your M-ID</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="mgrid-hero-full mgrid-hero-photo position-relative">
+      <div class="mgrid-gold-grain" aria-hidden="true"></div>
+      <div class="container position-relative py-5 mgrid-pt-nav-offset">
+        <div class="row align-items-center min-vh-100 py-5">
+          <div class="col-lg-8 fade-in-up">
+            <h1 class="mgrid-hero-title text-white mb-4" data-i18n="hero.title">
+              Your Digital Passport to Economic Power
+            </h1>
+            <p class="mgrid-hero-lead text-white mb-4" data-i18n="hero.subtitle">
+              Malkia Grid gives every woman in Tanzania a verified identity, a credit score, and access to finance,
+              training, and opportunities.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-5 stagger">
+              <a class="btn btn-primary btn-lg" href="register.html">Get Your M-ID</a>
+              <button type="button" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalHowItWorks" data-i18n="cta.watch">
+                Watch How It Works
+              </button>
+            </div>
+            <div class="row g-3 text-white text-center text-md-start">
+              <div class="col-6 col-md-3">
+                <div class="fs-3 fw-semibold font-monospace">1M+</div>
+                <div class="small opacity-75">Women</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fs-3 fw-semibold">6</div>
+                <div class="small opacity-75">Regions</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fs-3 fw-semibold">20+</div>
+                <div class="small opacity-75">Partners</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="fs-3 fw-semibold">TZS 5B+</div>
+                <div class="small opacity-75">Unlocked</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center pb-4">
+          <span class="d-inline-block mgrid-scroll-hint text-white-50 small" aria-hidden="true">Scroll</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- What is M-Grid -->
+    <section id="about" class="py-5 py-lg-6">
+      <div class="container py-4">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="display-6 mb-3 mgrid-section-heading">
+              What is M-Grid?
+            </h2>
+            <p class="lead mgrid-body-reading">
+              M-Grid is your women’s digital passport — a verified <strong>M-ID</strong>, a growing <strong>M-Score</strong>, and trusted
+              pathways to finance, training, and partner services. Built under Malkia wa Nguvu and Clouds Media Group.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <div class="mgrid-mid-card--premium mb-3">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <div>
+                  <div class="mgrid-mid-card-name">Amina Hassan</div>
+                  <div class="mgrid-mid-card-id">M-2026-004821</div>
+                  <div class="small mt-2 opacity-75">Dar es Salaam</div>
+                </div>
+                <span class="badge rounded-pill mgrid-badge-tier-gold mgrid-mid-card-tier">Gold</span>
+              </div>
+              <div class="mgrid-mid-card-score" id="heroScoreDemo">68</div>
+              <div class="mgrid-mid-card-score-label">M-Score</div>
+            </div>
+            <div class="mgrid-benefits-panel p-4 p-lg-5">
+              <h3 class="h5 mgrid-section-title mb-3">What you receive today</h3>
+              <ul class="list-unstyled mb-0 small">
+                <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A unique, permanent <strong>M-ID</strong></li>
+                <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A private <strong>M-Profile</strong> dashboard</li>
+                <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A transparent path toward <strong>M-Score</strong> and programs</li>
+                <li class="d-flex gap-2"><span class="mgrid-check">✓</span> Designed for <strong>English &amp; Kiswahili</strong> experiences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 mgrid-section-heading">How it works</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card card-hover h-100 border-0 p-4">
+              <div class="rounded-circle bg-dark text-warning d-inline-flex align-items-center justify-content-center mb-3 mgrid-step-num">1</div>
+              <h3 class="h5 fw-semibold text-dark">Register &amp; get your M-ID</h3>
+              <p class="text-muted small mb-0">Phone or email registration; your permanent M-ID is issued instantly.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-hover h-100 border-0 p-4">
+              <div class="rounded-circle bg-dark text-warning d-inline-flex align-items-center justify-content-center mb-3 mgrid-step-num">2</div>
+              <h3 class="h5 fw-semibold text-dark">Build profile &amp; M-Score</h3>
+              <p class="text-muted small mb-0">Upload documents, complete training, and grow a credible score.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-hover h-100 border-0 p-4">
+              <div class="rounded-circle bg-dark text-warning d-inline-flex align-items-center justify-content-center mb-3 mgrid-step-num">3</div>
+              <h3 class="h5 fw-semibold text-dark">Unlock opportunities</h3>
+              <p class="text-muted small mb-0">Loans, benefits, and partner offers aligned to your tier.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tiers -->
+    <section id="tiers" class="py-5 py-lg-6">
+      <div class="container">
+        <h2 class="text-center mb-5 mgrid-section-heading">M-Score tiers</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-xl-3">
+            <div class="mgrid-tier-card p-4 h-100 card-hover">
+              <span class="badge badge-bronze mb-2">Bronze</span>
+              <div class="fs-4 fw-bold">0–24</div>
+              <p class="small text-muted mb-0">Profile visible, training access.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="mgrid-tier-card p-4 h-100 card-hover">
+              <span class="badge badge-silver mb-2">Silver</span>
+              <div class="fs-4 fw-bold">25–49</div>
+              <p class="small text-muted mb-0">Partner discounts, compliance help.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="mgrid-tier-card p-4 h-100 is-active card-hover">
+              <span class="badge badge-gold mb-2">Gold</span>
+              <div class="fs-4 fw-bold">50–74</div>
+              <p class="small text-muted mb-0">Loan eligibility up to TZS 5M.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="mgrid-tier-card p-4 h-100 card-hover">
+              <span class="badge badge-diamond mb-2">Diamond</span>
+              <div class="fs-4 fw-bold">75–100</div>
+              <p class="small text-muted mb-0">Full benefits, priority funding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section id="partners" class="py-5 bg-white">
+      <div class="container text-center">
+        <h2 class="mb-4 mgrid-section-heading">Powered by Tanzania’s leading institutions</h2>
+        <div class="row row-cols-2 row-cols-md-5 g-3 justify-content-center">
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">NMB</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">CRDB</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">Selcom</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">BRELA</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">TRA</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">TIPM</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">SIDO</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">Aga Khan</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">Precision Air</div></div>
+          <div class="col"><div class="p-3 border rounded mgrid-partner-cell fw-semibold text-muted">Air Tanzania</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-blush-custom">
+      <div class="container">
+        <h2 class="text-center mb-4 mgrid-section-heading">Stories from members</h2>
+        <div id="carouselTestimonials" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="card border-0 shadow-sm mx-auto mgrid-max-w-560">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="mgrid-avatar-gold">FH</div>
+                    <div>
+                      <div class="fw-semibold">Fatma Hussein</div>
+                      <div class="small text-muted">Mwanza</div>
+                    </div>
+                    <div class="ms-auto"><span class="mscore-badge mscore-silver mgrid-testimonial-score"><span class="mscore-value">42</span></span></div>
+                  </div>
+                  <p class="mb-0 text-muted">“M-ID gave my cooperative a single reference for grants — clear, respectful, and serious.”</p>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="card border-0 shadow-sm mx-auto mgrid-max-w-560">
+                <div class="card-body p-4">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="mgrid-avatar-gold">LK</div>
+                    <div>
+                      <div class="fw-semibold">Leila Kweka</div>
+                      <div class="small text-muted">Dar es Salaam</div>
+                    </div>
+                    <div class="ms-auto"><span class="mscore-badge mscore-gold mgrid-testimonial-score"><span class="mscore-value">68</span></span></div>
+                  </div>
+                  <p class="mb-0 text-muted">“The dashboard makes progress visible — I know what to complete next.”</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimonials" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="mgrid-cta-banner py-5 position-relative">
+      <div class="container position-relative py-4 text-center text-white">
+        <div class="border-top border-warning border-2 mx-auto mb-4 mgrid-cta-accent-line"></div>
+        <h2 class="display-5 mb-3 mgrid-section-heading text-white">Join the Malkia Economy</h2>
+        <p class="mx-auto mb-4 opacity-90 mgrid-max-w-520">Create your M-ID and take the first step toward verified opportunity.</p>
+        <a class="btn btn-primary btn-lg" href="register.html">Get Your M-ID</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mgrid-footer pt-5 pb-3">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="mgrid-logo-text mb-2">M·GRID</div>
+            <p class="small opacity-75" data-i18n="footer.tagline">Women's digital identity for opportunity and trust.</p>
+          </div>
+          <div class="col-md-4">
+            <div class="fw-semibold mb-2">Quick links</div>
+            <ul class="list-unstyled small">
+              <li><a href="#about">About</a></li>
+              <li><a href="#partners">Partners</a></li>
+              <li><a href="register.html">Register</a></li>
+              <li><a href="login.html">Admin login</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="fw-semibold mb-2">Contact</div>
+            <p class="small opacity-75 mb-0">Dar es Salaam, Tanzania</p>
+            <p class="small mb-0"><a href="mailto:info@malkiagrid.co.tz">info@malkiagrid.co.tz</a></p>
+            <div class="mt-3 d-flex gap-3">
+              <a href="#" aria-label="Facebook">FB</a>
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="LinkedIn">IN</a>
+              <a href="#" aria-label="X">X</a>
+            </div>
+          </div>
+        </div>
+        <hr class="border-secondary opacity-25 my-4" />
+        <p class="small text-center mb-0 opacity-75">
+          © 2025 Malkia wa Nguvu / Clouds Media Group · <a href="#">Privacy</a> · <a href="#">Terms</a>
+        </p>
+      </div>
+    </footer>
+
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+    <div class="modal fade" id="modalHowItWorks" tabindex="-1" aria-labelledby="modalHowLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg mgrid-modal-rounded">
+          <div class="modal-header border-0">
+            <h2 class="modal-title mgrid-section-heading" id="modalHowLabel">How M-Grid works</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-0">
+            <p class="text-muted">
+              Short film placeholder — production will embed Clouds Media Group video. For now, continue to registration to
+              create your M-ID.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+    <script src="../assets/js/mgrid-landing.js"></script>
+  </body>
+</html>

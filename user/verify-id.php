@@ -78,7 +78,7 @@ $profile = $profileStmt->fetch() ?: [];
 $status = (string) ($profile['status'] ?? 'pending');
 $idStatus = (string) ($profile['national_id_status'] ?? 'not_submitted');
 
-$mgrid_page_title = 'ID Verification — M-GRID';
+$mgrid_page_title = 'ID Verification — Malkia Grid';
 require __DIR__ . '/includes/shell_open.php';
 ?>
 
@@ -94,7 +94,7 @@ require __DIR__ . '/includes/shell_open.php';
 
 <div class="card border-0 shadow-sm mb-4">
   <div class="card-body p-4">
-    <h1 class="h4 fw-bold mb-2">National ID Verification</h1>
+    <h1 class="h4 mgrid-dash-page-title mb-2">National ID Verification</h1>
     <p class="text-muted small mb-0">
       You can use the full platform after your National ID photo is reviewed and approved by an admin.
     </p>
@@ -105,7 +105,7 @@ require __DIR__ . '/includes/shell_open.php';
   <div class="col-lg-7">
     <div class="card border-0 shadow-sm h-100">
       <div class="card-body p-4">
-        <h2 class="h5 fw-bold mb-3">Upload National ID photo</h2>
+        <h2 class="h5 mgrid-dash-section-title mb-3">Upload National ID photo</h2>
         <form method="post" enctype="multipart/form-data">
           <?= csrf_field() ?>
           <div class="mb-3">
@@ -120,7 +120,7 @@ require __DIR__ . '/includes/shell_open.php';
   <div class="col-lg-5">
     <div class="card border-0 shadow-sm h-100">
       <div class="card-body p-4">
-        <h2 class="h5 fw-bold mb-3">Verification status</h2>
+        <h2 class="h5 mgrid-dash-section-title mb-3">Verification status</h2>
         <p class="mb-2"><strong>Account status:</strong> <span class="badge bg-light text-dark border"><?= e($status) ?></span></p>
         <p class="mb-2"><strong>ID status:</strong> <span class="badge bg-light text-dark border"><?= e($idStatus) ?></span></p>
         <?php if (!empty($profile['national_id_submitted_at'])): ?>

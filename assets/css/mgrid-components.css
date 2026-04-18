@@ -1,0 +1,614 @@
+/**
+ * Malkia Grid — shared components
+ */
+
+/* --- Brand lockup --- */
+.mgrid-brand-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1.15;
+}
+
+.mgrid-brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--charcoal) !important;
+  letter-spacing: 0.04em;
+}
+
+.mgrid-brand-tagline {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal-soft) !important;
+  opacity: 0.92;
+}
+
+.mgrid-brand-mark {
+  width: 42px;
+  height: 42px;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--charcoal) !important;
+  font-weight: 700;
+  border: 1px solid rgba(16, 18, 24, 0.12);
+  letter-spacing: 0.02em;
+}
+
+/* --- Logo text (legacy single line) --- */
+.mgrid-logo-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--charcoal);
+  letter-spacing: 0.06em;
+}
+
+.mgrid-logo-text-light {
+  color: var(--white);
+}
+
+/* --- Avatar initials --- */
+.mgrid-avatar-gold {
+  background: var(--gold-muted);
+  color: var(--gold-dark);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-weight: 600;
+}
+
+.mgrid-avatar-lg {
+  width: 72px;
+  height: 72px;
+  font-size: 1.35rem;
+}
+
+/* --- M-Score badge (Section 1.4.C) --- */
+.mscore-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  font-family: var(--font-body);
+  position: relative;
+  box-shadow: none;
+  border: 1px solid rgba(28, 28, 30, 0.08);
+}
+
+.mscore-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.mscore-value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.mscore-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.mscore-tier {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.mscore-bronze {
+  background: var(--bronze);
+  color: var(--white);
+}
+
+.mscore-silver {
+  background: var(--silver);
+  color: var(--charcoal);
+}
+
+.mscore-gold {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+
+.mscore-diamond {
+  background: var(--diamond);
+  color: var(--white);
+}
+
+/* --- Dashboard shell --- */
+.mgrid-dash-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: var(--off-white);
+  border-right: 1px solid var(--surface-2);
+  position: sticky;
+  top: 0;
+}
+
+.mgrid-dash-sidebar-admin {
+  width: 280px;
+}
+
+.mgrid-dash-sidebar .nav-link {
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.85rem;
+  margin-bottom: 0.2rem;
+  color: var(--charcoal-soft) !important;
+}
+
+.mgrid-dash-sidebar .nav-link:hover {
+  background: var(--gold-muted);
+  color: var(--gold-dark) !important;
+}
+
+.mgrid-dash-sidebar .nav-link.active {
+  background: var(--gold-muted);
+  color: var(--gold-dark) !important;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 0 var(--gold);
+}
+
+.mgrid-sidebar-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--charcoal);
+  letter-spacing: 0.06em;
+}
+
+.mgrid-sidebar-tagline {
+  font-size: 0.75rem;
+  color: var(--charcoal-soft);
+}
+
+/* --- Page header (dashboard) --- */
+.mgrid-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.mgrid-page-header-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.mgrid-page-header-sub {
+  font-size: 0.9rem;
+  color: var(--charcoal-soft);
+  margin: 0;
+}
+
+/* --- Stat cards --- */
+.mgrid-stat-card {
+  border-left: 1px solid var(--gold);
+  border-radius: var(--radius-lg);
+  background: var(--off-white);
+  box-shadow: none;
+  border-top: 1px solid rgba(28, 28, 30, 0.08);
+  border-right: 1px solid rgba(28, 28, 30, 0.08);
+  border-bottom: 1px solid rgba(28, 28, 30, 0.08);
+}
+
+.mgrid-stat-value {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: var(--charcoal);
+}
+
+.mgrid-stat-label {
+  font-size: 0.8rem;
+  color: var(--charcoal-soft);
+}
+
+/* --- Hero landing --- */
+.mgrid-hero-full {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--charcoal);
+  color: var(--white);
+}
+
+.mgrid-hero-full.mgrid-hero-photo {
+  background-image: linear-gradient(135deg, rgba(28, 28, 30, 0.62) 0%, rgba(28, 28, 30, 0.45) 100%),
+    url("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1920&q=70");
+  background-size: cover;
+  background-position: center;
+}
+
+.mgrid-hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.1;
+}
+
+.mgrid-hero-lead {
+  font-size: 1.125rem;
+  max-width: 36rem;
+  opacity: 0.88;
+  line-height: 1.7;
+}
+
+.mgrid-gold-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+}
+
+/* --- M-ID card mockup --- */
+.mgrid-mid-card {
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  background: var(--off-white);
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  box-shadow: none;
+}
+
+/* Membership passport — charcoal + gold border only */
+.mgrid-mid-card--premium {
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  background: var(--charcoal);
+  color: var(--off-white);
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--charcoal), var(--charcoal)),
+    linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: none;
+}
+
+.mgrid-mid-card--premium .mgrid-mid-card-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--off-white);
+}
+
+.mgrid-mid-card--premium .mgrid-mid-card-id,
+.mgrid-mid-card--premium .mgrid-mid-card-mono {
+  font-family: var(--font-mono-id);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--gold-light);
+  letter-spacing: 0.06em;
+}
+
+.mgrid-mid-card--premium .mgrid-mid-card-tier {
+  align-self: flex-start;
+}
+
+.mgrid-mid-card--premium .mgrid-mid-card-score {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-top: 0.75rem;
+  line-height: 1;
+}
+
+.mgrid-mid-card--premium .mgrid-mid-card-score-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.65);
+  margin-top: 0.35rem;
+}
+
+.mgrid-benefits-panel {
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  border-radius: var(--radius-lg);
+  background: var(--off-white);
+}
+
+.mgrid-badge-tier-gold {
+  background: var(--gold-muted);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+}
+
+.mgrid-tier-gold-hero .mgrid-badge-tier-gold {
+  border: 1px solid var(--gold);
+}
+
+.mgrid-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.mgrid-check {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.mgrid-mid-card-mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* --- Tier comparison cards --- */
+.mgrid-tier-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-2);
+  background: var(--off-white);
+  transition: border-color 0.2s ease;
+}
+
+.mgrid-tier-card.is-active {
+  border-color: var(--gold);
+  box-shadow: none;
+}
+
+/* --- CTA banner --- */
+.mgrid-cta-banner {
+  background: var(--charcoal);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.mgrid-cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(
+    -12deg,
+    transparent,
+    transparent 12px,
+    rgba(201, 168, 76, 0.35) 12px,
+    rgba(201, 168, 76, 0.35) 13px
+  );
+}
+
+/* --- Footer --- */
+.mgrid-footer {
+  background: var(--charcoal);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mgrid-footer a {
+  color: var(--gold-light);
+  text-decoration: none;
+}
+
+.mgrid-footer a:hover {
+  text-decoration: underline;
+  color: var(--gold);
+}
+
+/* --- Language toggle --- */
+.mgrid-lang-toggle .btn-check:checked + .btn {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--charcoal);
+}
+
+/* --- Notification bell dropdown --- */
+.mgrid-notif-dropdown {
+  min-width: 280px;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+  border: 1px solid rgba(28, 28, 30, 0.12);
+}
+
+/* --- Mobile bottom nav (dashboard) --- */
+.mgrid-mobile-nav {
+  box-shadow: none;
+  background: var(--off-white);
+  border-top: 1px solid rgba(28, 28, 30, 0.1);
+}
+
+.mgrid-mobile-nav .nav-link {
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--charcoal-soft) !important;
+}
+
+.mgrid-mobile-nav .nav-link.active {
+  color: var(--gold-dark) !important;
+}
+
+/* --- Kanban --- */
+.mgrid-kanban-col {
+  min-height: 280px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.mgrid-kanban-card {
+  cursor: grab;
+}
+
+/* --- Login geometric pattern --- */
+.mgrid-login-pattern {
+  background-color: var(--blush);
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 15-15 15L15 15z' fill='%23C9A84C' fill-opacity='0.07'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* --- Register split --- */
+.mgrid-register-left {
+  background: var(--charcoal);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.mgrid-register-left::after {
+  display: none;
+}
+
+/* --- Profile ID card --- */
+.mgrid-profile-id-card {
+  border-radius: var(--radius-xl);
+  background: var(--off-white);
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  box-shadow: none;
+}
+
+/* --- Locked benefit overlay --- */
+.mgrid-benefit-locked {
+  position: relative;
+}
+
+.mgrid-benefit-locked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: rgba(250, 250, 248, 0.72);
+  backdrop-filter: blur(1px);
+}
+
+/* --- Hero typography scale mobile --- */
+@media (max-width: 575.98px) {
+  .mgrid-hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* --- Utilities (no inline styles in HTML) --- */
+.mgrid-pt-nav-offset {
+  padding-top: 7rem;
+}
+
+.mgrid-section-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.mgrid-body-reading {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--charcoal-soft);
+}
+
+.mgrid-step-num {
+  width: 48px;
+  height: 48px;
+  font-weight: 700;
+}
+
+.mgrid-max-w-560 {
+  max-width: 560px;
+}
+
+.mgrid-max-w-520 {
+  max-width: 520px;
+}
+
+.mgrid-cta-accent-line {
+  width: 80px;
+  opacity: 0.7;
+}
+
+.mgrid-modal-rounded {
+  border-radius: var(--radius-lg);
+}
+
+.mgrid-testimonial-score {
+  width: 72px;
+  height: 72px;
+}
+
+.mgrid-testimonial-score .mscore-value {
+  font-size: 1.25rem;
+}
+
+.mgrid-partner-cell {
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+}
+
+.mgrid-partner-cell:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.bg-blush-custom {
+  background-color: var(--blush);
+}
+
+.bg-gradient-gold-blush {
+  background: var(--blush);
+}
+
+.mgrid-badge-soft {
+  background: var(--gold-muted);
+  color: var(--charcoal);
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  font-weight: 600;
+}
+
+.mgrid-w-68 {
+  width: 68%;
+}
+
+.mgrid-w-75 {
+  width: 75%;
+}
+
+.mgrid-min-w-200 {
+  min-width: 200px;
+}
+
+#passwordStrengthBar {
+  width: 0%;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.mgrid-max-w-460 {
+  max-width: 460px;
+}
+
+.mgrid-progress-h-6 {
+  height: 6px;
+}
+
+.mgrid-register-lead {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+}

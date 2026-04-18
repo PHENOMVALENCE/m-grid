@@ -1,0 +1,1012 @@
+// ----------------------------------------------
+// Malkia Grid — component skinning, layout tone, utilities
+// ----------------------------------------------
+
+@mixin mgrid-focus-ring {
+  outline: 0;
+  box-shadow: 0 0 0 1px var(--focus-ring) !important;
+}
+
+// --- Typography ---
+.mgrid-display,
+.mgrid-hero h1,
+.mgrid-hero .display-5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.mgrid-page-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.5vw, 2.125rem);
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.mgrid-mono-id {
+  font-family: var(--font-mono-id);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+// --- Surfaces ---
+body.mgrid-public {
+  font-family: var(--font-sans);
+  color: var(--charcoal-soft);
+  background-color: var(--off-white);
+}
+
+body.mgrid-auth {
+  font-family: var(--font-sans);
+  color: var(--charcoal-soft);
+  background-color: var(--blush);
+}
+
+body.mgrid-app {
+  font-family: var(--font-sans);
+  color: var(--charcoal-soft);
+  background-color: var(--surface);
+
+  .body-wrapper {
+    background: var(--off-white);
+    border: 1px solid rgba(16, 18, 24, 0.1);
+    box-shadow: none;
+  }
+}
+
+// --- Dashboard shell (member: `mgrid-dash` only; admin: +`mgrid-admin`) ---
+body.mgrid-dash {
+  background-color: var(--surface);
+
+  &.mgrid-admin {
+    background-color: #dedbd4;
+  }
+
+  .body-wrapper {
+    border-color: rgba(16, 18, 24, 0.12);
+  }
+
+  .body-wrapper .container-fluid {
+    padding-bottom: 2.5rem;
+  }
+
+  // No app-topstrip in this shell — template assumed 65px strip; align fixed chrome to viewport top
+  #main-wrapper[data-layout="vertical"][data-sidebar-position="fixed"] .left-sidebar {
+    top: 0 !important;
+
+    @include media-breakpoint-down(lg) {
+      top: 0 !important;
+    }
+  }
+
+  .app-header {
+    top: 0 !important;
+
+    @include media-breakpoint-down(lg) {
+      top: 0 !important;
+    }
+  }
+
+  .card {
+    transition: border-color var(--transition-base), background-color var(--transition-base);
+  }
+
+  &:not(.mgrid-admin) .card:not(.mgrid-dash-hero):not(.mgrid-dash-tile--planned):hover {
+    border-color: rgba(184, 150, 61, 0.28);
+  }
+
+  .table thead th {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .table-light {
+    --bs-table-bg: rgba(16, 18, 24, 0.04);
+    --bs-table-color: var(--charcoal-soft);
+  }
+}
+
+.mgrid-dash-hero {
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius-card);
+  background: var(--blush);
+  border-top: 1px solid rgba(16, 18, 24, 0.08);
+  border-right: 1px solid rgba(16, 18, 24, 0.08);
+  border-bottom: 1px solid rgba(16, 18, 24, 0.08);
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+}
+
+// KPI / summary tiles (admin stats, member spotlight cards)
+.mgrid-dash-stat {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    opacity: 0.85;
+  }
+
+  .card-body {
+    padding: 1.25rem 1.25rem 1.25rem 1.65rem;
+  }
+}
+
+.mgrid-dash-stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(90, 93, 102, 0.95);
+  margin-bottom: 0.35rem;
+}
+
+.mgrid-dash-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+}
+
+.mgrid-dash-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+}
+
+.mgrid-dash-page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+}
+
+// “Coming soon” / roadmap tiles
+.mgrid-dash-tile--planned {
+  background: var(--surface) !important;
+  border-style: dashed !important;
+  border-color: rgba(16, 18, 24, 0.14) !important;
+  opacity: 1 !important;
+
+  .badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--off-white) !important;
+    color: var(--charcoal-soft) !important;
+    border-color: rgba(16, 18, 24, 0.12) !important;
+  }
+}
+
+body.mgrid-admin {
+  .card {
+    border-radius: var(--radius-card);
+  }
+
+  .table {
+    font-size: 0.875rem;
+  }
+}
+
+// --- Public navbar ---
+.mgrid-navbar {
+  background: var(--off-white) !important;
+  border-bottom: 1px solid rgba(16, 18, 24, 0.1) !important;
+  box-shadow: none !important;
+
+  .navbar-brand {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: normal;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--charcoal-soft) !important;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem !important;
+    transition: color var(--transition-fast), background var(--transition-fast);
+
+    &:hover {
+      color: var(--charcoal) !important;
+      background: var(--gold-muted);
+    }
+
+    &.active {
+      color: var(--gold-dark) !important;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(16, 18, 24, 0.12);
+  }
+}
+
+.mgrid-brand-lockup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  line-height: 1.15;
+}
+
+.mgrid-brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--charcoal) !important;
+  letter-spacing: 0.04em;
+}
+
+.mgrid-brand-tagline {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal-soft) !important;
+  opacity: 0.92;
+}
+
+.mgrid-brand-mark {
+  width: 42px;
+  height: 42px;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--charcoal) !important;
+  font-weight: 700;
+  border: 1px solid rgba(16, 18, 24, 0.12);
+  letter-spacing: 0.02em;
+}
+
+.mgrid-sidebar-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem !important;
+  color: var(--charcoal) !important;
+  letter-spacing: 0.06em;
+}
+
+// --- Buttons ---
+.btn-primary {
+  color: var(--charcoal) !important;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  border: 1px solid var(--gold-dark);
+  border-radius: 50rem;
+  background: var(--gold);
+  box-shadow: none;
+  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--charcoal) !important;
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+  }
+
+  &:disabled,
+  &.disabled {
+    background: var(--surface-2);
+    border-color: rgba(28, 28, 30, 0.12);
+    color: rgba(28, 28, 30, 0.45) !important;
+  }
+}
+
+.btn-outline-primary {
+  color: var(--gold-dark);
+  border-color: var(--gold);
+  border-radius: 50rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  background: transparent;
+  transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+
+  &:hover {
+    background: var(--gold-muted);
+    border-color: var(--gold-dark);
+    color: var(--charcoal) !important;
+  }
+}
+
+.btn-dark {
+  border-radius: 50rem;
+  font-weight: 600;
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+
+  &:hover {
+    background: var(--charcoal-mid);
+    border-color: var(--charcoal-mid);
+  }
+}
+
+.btn-outline-light {
+  border-radius: 50rem;
+  font-weight: 600;
+}
+
+.btn-outline-secondary {
+  border-radius: 50rem;
+}
+
+.btn-lg {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+// --- Cards ---
+.card {
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  box-shadow: none;
+  background-color: var(--off-white);
+}
+
+.mgrid-public .card:not(.no-mgrid-hover),
+.mgrid-card-interactive {
+  transition: border-color var(--transition-base);
+
+  &:hover {
+    border-color: rgba(201, 168, 76, 0.35);
+  }
+}
+
+.mgrid-card-soft {
+  border: 1px solid rgba(28, 28, 30, 0.1) !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-card) !important;
+  background: var(--off-white);
+}
+
+// Emotional centrepiece — charcoal + gold gradient border only (membership passport)
+.mgrid-mid-card--premium {
+  position: relative;
+  border-radius: var(--radius-panel);
+  padding: 1.5rem 1.5rem 1.35rem;
+  background: var(--charcoal);
+  color: var(--off-white);
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--charcoal), var(--charcoal)),
+    linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 45%, var(--gold-light) 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: none;
+
+  .mgrid-mid-card-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: var(--off-white);
+  }
+
+  .mgrid-mid-card-id {
+    font-family: var(--font-mono-id);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    margin-top: 0.25rem;
+  }
+
+  .mgrid-mid-card-score {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gold-light);
+    margin-top: 0.75rem;
+  }
+
+  .mgrid-mid-card-score-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(250, 250, 248, 0.65);
+    margin-top: 0.35rem;
+  }
+
+  .mgrid-mid-card-tier {
+    align-self: flex-start;
+  }
+}
+
+// Gold-tier members: subtle celebratory accent (use with .mgrid-badge-tier-gold)
+.mgrid-tier-gold-hero .mgrid-badge-tier-gold {
+  background: var(--gold-muted);
+  color: var(--gold-dark);
+  border: 1px solid var(--gold);
+  font-weight: 600;
+}
+
+.mgrid-benefits-panel {
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  border-radius: var(--radius-card);
+  background: var(--off-white);
+}
+
+// --- Forms ---
+.form-control,
+.form-select {
+  border-radius: var(--radius-input);
+  background-color: var(--off-white);
+  border-color: rgba(28, 28, 30, 0.12);
+  color: var(--charcoal);
+
+  &:focus {
+    border-color: rgba(154, 120, 48, 0.55);
+    @include mgrid-focus-ring;
+  }
+
+  &::placeholder {
+    color: rgba(74, 74, 76, 0.55);
+  }
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: rgba(185, 28, 28, 0.55);
+}
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: rgba(46, 125, 82, 0.45);
+  background-color: var(--success-bg);
+}
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--charcoal-soft);
+}
+
+// --- Tables ---
+.table {
+  --bs-table-bg: transparent;
+  border-color: rgba(28, 28, 30, 0.06);
+
+  thead th {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(74, 74, 76, 0.85);
+    background: var(--surface);
+    border-bottom: 1px solid rgba(28, 28, 30, 0.08);
+    vertical-align: middle;
+  }
+
+  tbody tr {
+    transition: background var(--transition-fast);
+  }
+
+  tbody tr:hover {
+    background-color: rgba(247, 240, 220, 0.45);
+  }
+}
+
+.table-responsive {
+  border-radius: var(--radius-input);
+}
+
+// --- Badges ---
+.badge {
+  border-radius: 50rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.mgrid-badge-soft {
+  background: var(--gold-muted) !important;
+  color: var(--charcoal) !important;
+  border: 1px solid rgba(201, 168, 76, 0.28) !important;
+  font-weight: 600;
+}
+
+.mgrid-badge-tier-bronze {
+  background: rgba(205, 127, 50, 0.15);
+  color: #8a5218;
+  border: 1px solid rgba(205, 127, 50, 0.35);
+}
+
+.mgrid-badge-tier-silver {
+  background: rgba(168, 169, 173, 0.2);
+  color: #4a4b50;
+  border: 1px solid rgba(168, 169, 173, 0.45);
+}
+
+.mgrid-badge-tier-gold {
+  background: var(--gold-muted);
+  color: var(--gold-dark);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+}
+
+.mgrid-badge-tier-diamond {
+  background: rgba(91, 141, 239, 0.12);
+  color: #2f5cb5;
+  border: 1px solid rgba(91, 141, 239, 0.35);
+}
+
+.mgrid-badge-tier-pending {
+  background: var(--surface-2);
+  color: var(--charcoal-soft);
+  border: 1px solid rgba(28, 28, 30, 0.12);
+}
+
+.mgrid-badge-status-verified {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.mgrid-badge-status-pending,
+.mgrid-badge-status-under-review {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.mgrid-badge-status-missing {
+  background: var(--surface-2);
+  color: var(--charcoal-soft);
+}
+.mgrid-badge-status-rejected {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.mgrid-badge-status-active,
+.mgrid-badge-status-approved {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.mgrid-badge-status-locked {
+  background: var(--info-bg);
+  color: var(--info);
+}
+
+// --- M-Score ---
+.mgrid-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+}
+
+.mgrid-score-ring {
+  --mgrid-ring: 132px;
+  width: var(--mgrid-ring);
+  height: var(--mgrid-ring);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: conic-gradient(var(--gold) calc(var(--pct, 0) * 1%), var(--surface-2) 0);
+  box-shadow: inset 0 0 0 10px var(--off-white);
+  animation: mgrid-score-in 0.8s ease-out both;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background: var(--off-white);
+    border: 1px solid rgba(28, 28, 30, 0.06);
+    box-shadow: none;
+  }
+
+  .mgrid-score-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+
+  .mgrid-score-value {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  .mgrid-score-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+  }
+}
+
+.mgrid-score-ring[data-tier="bronze"] {
+  background: conic-gradient(var(--bronze) calc(var(--pct, 0) * 1%), var(--surface-2) 0);
+}
+.mgrid-score-ring[data-tier="silver"] {
+  background: conic-gradient(var(--silver) calc(var(--pct, 0) * 1%), var(--surface-2) 0);
+}
+.mgrid-score-ring[data-tier="gold"],
+.mgrid-score-ring[data-tier="gold_tier"] {
+  background: conic-gradient(var(--gold-tier) calc(var(--pct, 0) * 1%), var(--surface-2) 0);
+}
+.mgrid-score-ring[data-tier="diamond"] {
+  background: conic-gradient(var(--diamond) calc(var(--pct, 0) * 1%), var(--surface-2) 0);
+}
+
+@keyframes mgrid-score-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// --- Hero & marketing ---
+.mgrid-hero {
+  background-color: var(--charcoal);
+  color: var(--white);
+}
+
+.mgrid-hero .lead {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 38rem;
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.mgrid-gold {
+  color: var(--gold) !important;
+}
+
+.mgrid-section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.mgrid-check {
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.mgrid-step-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  background: var(--charcoal);
+  color: var(--gold-light);
+  border: 1px solid rgba(232, 212, 138, 0.45);
+}
+
+// --- FAQ accordion ---
+.mgrid-faq .accordion-button:not(.collapsed) {
+  background-color: rgba(249, 238, 241, 0.65);
+  color: var(--charcoal);
+  box-shadow: none;
+}
+
+.mgrid-faq .accordion-item {
+  border-radius: var(--radius-input);
+  overflow: hidden;
+  border-color: rgba(28, 28, 30, 0.08);
+}
+
+// --- Footer ---
+.mgrid-footer {
+  background: var(--charcoal);
+  color: rgba(255, 255, 255, 0.88);
+
+  .fw-bold,
+  .fw-semibold {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+  }
+}
+
+.mgrid-footer a {
+  color: var(--gold-light);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+}
+
+// --- Auth card ---
+.mgrid-auth .card {
+  border-radius: var(--radius-panel);
+  box-shadow: none;
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  background: var(--off-white);
+}
+
+.mgrid-auth-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: var(--charcoal) !important;
+}
+
+.mgrid-auth .lead-tight {
+  font-size: 0.9rem;
+  color: rgba(74, 74, 76, 0.9);
+  letter-spacing: 0.01em;
+}
+
+// --- Sidebar (dashboard) ---
+.left-sidebar {
+  background: var(--off-white) !important;
+  border-right-color: rgba(16, 18, 24, 0.09) !important;
+}
+
+body.mgrid-admin .left-sidebar {
+  background: #f4f2ed !important;
+  border-right-color: rgba(16, 18, 24, 0.1) !important;
+}
+
+body.mgrid-admin .app-header {
+  background: #f4f2ed !important;
+}
+
+.brand-logo .logo-img {
+  text-decoration: none !important;
+}
+
+.sidebar-nav ul .sidebar-item {
+  > .sidebar-link {
+    border-radius: var(--radius-input);
+    font-size: 0.9375rem;
+    color: var(--charcoal-soft);
+
+    &:hover {
+      background: var(--gold-muted) !important;
+      color: var(--gold-dark) !important;
+    }
+  }
+
+  &.selected > .sidebar-link.active,
+  &.selected > .sidebar-link,
+  > .sidebar-link.active {
+    background: var(--gold-muted) !important;
+    color: var(--gold-dark) !important;
+    font-weight: 600;
+    box-shadow: inset 2px 0 0 0 var(--gold);
+  }
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link.text-danger {
+  color: var(--danger) !important;
+
+  &:hover {
+    background: var(--danger-bg) !important;
+    color: var(--danger) !important;
+  }
+}
+
+.nav-small-cap .hide-menu {
+  color: rgba(74, 74, 76, 0.75) !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+// --- Topbar ---
+.app-header {
+  background: var(--off-white) !important;
+  border-bottom: 1px solid rgba(28, 28, 30, 0.1);
+}
+
+.app-header .navbar .navbar-nav .nav-item .nav-link {
+  font-size: 1rem !important;
+  color: var(--charcoal-soft) !important;
+
+  &:hover {
+    color: var(--gold-dark) !important;
+  }
+}
+
+.mgrid-avatar {
+  width: 38px;
+  height: 38px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  border-radius: 50%;
+  background: var(--charcoal) !important;
+  color: var(--off-white) !important;
+  border: 1px solid rgba(184, 150, 61, 0.5);
+}
+
+// Member dashboard — top summary row accent
+.mgrid-dash-summary .card {
+  border-top: 2px solid rgba(184, 150, 61, 0.45);
+}
+
+// --- Modals ---
+.modal-content {
+  border-radius: var(--radius-panel);
+  box-shadow: none;
+  border: 1px solid rgba(28, 28, 30, 0.12);
+}
+
+// --- Alerts ---
+.alert {
+  border-radius: var(--radius-input);
+  border-width: 1px;
+}
+
+.alert-success {
+  background: var(--success-bg);
+  border-color: rgba(46, 125, 82, 0.25);
+  color: #1a4d32;
+}
+
+.alert-danger {
+  background: var(--danger-bg);
+  border-color: rgba(185, 28, 28, 0.25);
+  color: #6b1212;
+}
+
+.alert-warning {
+  background: var(--warning-bg);
+  border-color: rgba(180, 83, 9, 0.25);
+  color: #5c2f06;
+}
+
+.alert-info {
+  background: var(--info-bg);
+  border-color: rgba(30, 95, 173, 0.22);
+  color: #14365f;
+}
+
+// --- Progress ---
+.progress {
+  border-radius: 50rem;
+  background: var(--surface-2);
+}
+
+.progress-bar {
+  background: var(--gold);
+}
+
+// --- Charts (ApexCharts) ---
+.mgrid-app .apexcharts-canvas,
+.mgrid-admin .apexcharts-canvas {
+  font-family: var(--font-sans) !important;
+}
+
+.mgrid-app .apexcharts-text,
+.mgrid-admin .apexcharts-text {
+  fill: var(--charcoal-soft) !important;
+}
+
+.mgrid-app .apexcharts-tooltip.apexcharts-theme-light,
+.mgrid-admin .apexcharts-tooltip.apexcharts-theme-light {
+  border-radius: var(--radius-input) !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(28, 28, 30, 0.12) !important;
+  font-family: var(--font-sans) !important;
+}
+
+// --- Partner strip placeholders ---
+.mgrid-partner-pill {
+  filter: grayscale(1);
+  opacity: 0.72;
+  transition: filter var(--transition-base), opacity var(--transition-base);
+
+  &:hover {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+}
+
+// --- Subtle utilities ---
+.mgrid-fade-up {
+  animation: mgrid-fade-up 0.55s ease both;
+}
+
+@keyframes mgrid-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-light {
+  background-color: var(--surface) !important;
+}
+
+// --- Editorial polish (public marketing) ---
+.mgrid-public .mgrid-hero h1.display-5,
+.mgrid-public .mgrid-section-title.display-6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.mgrid-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.mgrid-public .mgrid-card-soft h3.h5,
+.mgrid-public .card.mgrid-card-soft .h5 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+}
+
+// --- App / admin: calm surfaces (no utility drop shadows) ---
+.mgrid-app .card.shadow-sm,
+.mgrid-admin .card.shadow-sm,
+.mgrid-auth .card.shadow-sm {
+  box-shadow: none !important;
+  border: 1px solid rgba(28, 28, 30, 0.08) !important;
+}
+
+.mgrid-app .card-body > h2.h6.text-uppercase,
+.mgrid-admin .card-body > h2.h6.text-uppercase {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(74, 74, 76, 0.88) !important;
+}
+
+.mgrid-topbar-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(74, 74, 76, 0.8) !important;
+}
+
+.app-header .dropdown-menu {
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  box-shadow: none;
+  border-radius: var(--radius-input);
+  padding: 0.5rem;
+}
+
+.app-header .dropdown-item {
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.75rem;
+}

@@ -7,7 +7,8 @@
     "startCommand": "npm start"
   },
   "scripts": {
-    "compile-sass": "npx sass --watch src/assets/scss/styles.scss src/assets/css/styles.min.css"
+    "compile-sass": "npx sass assets/scss/styles.scss assets/css/styles.min.css --style compressed",
+    "watch-sass": "npx sass --watch assets/scss/styles.scss assets/css/styles.min.css --style compressed"
   },
   "devDependencies": {
     "sass": "^1.54.8"

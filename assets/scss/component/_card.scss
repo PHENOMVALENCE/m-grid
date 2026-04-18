@@ -3,7 +3,12 @@
 // ----------------------------------------------
 
 .card-title {
-    font-size: 18px;
+    font-family: $headings-font-family;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .card-subtitle {

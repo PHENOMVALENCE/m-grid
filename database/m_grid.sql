@@ -1,4 +1,4 @@
--- M-GRID Phase 1 schema (MySQL 8+ / MariaDB 10.3+)
+-- Malkia Grid — Phase 1 schema (MySQL 8+ / MariaDB 10.3+)
 -- Charset: utf8mb4 for full Unicode support (Swahili, names, etc.)
 
 SET NAMES utf8mb4;

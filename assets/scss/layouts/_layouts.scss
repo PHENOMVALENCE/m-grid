@@ -4,7 +4,7 @@
 
 body {
   font-family: $font-family-sans-serif !important;
-  background-color: #f6f8fb;
+  background-color: var(--surface, #f4f4f0);
 }
 
 .page-wrapper {
@@ -13,7 +13,7 @@ body {
 
 .body-wrapper {
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
 
   .body-wrapper-inner{
     min-height: calc(100vh - 110px);
@@ -65,10 +65,9 @@ body {
       z-index: 10;
     }
 
-    .body-wrapper {
-      >.container-fluid {
-        padding-top: calc(#{$header-height} + 30px);
-      }
+    // Content sits inside .body-wrapper-inner (not direct child of .body-wrapper)
+    .body-wrapper .body-wrapper-inner > .container-fluid {
+      padding-top: calc(#{$header-height} + 1.5rem);
     }
   }
 }
@@ -116,7 +115,8 @@ body {
       &.show-sidebar {
         .left-sidebar {
           left: 0;
-          box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+          box-shadow: none;
+          border-right: 1px solid rgba(28, 28, 30, 0.12);
         }
       }
     }

@@ -7,26 +7,59 @@ require __DIR__ . '/includes/init_member.php';
 $pdo = db();
 $uid = (int) auth_user()['user_id'];
 $stmt = $pdo->prepare('
-    SELECT u.*, p.region, p.date_of_birth, p.age_range, p.business_status, p.bio, p.profile_completion
+    SELECT u.*, p.region, p.date_of_birth, p.age_range, p.business_status, p.bio, p.profile_completion,
+           s.score AS m_score, s.tier AS m_tier
     FROM users u
     LEFT JOIN user_profiles p ON p.user_id = u.id
+    LEFT JOIN m_scores s ON s.user_id = u.id
     WHERE u.id = :id
     LIMIT 1
 ');
 $stmt->execute(['id' => $uid]);
 $row = $stmt->fetch() ?: [];
 
-$mgrid_page_title = 'M-Profile — M-GRID';
+$mgrid_page_title = 'M-Profile — Malkia Grid';
 require __DIR__ . '/includes/shell_open.php';
 ?>
 
+<?php
+$tierRaw = strtolower((string) ($row['m_tier'] ?? 'pending'));
+$badgeTier = 'pending';
+if (str_contains($tierRaw, 'gold')) {
+    $badgeTier = 'gold';
+} elseif (str_contains($tierRaw, 'silver')) {
+    $badgeTier = 'silver';
+} elseif (str_contains($tierRaw, 'bronze')) {
+    $badgeTier = 'bronze';
+} elseif (str_contains($tierRaw, 'diamond')) {
+    $badgeTier = 'diamond';
+}
+$scoreDisp = isset($row['m_score']) && $row['m_score'] !== null && $row['m_score'] !== ''
+    ? (string) $row['m_score']
+    : '—';
+$isGoldTier = $badgeTier === 'gold';
+?>
+<div class="mgrid-mid-card--premium mb-4<?= $isGoldTier ? ' mgrid-tier-gold-hero' : '' ?>">
+  <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap">
+    <div>
+      <div class="mgrid-mid-card-name"><?= e((string) ($row['full_name'] ?? '')) ?></div>
+      <div class="mgrid-mid-card-id"><?= e((string) ($row['m_id'] ?? '')) ?></div>
+    </div>
+    <?php if (!empty($row['m_tier'])): ?>
+      <span class="badge rounded-pill mgrid-badge-tier-<?= e($badgeTier) ?> mgrid-mid-card-tier text-uppercase"><?= e((string) $row['m_tier']) ?></span>
+    <?php endif; ?>
+  </div>
+  <div class="mgrid-mid-card-score"><?= e($scoreDisp) ?></div>
+  <div class="mgrid-mid-card-score-label">M-Score</div>
+</div>
+
 <div class="card border-0 shadow-sm">
   <div class="card-body p-4">
-    <h1 class="h4 fw-bold mb-4">M-Profile</h1>
+    <h1 class="h4 mgrid-dash-page-title mb-4">M-Profile</h1>
     <div class="row g-4">
       <div class="col-md-6">
         <p class="text-muted small mb-1">M-ID</p>
-        <p class="fw-bold fs-5"><?= e((string) ($row['m_id'] ?? '')) ?></p>
+        <p class="fw-bold fs-5 mgrid-mono-id"><?= e((string) ($row['m_id'] ?? '')) ?></p>
       </div>
       <div class="col-md-6">
         <p class="text-muted small mb-1">Full name</p>

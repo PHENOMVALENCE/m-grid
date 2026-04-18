@@ -11,13 +11,13 @@ $langRow = $st->fetch();
 $lang = (string) ($langRow['preferred_language'] ?? 'en');
 $langLabel = $lang === 'sw' ? 'Kiswahili' : 'English';
 
-$mgrid_page_title = 'Settings — M-GRID';
+$mgrid_page_title = 'Settings — Malkia Grid';
 require __DIR__ . '/includes/shell_open.php';
 ?>
 
 <div class="card border-0 shadow-sm">
   <div class="card-body p-4">
-    <h1 class="h4 fw-bold mb-2">Settings</h1>
+    <h1 class="h4 mgrid-dash-page-title mb-2">Settings</h1>
     <p class="text-muted small mb-4">Language preferences and security options will expand in upcoming releases.</p>
     <div class="border rounded p-3 bg-light">
       <p class="small mb-0"><strong>Preferred language on file:</strong> <?= e($langLabel) ?></p>

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Application configuration (M-GRID).
+ * Application configuration (Malkia Grid).
  * Copy or adjust database settings for your XAMPP / hosting environment.
  */
 

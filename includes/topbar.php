@@ -16,19 +16,18 @@ if ($u === null) {
         </a>
       </li>
       <li class="nav-item d-none d-md-flex align-items-center ms-2">
-        <span class="text-muted small">Signed in as</span>
+        <span class="mgrid-topbar-label">Signed in as</span>
         <span class="fw-semibold ms-2"><?= e($u['full_name']) ?></span>
       </li>
     </ul>
     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
       <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end gap-2">
         <li class="nav-item d-none d-lg-block">
-          <span class="badge rounded-pill mgrid-badge-soft px-3 py-2"><?= e((string) ($u['m_id'] ?? $u['admin_code'] ?? '')) ?></span>
+          <span class="badge rounded-pill mgrid-badge-soft px-3 py-2 mgrid-mono-id"><?= e((string) ($u['m_id'] ?? $u['admin_code'] ?? '')) ?></span>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="javascript:void(0)" id="mgridUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="d-flex align-items-center justify-content-center rounded-circle bg-dark text-white fw-bold"
-              style="width:38px;height:38px;font-size:0.9rem;">
+            <span class="d-flex align-items-center justify-content-center mgrid-avatar">
               <?= e(strtoupper(substr($u['full_name'], 0, 1))) ?>
             </span>
           </a>

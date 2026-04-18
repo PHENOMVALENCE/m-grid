@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M-Score — M-Grid</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-animations.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="d-flex min-vh-100">
+      <nav class="mgrid-dash-sidebar d-none d-xl-flex flex-column p-3" aria-label="Main navigation">
+        <div class="mb-4">
+          <div class="mgrid-sidebar-brand">M·GRID</div>
+          <div class="mgrid-sidebar-tagline">Digital identity &amp; opportunity</div>
+        </div>
+        <ul class="nav nav-pills flex-column gap-1">
+          <li class="nav-item"><a class="nav-link" href="home.html">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">My M-ID &amp; Profile</a></li>
+          <li class="nav-item"><a class="nav-link active" href="score.html">My M-Score</a></li>
+          <li class="nav-item"><a class="nav-link" href="documents.html">Documents</a></li>
+          <li class="nav-item"><a class="nav-link" href="loans.html">M-Fund (Loans)</a></li>
+          <li class="nav-item"><a class="nav-link" href="partners.html">M-Partners</a></li>
+          <li class="nav-item"><a class="nav-link" href="benefits.html">M-Benefits</a></li>
+          <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
+        </ul>
+        <div class="mt-auto pt-4 border-top">
+          <a class="btn btn-outline-danger btn-sm w-100" href="../public/login.html">Logout</a>
+        </div>
+      </nav>
+      <div class="flex-grow-1 p-3 p-md-4">
+        <header class="mb-4">
+          <h1 class="mgrid-page-header-title">M-Score</h1>
+          <p class="mgrid-page-header-sub">Understand and improve your credibility score</p>
+        </header>
+
+        <div class="row g-4 mb-4">
+          <div class="col-lg-5 text-center">
+            <div class="mscore-badge mscore-gold mx-auto mb-3">
+              <span class="mscore-value" id="scoreMain">0</span>
+              <span class="mscore-label">M-Score</span>
+              <span class="mscore-tier">Gold</span>
+            </div>
+            <canvas id="scoreGauge" width="240" height="240" class="mx-auto d-block" aria-label="Score gauge chart"></canvas>
+          </div>
+          <div class="col-lg-7">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-header bg-white">Breakdown</div>
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Milestone</th>
+                      <th scope="col">Points</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Updated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Business registered (BRELA)</td>
+                      <td>20</td>
+                      <td><span class="badge bg-success">Verified</span></td>
+                      <td>Jan 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Bank account active</td>
+                      <td>15</td>
+                      <td><span class="badge bg-success">Active</span></td>
+                      <td>Feb 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Training completed</td>
+                      <td>10</td>
+                      <td><span class="badge bg-success">Complete</span></td>
+                      <td>Mar 2026</td>
+                    </tr>
+                    <tr>
+                      <td>Loan repaid</td>
+                      <td>20</td>
+                      <td><span class="badge bg-secondary">Not yet</span></td>
+                      <td>—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white">Score history</div>
+          <div class="card-body">
+            <canvas id="scoreLineChart" height="100" aria-label="Score over time"></canvas>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="mgrid-tier-card p-3 text-center">
+              <span class="badge badge-bronze mb-2">Bronze</span>
+              <p class="small mb-0">0–24</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mgrid-tier-card p-3 text-center">
+              <span class="badge badge-silver mb-2">Silver</span>
+              <p class="small mb-0">25–49</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mgrid-tier-card p-3 text-center is-active">
+              <span class="badge badge-gold mb-2">Gold</span>
+              <p class="small mb-0">50–74</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="mgrid-tier-card p-3 text-center">
+              <span class="badge badge-diamond mb-2">Diamond</span>
+              <p class="small mb-0">75–100</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a class="btn btn-primary" href="documents.html">How to reach next tier</a>
+        </div>
+      </div>
+    </div>
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+    <script src="../assets/js/mgrid-charts.js"></script>
+    <script src="../assets/js/mgrid-score-page.js"></script>
+  </body>
+</html>

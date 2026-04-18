@@ -1,71 +1,97 @@
 // ----------------------------------------------
-// Variables Style
+// Malkia Grid — Bootstrap 5 map (ink & brass + parchment + mauve mist)
 // ----------------------------------------------
 
+$mgrid-gold: #b8963d;
+$mgrid-gold-light: #d4c06e;
+$mgrid-gold-dark: #8a6a24;
+$mgrid-gold-muted: #f3ead4;
 
-// colors
+$mgrid-charcoal: #101218;
+$mgrid-charcoal-mid: #252830;
+$mgrid-charcoal-soft: #5a5d66;
+
+$mgrid-blush: #efe8f0;
+$mgrid-blush-mid: #d8c4d4;
+$mgrid-blush-accent: #8f4a63;
+
+$mgrid-off-white: #f8f6f1;
+$mgrid-surface: #f0ede6;
+$mgrid-surface-2: #e4e0d6;
+
+$mgrid-bronze: #b8722e;
+$mgrid-silver: #9ea0a8;
+$mgrid-diamond: #4a7fd4;
+
+$mgrid-success: #2a6b48;
+$mgrid-success-bg: #e8f2ec;
+$mgrid-warning: #a85a08;
+$mgrid-warning-bg: #fdf3e4;
+$mgrid-danger: #a61d1d;
+$mgrid-danger-bg: #fdecec;
+$mgrid-info: #1a4f8c;
+$mgrid-info-bg: #e8f0fa;
+
+// Neutrals (Bootstrap gray scale — tuned to M GRID surfaces)
 $white: #fff !default;
-$gray-100: #f6f8fb !default;
-$gray-200: #ecf0f2 !default;
-$gray-300: #f1f9ff !default;  
+$gray-100: $mgrid-off-white !default;
+$gray-200: $mgrid-surface-2 !default;
+$gray-300: #dad6cc !default;
 $gray-400: #ced4da !default;
-$gray-500: #546269 !default;
-$gray-600: #6c757d !default;
-$gray-700: #4f5467 !default;
-$gray-800: #11142d !default;
-$gray-900: #223640 !default;
+$gray-500: #6f6f72 !default;
+$gray-600: $mgrid-charcoal-soft !default;
+$gray-700: #34363d !default;
+$gray-800: $mgrid-charcoal-mid !default;
+$gray-900: $mgrid-charcoal !default;
 $black: #000 !default;
 
-// Color
-$blue: #1e4db7 !default;
-$indigo: #6610f2 !default;
+$blue: $mgrid-info !default;
+$indigo: #5b4fcf !default;
 $purple: #7460ee !default;
-$pink: #e83e8c !default;
-$red: #fc4b6c !default;
-$orange: #fb8c00 !default;
-$yellow: #fdc90f !default;
-$green: #39cb7f !default;
-$teal: #20c997 !default;
-$cyan: #0bb2fb !default;
+$pink: $mgrid-blush-accent !default;
+$red: $mgrid-danger !default;
+$orange: #c2410c !default;
+$yellow: $mgrid-gold-light !default;
+$green: $mgrid-success !default;
+$teal: #0d9488 !default;
+$cyan: #0e7490 !default;
 
 $dark-transparent: rgba(0, 0, 0, 0.05);
 
-// Main Colors
-$primary: $blue !default;
-$secondary: #1a97f5 !default;
-$success: $green !default;
-$info: $cyan !default;
-$warning: $yellow !default;
-$danger: $red !default;
-$light: $gray-100 !default;
-$muted: #777e89 !default;
-$dark: $gray-800 !default;
+// Brand + semantic
+$primary: $mgrid-gold !default;
+$secondary: $mgrid-charcoal-mid !default;
+$success: $mgrid-success !default;
+$info: $mgrid-info !default;
+$warning: $mgrid-warning !default;
+$danger: $mgrid-danger !default;
+$light: $mgrid-off-white !default;
+$dark: $mgrid-charcoal !default;
+$muted: #6b6d70 !default;
+
 $dark-light: $gray-800 !default;
 $light-gray: $gray-100 !default;
 
-$light-indigo: #ebf3fe;
+$light-indigo: $mgrid-info-bg;
 
-// light colors
-$primary-bg-subtle: #ddebff !default;
-$secondary-bg-subtle: #1a97f51a !default;
-$success-bg-subtle: #ebfaf2 !default;
-$info-bg-subtle: #e6f4ff !default;
-$warning-bg-subtle: #fff4e5 !default;
-$danger-bg-subtle: #fdf3f5 !default;
-$light-bg-subtle: $gray-100 !default;
+$primary-bg-subtle: $mgrid-gold-muted !default;
+$secondary-bg-subtle: rgba($mgrid-charcoal-mid, 0.08) !default;
+$success-bg-subtle: $mgrid-success-bg !default;
+$info-bg-subtle: $mgrid-info-bg !default;
+$warning-bg-subtle: $mgrid-warning-bg !default;
+$danger-bg-subtle: $mgrid-danger-bg !default;
+$light-bg-subtle: $mgrid-surface !default;
 $dark-bg-subtle: $gray-800 !default;
 
-$primary-text-emphasis: shade-color($primary, 60%) !default;
-$secondary-text-emphasis: shade-color($secondary, 60%) !default;
-$success-text-emphasis: shade-color($success, 60%) !default;
-$info-text-emphasis: shade-color($info, 60%) !default;
-$warning-text-emphasis: shade-color($warning, 60%) !default;
-$danger-text-emphasis: shade-color($danger, 60%) !default;
-$light-text-emphasis: $gray-100 !default;
-$dark-text-emphasis: $gray-800 !default;
+$primary-text-emphasis: $mgrid-gold-dark !default;
+$secondary-text-emphasis: #1f1f22 !default;
+$success-text-emphasis: #1e4d33 !default;
+$info-text-emphasis: #143d6b !default;
+$warning-text-emphasis: #7a3a07 !default;
+$danger-text-emphasis: #7f1515 !default;
+$light-text-emphasis: $gray-700 !default;
+$dark-text-emphasis: $gray-900 !default;
 
-
-// Theme Colorss
 $theme-colors: (
   "primary": $primary,
   "secondary": $secondary,
@@ -80,7 +106,6 @@ $theme-colors: (
   "light-indigo": $light-indigo,
 ) !default;
 
-// Spacer
 $spacer: 1rem !default;
 $spacers: (
   0: 0,
@@ -94,41 +119,36 @@ $spacers: (
   8: 10px,
   9: 20px,
   10: 18px,
-  ) !default;
+) !default;
 
-// Common
-$min-contrast-ratio: 1.7 !default;
+$min-contrast-ratio: 3 !default;
 
-// Margins
 $enable-negative-margins: true !default;
 $enable-shadows: true !default;
 
-// Global
 $text-muted: $muted !default;
 $grid-gutter-width: 24px !default;
 
-// Font Weight
 $font-weight-lighter: 300 !default;
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 500 !default;
-$font-weight-bolder: 700 !default;
+$font-weight-bolder: 600 !default;
 $font-weight-base: $font-weight-normal !default;
 
-// Buttons
-$btn-padding-y: 8px !default;
-$btn-padding-x: 14px !default;
-$btn-font-weight: 500 !default;
-$btn-border-radius: 7px !default;
+$btn-padding-y: 0.55rem !default;
+$btn-padding-x: 1.35rem !default;
+$btn-font-weight: $font-weight-bold !default;
+$btn-border-radius: 50rem !default;
 $btn-box-shadow: unset !default;
-$btn-font-size: 14 !default;
-$btn-border-radius-lg: 9px !default;
+$btn-font-size: 0.9375rem !default;
+$btn-border-radius-lg: 12px !default;
 
-// Font Family
+// UI + body: DM Sans only (no system/Inter/Roboto stacks)
 $font-family-sans-serif: "DM Sans", sans-serif !default;
+$headings-font-family: "Cormorant Garamond", Georgia, serif !default;
 $font-size-base: 0.9375rem !default;
 
-// Font Sizes
 $font-sizes: (
   1: 10px,
   2: 12px,
@@ -143,96 +163,86 @@ $font-sizes: (
   11: 13px,
   12: 15px,
   14: 48px,
-  ) !default;
+) !default;
 
-// Line Heght
-$line-height-base: 1.5 !default;
-$line-height-sm: 1.25 !default;
-$line-height-lg: 2 !default;
+$line-height-base: 1.62 !default;
+$line-height-sm: 1.35 !default;
+$line-height-lg: 1.75 !default;
 
-// Body
-$body-bg: $white !default;
-$body-color: #67757c !default;
+$body-bg: $mgrid-surface !default;
+$body-color: $mgrid-charcoal-soft !default;
 
-// Heading
-$headings-color: $dark !default;
-$headings-font-weight: 500 !default;
+$headings-color: $mgrid-charcoal !default;
+$headings-font-weight: 600 !default;
 
-// Border Color
-$border-color: #ecf0f2 !default;
+$border-color: rgba($mgrid-charcoal, 0.09) !default;
 
-// Box Shadow
-$box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.12) !default;
-$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
-$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
+// Luxury flat: no heavy shadows; rely on 1px borders
+$box-shadow: none !default;
+$box-shadow-sm: none !default;
+$box-shadow-lg: none !default;
 $box-shadow-inset: unset !default;
 
-// Card
-$card-title-color: $dark !default;
+$card-title-color: $headings-color !default;
 $card-subtitle-color: $muted !default;
-$card-spacer-y: 30px !default;
-$card-spacer-x: 30px !default;
+$card-spacer-y: 1.5rem !default;
+$card-spacer-x: 1.5rem !default;
 $card-border-width: 1px !default;
-$card-border-color: $border-color !default;
-$card-border-radius: $btn-border-radius;
+$card-border-color: rgba($mgrid-charcoal, 0.06) !default;
+$card-border-radius: 16px !default;
+$card-box-shadow: none !default;
 
-// Border Radius
-$border-radius: 7px !default;
-$border-radius-sm: 5px !default;
-$border-radius-lg: 15px !default;
-$border-radius-xl: 12px !default;
+$border-radius: 12px !default;
+$border-radius-sm: 6px !default;
+$border-radius-lg: 16px !default;
+$border-radius-xl: 24px !default;
 
-// Badges
-$badge-font-size: 14px !default;
-$badge-font-weight: $font-weight-normal !default;
-$badge-padding-y: 5px !default;
-$badge-padding-x: 10px !default;
-$badge-border-radius: 4px;
+$badge-font-size: 0.75rem !default;
+$badge-font-weight: $font-weight-bold !default;
+$badge-padding-y: 0.35em !default;
+$badge-padding-x: 0.65em !default;
+$badge-border-radius: 50rem !default;
 
-
-// Table
-$table-color: #777e89;
-$table-cell-padding-y: 16px !default;
-$table-cell-padding-x: 16px !default;
+$table-color: $mgrid-charcoal-soft !default;
+$table-cell-padding-y: 0.85rem !default;
+$table-cell-padding-x: 1rem !default;
 $table-th-font-weight: 600 !default;
-$table-striped-bg: $gray-200 !default;
-$table-hover-bg: $gray-100 !default;
+$table-striped-bg: rgba($mgrid-charcoal, 0.03) !default;
+$table-hover-bg: $mgrid-gold-muted !default;
 $table-border-color: $border-color !default;
 
-
-// Input
-$form-label-color: $gray-800;
-$form-label-font-weight: 600;
-$form-select-indicator-padding: 38px;
-$form-select-border-radius: 7px !default;
+$form-label-color: $mgrid-charcoal-soft !default;
+$form-label-font-weight: 500 !default;
+// Must use rem (not px) so Bootstrap’s feedback padding math stays unit-compatible.
+$form-select-indicator-padding: 2.375rem !default;
+$form-select-border-radius: 10px !default;
 $form-select-box-shadow: unset !default;
-$form-select-border-color: #dfe5ef !default;
-$input-border-radius: 7px !default;
+$form-select-border-color: rgba($mgrid-charcoal, 0.12) !default;
+$input-border-radius: 10px !default;
 $input-group-addon-bg: $gray-200 !default;
 $input-group-addon-border-color: $light !default;
-$input-border-color: #dfe5ef !default;
-$input-bg: transparent !default;
-$input-color: $muted !default;
-$input-padding-y: 8px;
-$input-padding-x: 16px;
-$form-check-input-width: 1.313em;
-$form-check-min-height: 1.313em;
-$form-check-input-border: 1.25px solid #bdc3cd;
-$form-check-input-checked-bg-color:var(--bs-primary);
+$input-border-color: rgba($mgrid-charcoal, 0.12) !default;
+$input-bg: $mgrid-off-white !default;
+$input-color: $mgrid-charcoal !default;
+$input-padding-y: 0.55rem !default;
+$input-padding-x: 1rem !default;
+$form-check-input-width: 1.125em !default;
+$form-check-min-height: 1.25em !default;
+$form-check-input-border: 1px solid rgba($mgrid-charcoal, 0.2) !default;
+$form-check-input-checked-bg-color: $primary !default;
 
-// Dropdown
-$dropdown-border-radius: 7px !default;
+$dropdown-border-radius: 10px !default;
 $dropdown-width: 360px !default;
 $dropdown-border-width: 0 !default;
 $dropdown-item-padding-y: 10px !default;
-$dropdown-link-hover-bg: $gray-100 !default;
-$dropdown-link-active-bg: $gray-100;
-$dropdown-link-active-color: $dark;
-$dropdown-box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px,
-  rgb(145 158 171 / 12%) 0px 12px 24px -4px;
-$link-color: $dark !default;
+$dropdown-link-hover-bg: $mgrid-gold-muted !default;
+$dropdown-link-active-bg: $mgrid-gold-muted !default;
+$dropdown-link-active-color: $mgrid-charcoal !default;
+$dropdown-box-shadow: none !default;
+$link-color: $mgrid-charcoal !default;
+$link-hover-color: $mgrid-gold-dark !default;
 
-$link-hover-color: $primary !default;
-
-// Modal
 $modal-content-border-width: 0 !default;
+
+$input-focus-border-color: rgba($mgrid-gold-dark, 0.55) !default;
+$input-focus-box-shadow: 0 0 0 1px rgba(184, 150, 61, 0.45) !default;

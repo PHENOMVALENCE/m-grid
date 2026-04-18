@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Users — Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="d-flex min-vh-100">
+      <nav class="mgrid-dash-sidebar mgrid-dash-sidebar-admin d-none d-xl-flex flex-column p-3" aria-label="Admin navigation">
+        <div class="mgrid-sidebar-brand mb-3">M·GRID Admin</div>
+        <ul class="nav nav-pills flex-column gap-1">
+          <li><a class="nav-link" href="home.html">Overview</a></li>
+          <li><a class="nav-link active" href="users.html">Users</a></li>
+          <li><a class="nav-link" href="loans.html">Loan requests</a></li>
+          <li><a class="nav-link" href="partners.html">Partners</a></li>
+          <li><a class="nav-link" href="benefits.html">Benefits</a></li>
+          <li><a class="nav-link" href="reports.html">Reports</a></li>
+        </ul>
+        <div class="mt-auto pt-4"><a href="../public/login.html">Logout</a></div>
+      </nav>
+      <main class="flex-grow-1 p-3 p-md-4">
+        <div class="d-flex flex-wrap gap-2 justify-content-between mb-4">
+          <h1 class="mgrid-page-header-title mb-0">Users</h1>
+          <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-primary btn-sm" data-mgrid-demo>Add user</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-mgrid-demo>Export CSV</button>
+          </div>
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-md-4">
+            <label class="visually-hidden" for="userSearch">Search</label>
+            <input type="search" class="form-control form-control-sm" id="userSearch" placeholder="Name, M-ID, phone" />
+          </div>
+          <div class="col-md-3">
+            <label class="visually-hidden" for="regionF">Region</label>
+            <select class="form-select form-select-sm" id="regionF"><option>All regions</option><option>Dar es Salaam</option><option>Mwanza</option></select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead>
+              <tr>
+                <th scope="col">M-ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Region</th>
+                <th scope="col">Tier</th>
+                <th scope="col">Score</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-monospace">M-2025-000001</td>
+                <td>Amina Hassan</td>
+                <td>+2557…</td>
+                <td>DSM</td>
+                <td><span class="badge badge-gold">Gold</span></td>
+                <td>72</td>
+                <td><span class="badge bg-success">Active</span></td>
+                <td><a class="btn btn-sm btn-link" href="user-detail.html">View</a></td>
+              </tr>
+              <tr>
+                <td class="font-monospace">M-2025-000014</td>
+                <td>Neema Joseph</td>
+                <td>+2557…</td>
+                <td>Mbeya</td>
+                <td><span class="badge badge-silver">Silver</span></td>
+                <td>44</td>
+                <td><span class="badge bg-success">Active</span></td>
+                <td><a class="btn btn-sm btn-link" href="user-detail.html">View</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <nav aria-label="User list pagination">
+          <ul class="pagination pagination-sm justify-content-end mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Prev</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+        </ul>
+        </nav>
+      </main>
+    </div>
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+  </body>
+</html>

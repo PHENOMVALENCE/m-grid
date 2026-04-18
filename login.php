@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$mgrid_page_title = 'Sign in — M-GRID';
+$mgrid_page_title = 'Sign in — Malkia Grid';
 $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>
@@ -83,9 +83,9 @@ require __DIR__ . '/includes/header.php';
     <div class="card mb-0 shadow-sm border-0">
       <div class="card-body p-4">
         <a href="<?= e(url('index.php')) ?>" class="text-center d-block py-2 text-decoration-none">
-          <span class="fw-bold fs-3 text-dark">M-GRID</span>
+          <span class="mgrid-auth-brand">Malkia Grid</span>
         </a>
-        <p class="text-center text-muted small mb-4">Member access to your M-Profile</p>
+        <p class="text-center lead-tight mb-4">Member access to your M-Profile</p>
 
         <?php if ($msg = flash_get('success')): ?>
           <div class="alert alert-success small"><?= e($msg) ?></div>
@@ -108,10 +108,10 @@ require __DIR__ . '/includes/header.php';
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
           </div>
-          <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-3 rounded-2">Sign in</button>
+          <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-3">Sign in</button>
           <div class="d-flex align-items-center justify-content-center flex-wrap gap-1">
-            <span class="fs-4 mb-0">New to M-GRID?</span>
-            <a class="text-primary fw-bold" href="<?= e(url('register.php')) ?>">Create your M-ID</a>
+            <span class="fs-4 mb-0 text-muted">New to Malkia Grid?</span>
+            <a class="text-primary fw-semibold" href="<?= e(url('register.php')) ?>">Create your M-ID</a>
           </div>
         </form>
       </div>

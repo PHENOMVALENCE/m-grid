@@ -12,7 +12,7 @@ $isAdmin = $ctx === 'admin';
   <div>
     <div class="brand-logo d-flex align-items-center justify-content-between">
       <a href="<?= e($isAdmin ? url('admin/dashboard.php') : url('user/dashboard.php')) ?>" class="text-nowrap logo-img">
-        <span class="fw-bold fs-5 text-dark">M-GRID</span>
+        <span class="mgrid-sidebar-brand">Malkia Grid</span>
       </a>
       <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
         <i class="ti ti-x fs-6"></i>

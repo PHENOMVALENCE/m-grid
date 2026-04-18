@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M-ID Profile — M-Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-animations.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="d-flex min-vh-100">
+      <nav class="mgrid-dash-sidebar d-none d-xl-flex flex-column p-3" aria-label="Main navigation">
+        <div class="mb-4">
+          <div class="mgrid-sidebar-brand">M·GRID</div>
+          <div class="mgrid-sidebar-tagline">Digital identity &amp; opportunity</div>
+        </div>
+        <ul class="nav nav-pills flex-column gap-1">
+          <li class="nav-item"><a class="nav-link" href="home.html">Overview</a></li>
+          <li class="nav-item"><a class="nav-link active" href="profile.html">My M-ID &amp; Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="score.html">My M-Score</a></li>
+          <li class="nav-item"><a class="nav-link" href="documents.html">Documents</a></li>
+          <li class="nav-item"><a class="nav-link" href="loans.html">M-Fund (Loans)</a></li>
+          <li class="nav-item"><a class="nav-link" href="partners.html">M-Partners</a></li>
+          <li class="nav-item"><a class="nav-link" href="benefits.html">M-Benefits</a></li>
+          <li class="nav-item"><a class="nav-link" href="settings.html">Settings</a></li>
+        </ul>
+        <div class="mt-auto pt-4 border-top">
+          <a class="btn btn-outline-danger btn-sm w-100" href="../public/login.html">Logout</a>
+        </div>
+      </nav>
+      <div class="flex-grow-1 p-3 p-md-4 pb-5 pb-xl-4">
+        <header class="border-bottom bg-white rounded-3 p-3 mb-4">
+          <h1 class="mgrid-page-header-title mb-0">M-ID &amp; Profile</h1>
+          <p class="mgrid-page-header-sub mb-0">View and manage your verified identity</p>
+        </header>
+
+        <div class="mgrid-profile-id-card p-4 mb-4">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="mgrid-avatar-gold mgrid-avatar-lg">A</div>
+                <div>
+                  <div class="fw-semibold fs-5">Amina Hassan</div>
+                  <div class="text-muted small">Dar es Salaam</div>
+                  <span class="badge badge-gold rounded-pill mt-2">Gold</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <div class="small text-muted text-uppercase">M-ID</div>
+              <div class="font-monospace fs-4 fw-semibold">M-2026-004821</div>
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&amp;data=M-2026-004821" width="80" height="80" class="mt-2" alt="QR code for M-ID" loading="lazy" />
+              <div class="small text-muted mt-2">Member since Jan 2026</div>
+              <button type="button" class="btn btn-outline-primary btn-sm mt-2" id="btnDownloadMid">Download My M-ID</button>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav nav-tabs mb-3" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="t1-tab" data-bs-toggle="tab" data-bs-target="#t1" type="button" role="tab">Personal</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="t2-tab" data-bs-toggle="tab" data-bs-target="#t2" type="button" role="tab">Business</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="t3-tab" data-bs-toggle="tab" data-bs-target="#t3" type="button" role="tab">Documents</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="t4-tab" data-bs-toggle="tab" data-bs-target="#t4" type="button" role="tab">Security</button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="t1" role="tabpanel">
+            <form class="row g-3" data-mgrid-demo data-success-msg="Profile saved (demo).">
+              <div class="col-md-6">
+                <label class="form-label" for="pname">Full name</label>
+                <input type="text" class="form-control" id="pname" value="Amina Hassan" readonly />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="pphone">Phone</label>
+                <input type="text" class="form-control" id="pphone" value="+255712345678" readonly />
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="pbio">Bio</label>
+                <textarea class="form-control" id="pbio" rows="3" readonly>Agri-business owner, DSM.</textarea>
+              </div>
+              <div class="col-12">
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="editProfile">Edit</button>
+                <button type="submit" class="btn btn-primary btn-sm d-none" id="saveProfile">Save</button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="t2" role="tabpanel"><p class="text-muted small">Business fields (mock) — BRELA, TIN, bank name.</p></div>
+          <div class="tab-pane fade" id="t3" role="tabpanel"><p class="text-muted small">See <a href="documents.html">Documents</a> for uploads.</p></div>
+          <div class="tab-pane fade" id="t4" role="tabpanel"><p class="text-muted small">Password change in Settings.</p></div>
+        </div>
+      </div>
+    </div>
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+    <script src="../assets/js/mgrid-profile.js"></script>
+  </body>
+</html>

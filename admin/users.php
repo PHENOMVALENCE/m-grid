@@ -24,14 +24,14 @@ $st = $pdo->prepare($sql);
 $st->execute($params);
 $users = $st->fetchAll();
 
-$mgrid_page_title = 'Members — M-GRID Admin';
+$mgrid_page_title = 'Members — Malkia Grid Admin';
 require __DIR__ . '/includes/shell_open.php';
 ?>
 
 <div class="card border-0 shadow-sm">
   <div class="card-body p-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-      <h1 class="h4 fw-bold mb-0">Member directory</h1>
+      <h1 class="h4 mgrid-dash-page-title mb-0">Member directory</h1>
       <form class="d-flex gap-2" method="get" action="">
         <input type="search" class="form-control" name="q" placeholder="Search name, email, phone, M-ID" value="<?= e($q) ?>" style="min-width:220px;">
         <button class="btn btn-primary" type="submit">Search</button>

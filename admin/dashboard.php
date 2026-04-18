@@ -21,41 +21,41 @@ $recent = $pdo->query("
     LIMIT 8
 ")->fetchAll();
 
-$mgrid_page_title = 'Admin dashboard — M-GRID';
+$mgrid_page_title = 'Admin dashboard — Malkia Grid';
 require __DIR__ . '/includes/shell_open.php';
 ?>
 
 <div class="row g-4 mb-4">
   <div class="col-md-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm mgrid-dash-stat">
       <div class="card-body">
-        <p class="text-muted small mb-1">Total members</p>
-        <p class="fs-3 fw-bold mb-0"><?= (int) ($totals['total_users'] ?? 0) ?></p>
+        <p class="mgrid-dash-stat-label mb-0">Total members</p>
+        <p class="mgrid-dash-stat-value mb-0"><?= (int) ($totals['total_users'] ?? 0) ?></p>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm mgrid-dash-stat">
       <div class="card-body">
-        <p class="text-muted small mb-1">Active members</p>
-        <p class="fs-3 fw-bold mb-0"><?= (int) ($totals['active_users'] ?? 0) ?></p>
+        <p class="mgrid-dash-stat-label mb-0">Active members</p>
+        <p class="mgrid-dash-stat-value mb-0"><?= (int) ($totals['active_users'] ?? 0) ?></p>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm mgrid-dash-stat">
       <div class="card-body">
-        <p class="text-muted small mb-1">Pending verification</p>
-        <p class="fs-3 fw-bold mb-0"><?= (int) ($totals['pending_users'] ?? 0) ?></p>
+        <p class="mgrid-dash-stat-label mb-0">Pending verification</p>
+        <p class="mgrid-dash-stat-value mb-0"><?= (int) ($totals['pending_users'] ?? 0) ?></p>
       </div>
     </div>
   </div>
   <div class="col-md-3">
-    <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm mgrid-dash-stat">
       <div class="card-body">
-        <p class="text-muted small mb-1">Administrators</p>
+        <p class="mgrid-dash-stat-label mb-0">Administrators</p>
         <?php $ac = $pdo->query("SELECT COUNT(*) AS c FROM admins WHERE status = 'active'")->fetch(); ?>
-        <p class="fs-3 fw-bold mb-0"><?= (int) ($ac['c'] ?? 0) ?></p>
+        <p class="mgrid-dash-stat-value mb-0"><?= (int) ($ac['c'] ?? 0) ?></p>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@ require __DIR__ . '/includes/shell_open.php';
 <div class="card border-0 shadow-sm">
   <div class="card-body p-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h1 class="h4 fw-bold mb-0">Recent registrations</h1>
+      <h1 class="h4 mgrid-dash-page-title mb-0">Recent registrations</h1>
       <a class="btn btn-sm btn-primary" href="<?= e(url('admin/users.php')) ?>">View all</a>
     </div>
     <div class="table-responsive">

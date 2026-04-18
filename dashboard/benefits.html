@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M-Benefits — M-Grid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-variables.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-overrides.css" rel="stylesheet" />
+    <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <div class="d-flex min-vh-100">
+      <nav class="mgrid-dash-sidebar d-none d-xl-flex flex-column p-3" aria-label="Main navigation">
+        <div class="mgrid-sidebar-brand mb-4">M·GRID</div>
+        <ul class="nav nav-pills flex-column gap-1">
+          <li><a class="nav-link" href="home.html">Overview</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+          <li><a class="nav-link" href="score.html">M-Score</a></li>
+          <li><a class="nav-link" href="documents.html">Documents</a></li>
+          <li><a class="nav-link" href="loans.html">Loans</a></li>
+          <li><a class="nav-link" href="partners.html">Partners</a></li>
+          <li><a class="nav-link active" href="benefits.html">Benefits</a></li>
+          <li><a class="nav-link" href="settings.html">Settings</a></li>
+        </ul>
+        <div class="mt-auto pt-4"><a class="btn btn-outline-danger btn-sm w-100" href="../public/login.html">Logout</a></div>
+      </nav>
+      <main class="flex-grow-1 p-3 p-md-4">
+        <div class="alert alert-success border-0" role="alert">
+          <strong>Gold tier</strong> — you have access to <strong>12</strong> benefits this quarter.
+        </div>
+        <h2 class="h5 mgrid-section-heading mb-3">Health &amp; wellness</h2>
+        <div class="row g-4 mb-5">
+          <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+              <div class="card-body">
+                <div class="fw-semibold mb-2">Wellness screening</div>
+                <p class="small text-muted">Partner clinic network — expires Dec 2026.</p>
+                <button type="button" class="btn btn-primary btn-sm" data-mgrid-demo>Claim benefit</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100 mgrid-benefit-locked position-relative">
+              <div class="card-body position-relative z-1">
+                <div class="fw-semibold mb-2">Executive health</div>
+                <p class="small text-muted">Diamond tier</p>
+                <button type="button" class="btn btn-secondary btn-sm" disabled title="Reach Diamond tier">Locked</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div id="mgridToastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/mgrid-i18n.js"></script>
+    <script src="../assets/js/mgrid-core.js"></script>
+  </body>
+</html>

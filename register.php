@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$mgrid_page_title = 'Create your M-ID — M-GRID';
+$mgrid_page_title = 'Create your M-ID — Malkia Grid';
 $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>
@@ -153,8 +153,8 @@ require __DIR__ . '/includes/header.php';
     <div class="card mb-0 shadow-sm border-0">
       <div class="card-body p-4 p-md-5">
         <div class="text-center mb-4">
-          <a href="<?= e(url('index.php')) ?>" class="text-decoration-none fw-bold fs-3 text-dark">M-GRID</a>
-          <p class="text-muted small mb-0">Join with accurate details — your M-ID is issued automatically.</p>
+          <a href="<?= e(url('index.php')) ?>" class="text-decoration-none d-inline-block"><span class="mgrid-auth-brand">Malkia Grid</span></a>
+          <p class="lead-tight mb-0 mt-2">Join with accurate details — your M-ID is issued automatically.</p>
         </div>
 
         <?php foreach ($errors as $err): ?>
@@ -240,10 +240,10 @@ foreach ($bss as $val => $label) {
             <input class="form-control" type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary w-100 py-3 rounded-2">Create account &amp; receive M-ID</button>
+            <button type="submit" class="btn btn-primary w-100 py-3">Create account &amp; receive M-ID</button>
             <div class="text-center mt-3">
               <span class="text-muted">Already registered?</span>
-              <a class="fw-bold" href="<?= e(url('login.php')) ?>">Sign in</a>
+              <a class="fw-semibold" href="<?= e(url('login.php')) ?>">Sign in</a>
             </div>
           </div>
         </form>

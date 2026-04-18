@@ -98,7 +98,7 @@ require __DIR__ . '/includes/shell_open.php';
 
 <div class="card border-0 shadow-sm">
   <div class="card-body p-4">
-    <h1 class="h4 fw-bold mb-4"><?= e((string) $row['full_name']) ?></h1>
+    <h1 class="h4 mgrid-dash-page-title mb-4"><?= e((string) $row['full_name']) ?></h1>
     <div class="row g-4">
       <div class="col-md-4">
         <p class="text-muted small mb-1">M-ID</p>

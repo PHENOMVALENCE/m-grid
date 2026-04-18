@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/includes/init.php';
 
-$mgrid_page_title = 'M-GRID — Your digital identity for opportunity';
+$mgrid_page_title = 'Malkia Grid — Your digital identity for opportunity';
 $mgrid_layout = 'public';
 
 require __DIR__ . '/includes/header.php';
@@ -16,28 +16,37 @@ require __DIR__ . '/includes/header.php';
     <div class="container py-lg-5">
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
-          <p class="text-uppercase small fw-semibold tracking-wide opacity-75 mb-2">Malkia wa Nguvu · Clouds Media Group</p>
-          <h1 class="display-5 fw-bold mb-3">Every woman deserves a trusted digital identity.</h1>
+          <p class="mgrid-eyebrow mb-3">Malkia wa Nguvu · Clouds Media Group</p>
+          <h1 class="display-5 fw-semibold mb-3">Every woman deserves a trusted digital identity.</h1>
           <p class="lead opacity-90 mb-4">
-            M-GRID is your gateway to <strong>M-ID</strong> and <strong>M-Profile</strong> — a credible foundation for
+            Malkia Grid is your gateway to <strong>M-ID</strong> and <strong>M-Profile</strong> — a credible foundation for
             future <strong>M-Score</strong> visibility, partnerships, and access to benefits and finance-ready services.
           </p>
           <div class="d-flex flex-wrap gap-3">
-            <a class="btn btn-lg mgrid-btn-gold px-4" href="<?= e(url('register.php')) ?>">Get Your M-ID</a>
+            <a class="btn btn-lg btn-primary px-4" href="<?= e(url('register.php')) ?>">Get Your M-ID</a>
             <a class="btn btn-lg btn-outline-light px-4" href="<?= e(url('login.php')) ?>">Member sign in</a>
           </div>
         </div>
         <div class="col-lg-5">
-          <div class="card mgrid-card-soft bg-white text-dark border-0">
-            <div class="card-body p-4 p-lg-5">
-              <h3 class="h5 fw-bold mb-3">What you receive today</h3>
-              <ul class="list-unstyled mb-0 small">
-                <li class="d-flex gap-2 mb-3"><span class="text-warning fw-bold">✓</span> A unique, permanent <strong>M-ID</strong></li>
-                <li class="d-flex gap-2 mb-3"><span class="text-warning fw-bold">✓</span> A private <strong>M-Profile</strong> dashboard</li>
-                <li class="d-flex gap-2 mb-3"><span class="text-warning fw-bold">✓</span> A transparent path toward <strong>M-Score</strong> and programs</li>
-                <li class="d-flex gap-2"><span class="text-warning fw-bold">✓</span> Designed for <strong>English &amp; Kiswahili</strong> experiences</li>
-              </ul>
+          <div class="mgrid-mid-card--premium mb-3">
+            <div class="d-flex justify-content-between align-items-start gap-2">
+              <div>
+                <div class="mgrid-mid-card-name">Amina Hassan</div>
+                <div class="mgrid-mid-card-id">M-2026-004821</div>
+              </div>
+              <span class="badge rounded-pill mgrid-badge-tier-gold mgrid-mid-card-tier">Gold</span>
             </div>
+            <div class="mgrid-mid-card-score">68</div>
+            <div class="mgrid-mid-card-score-label">M-Score</div>
+          </div>
+          <div class="mgrid-benefits-panel p-4 p-lg-5">
+            <h3 class="h5 mgrid-section-title mb-3">What you receive today</h3>
+            <ul class="list-unstyled mb-0 small">
+              <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A unique, permanent <strong>M-ID</strong></li>
+              <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A private <strong>M-Profile</strong> dashboard</li>
+              <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A transparent path toward <strong>M-Score</strong> and programs</li>
+              <li class="d-flex gap-2"><span class="mgrid-check">✓</span> Designed for <strong>English &amp; Kiswahili</strong> experiences</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -49,9 +58,9 @@ require __DIR__ . '/includes/header.php';
     <div class="container">
       <div class="row justify-content-center text-center mb-5">
         <div class="col-lg-8">
-          <h2 class="mgrid-section-title display-6 mb-3">About M-GRID</h2>
+          <h2 class="mgrid-section-title display-6 mb-3">About Malkia Grid</h2>
           <p class="text-muted lead">
-            M-GRID is a national-scale empowerment platform for women — built with institutional-grade care so that
+            Malkia Grid is a national-scale platform for women — built with institutional-grade care so that
             identity, credibility, and opportunity can travel together safely.
           </p>
         </div>
@@ -85,22 +94,22 @@ require __DIR__ . '/includes/header.php';
       <h2 class="mgrid-section-title text-center display-6 mb-5">How it works</h2>
       <div class="row g-4 text-center">
         <div class="col-md-3">
-          <div class="rounded-circle bg-dark text-warning fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">1</div>
+          <div class="mgrid-step-ring mx-auto mb-3">1</div>
           <h3 class="h6 fw-bold">Register</h3>
           <p class="small text-muted mb-0">Create your account with a few accurate details.</p>
         </div>
         <div class="col-md-3">
-          <div class="rounded-circle bg-dark text-warning fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">2</div>
+          <div class="mgrid-step-ring mx-auto mb-3">2</div>
           <h3 class="h6 fw-bold">Receive M-ID</h3>
           <p class="small text-muted mb-0">Your permanent identifier is issued automatically.</p>
         </div>
         <div class="col-md-3">
-          <div class="rounded-circle bg-dark text-warning fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">3</div>
+          <div class="mgrid-step-ring mx-auto mb-3">3</div>
           <h3 class="h6 fw-bold">Grow M-Profile</h3>
           <p class="small text-muted mb-0">Complete your profile as modules go live.</p>
         </div>
         <div class="col-md-3">
-          <div class="rounded-circle bg-dark text-warning fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center" style="width:56px;height:56px;">4</div>
+          <div class="mgrid-step-ring mx-auto mb-3">4</div>
           <h3 class="h6 fw-bold">Unlock opportunity</h3>
           <p class="small text-muted mb-0">M-Score, benefits, and partners connect here over time.</p>
         </div>
@@ -115,7 +124,7 @@ require __DIR__ . '/includes/header.php';
         <div class="col-lg-6">
           <h2 class="mgrid-section-title display-6 mb-3">Benefits &amp; opportunities</h2>
           <p class="text-muted">
-            M-GRID is phased on purpose: first identity and trust, then credibility scoring, then curated pathways to
+            Malkia Grid is phased on purpose: first identity and trust, then credibility scoring, then curated pathways to
             finance, services, and benefits — always with clarity and consent.
           </p>
           <ul class="text-muted">
@@ -129,25 +138,25 @@ require __DIR__ . '/includes/header.php';
           <div class="row g-3">
             <div class="col-6">
               <div class="card mgrid-card-soft border-0 h-100 p-3">
-                <div class="fw-bold text-warning mb-1">M-Fund</div>
+                <div class="fw-bold mgrid-gold mb-1">M-Fund</div>
                 <p class="small text-muted mb-0">Loan readiness scaffolding (coming).</p>
               </div>
             </div>
             <div class="col-6">
               <div class="card mgrid-card-soft border-0 h-100 p-3">
-                <div class="fw-bold text-warning mb-1">M-Partner</div>
+                <div class="fw-bold mgrid-gold mb-1">M-Partner</div>
                 <p class="small text-muted mb-0">Trusted services aligned to your profile.</p>
               </div>
             </div>
             <div class="col-6">
               <div class="card mgrid-card-soft border-0 h-100 p-3">
-                <div class="fw-bold text-warning mb-1">M-Benefits</div>
+                <div class="fw-bold mgrid-gold mb-1">M-Benefits</div>
                 <p class="small text-muted mb-0">Programs, grants, and learning journeys.</p>
               </div>
             </div>
             <div class="col-6">
               <div class="card mgrid-card-soft border-0 h-100 p-3">
-                <div class="fw-bold text-warning mb-1">Verification</div>
+                <div class="fw-bold mgrid-gold mb-1">Verification</div>
                 <p class="small text-muted mb-0">Document uploads with review workflows.</p>
               </div>
             </div>
@@ -165,11 +174,11 @@ require __DIR__ . '/includes/header.php';
         Institutional, financial, and civic partners meet members through structured profiles — reducing friction and
         increasing fairness. Partner modules will appear here as they go live.
       </p>
-      <div class="d-flex flex-wrap justify-content-center gap-3 opacity-50">
-        <span class="badge rounded-pill bg-white border px-4 py-3">Finance</span>
-        <span class="badge rounded-pill bg-white border px-4 py-3">Health &amp; wellness</span>
-        <span class="badge rounded-pill bg-white border px-4 py-3">Skills &amp; enterprise</span>
-        <span class="badge rounded-pill bg-white border px-4 py-3">Media &amp; visibility</span>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <span class="badge rounded-pill bg-white border px-4 py-3 mgrid-partner-pill">Finance</span>
+        <span class="badge rounded-pill bg-white border px-4 py-3 mgrid-partner-pill">Health &amp; wellness</span>
+        <span class="badge rounded-pill bg-white border px-4 py-3 mgrid-partner-pill">Skills &amp; enterprise</span>
+        <span class="badge rounded-pill bg-white border px-4 py-3 mgrid-partner-pill">Media &amp; visibility</span>
       </div>
     </div>
   </section>
@@ -187,7 +196,7 @@ require __DIR__ . '/includes/header.php';
               </h3>
               <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                 <div class="accordion-body text-muted small">
-                  M-ID is your unique M-GRID identifier (for example <code>M-2026-000001</code>). It is generated automatically,
+                  M-ID is your unique Malkia Grid identifier (for example <code>M-2026-000001</code>). It is generated automatically,
                   never edited, and stays with you as programs expand.
                 </div>
               </div>

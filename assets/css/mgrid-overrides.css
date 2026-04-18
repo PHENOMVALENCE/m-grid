@@ -1,0 +1,203 @@
+/**
+ * M-Grid — Bootstrap 5 overrides (Section 1.3)
+ * Load after bootstrap.min.css
+ */
+
+/* Buttons */
+.btn-primary {
+  background: var(--gold);
+  border: 1px solid var(--gold-dark);
+  color: var(--charcoal);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.5rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: var(--gold-dark);
+  border-color: var(--gold-dark);
+  color: var(--charcoal);
+  box-shadow: none;
+}
+
+.btn-outline-primary {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.5rem;
+}
+
+.btn-outline-primary:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold-dark);
+  color: var(--charcoal);
+}
+
+.btn-outline-light:hover {
+  color: var(--charcoal);
+}
+
+/* Cards */
+.card {
+  border: 1px solid rgba(28, 28, 30, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  background: var(--off-white);
+}
+
+.card-header {
+  background: transparent;
+  border-bottom: 1px solid var(--surface-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--surface-2);
+  background: var(--off-white) !important;
+  transition: border-color 0.2s ease;
+}
+
+.navbar-mgrid-transparent {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-mgrid-scrolled {
+  background: var(--off-white) !important;
+  box-shadow: none;
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--charcoal) !important;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+
+.navbar-mgrid-hero .navbar-brand,
+.navbar-mgrid-hero .nav-link {
+  color: var(--white) !important;
+}
+
+.navbar-mgrid-hero .nav-link:hover,
+.navbar-mgrid-hero .nav-link:focus {
+  color: var(--gold-light) !important;
+}
+
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--charcoal-soft) !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold) !important;
+}
+
+/* Form controls */
+.form-control,
+.form-select {
+  border: 1.5px solid var(--surface-2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 0.6rem 0.9rem;
+  background: var(--off-white);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.35);
+  background: var(--white);
+}
+
+.form-label {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--charcoal-soft);
+  margin-bottom: 0.35rem;
+}
+
+/* Badges tier */
+.badge-bronze {
+  background: var(--bronze);
+  color: var(--white);
+}
+
+.badge-silver {
+  background: var(--silver);
+  color: var(--white);
+}
+
+.badge-gold {
+  background: var(--gold-tier);
+  color: var(--charcoal);
+}
+
+.badge-diamond {
+  background: var(--diamond);
+  color: var(--white);
+}
+
+/* Tables */
+.table th {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--charcoal-soft);
+  border-bottom: 1.5px solid var(--surface-2);
+  background: var(--surface);
+}
+
+.table td {
+  font-family: var(--font-body);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Alerts */
+.alert-success {
+  background: var(--success-bg);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.alert-warning {
+  background: var(--warning-bg);
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.alert-danger {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.progress-bar {
+  background: var(--gold);
+}
+
+/* Focus visibility (a11y) */
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.nav-link:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.5);
+}
