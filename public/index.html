@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mgrid-default-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-i18n="nav.home">Malkia Grid — Women&apos;s economic network</title>
+    <title>Malkia Grid — Women&apos;s economic network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,8 +16,8 @@
     <link href="../assets/css/mgrid-components.css" rel="stylesheet" />
     <link href="../assets/css/mgrid-animations.css" rel="stylesheet" />
   </head>
-  <body class="bg-white">
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm" id="mgridMainNav">
+  <body class="bg-white mgrid-public">
+    <nav class="navbar navbar-expand-lg fixed-top mgrid-navbar" id="mgridMainNav" data-bs-theme="light">
       <div class="container py-2">
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
           <span class="d-inline-flex align-items-center justify-content-center mgrid-brand-mark">M</span>
@@ -40,18 +40,18 @@
         <div class="collapse navbar-collapse" id="navMain">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
             <li class="nav-item">
-              <a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a>
+              <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
             <li class="nav-item"><a class="nav-link" href="#partners" data-i18n="nav.partners">Partners</a></li>
             <li class="nav-item"><a class="nav-link" href="#tiers">M-Score</a></li>
           </ul>
           <div class="d-flex align-items-center gap-2 flex-wrap">
-            <div class="btn-group mgrid-lang-toggle" role="group" aria-label="Language">
-              <input type="radio" class="btn-check" name="mgridLang" id="langEn" value="en" checked />
-              <label class="btn btn-sm btn-outline-secondary" for="langEn">EN</label>
-              <input type="radio" class="btn-check" name="mgridLang" id="langSw" value="sw" />
-              <label class="btn btn-sm btn-outline-secondary" for="langSw">SW</label>
+            <div class="btn-group btn-group-sm mgrid-lang-toggle" role="group" aria-label="Language / Lugha">
+              <input type="radio" class="btn-check" name="mgridLang" id="mgridLangEn" value="en" autocomplete="off" />
+              <label class="btn btn-sm btn-outline-secondary" for="mgridLangEn">EN</label>
+              <input type="radio" class="btn-check" name="mgridLang" id="mgridLangSw" value="sw" autocomplete="off" />
+              <label class="btn btn-sm btn-outline-secondary" for="mgridLangSw">SW</label>
             </div>
             <a class="btn btn-primary" href="register.html" data-i18n="nav.get_mid">Get Your M-ID</a>
           </div>
@@ -136,7 +136,7 @@
                 <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A unique, permanent <strong>M-ID</strong></li>
                 <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A private <strong>M-Profile</strong> dashboard</li>
                 <li class="d-flex gap-2 mb-3"><span class="mgrid-check">✓</span> A transparent path toward <strong>M-Score</strong> and programs</li>
-                <li class="d-flex gap-2"><span class="mgrid-check">✓</span> Designed for <strong>English &amp; Kiswahili</strong> experiences</li>
+                <li class="d-flex gap-2"><span class="mgrid-check">✓</span> <strong>English</strong> interface today, with <strong>Kiswahili</strong> content planned as the programme grows</li>
               </ul>
             </div>
           </div>

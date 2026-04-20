@@ -1,0 +1,1133 @@
+// =============================================================================
+// M GRID — Premium public landing (fintech / editorial)
+// Scoped to body.mgrid-landing-premium
+// =============================================================================
+
+body.mgrid-landing-premium.mgrid-public {
+  background-color: #f7f3ee;
+  color: #1f1f1f;
+  scroll-padding-top: 5.75rem;
+
+  // Full-width main; prevent flex/shrink quirks from collapsing sections
+  main.mgrid-lp {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  // Avoid double vertical padding from legacy `.mgrid-public section` rules
+  main.mgrid-lp > section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  --lp-plum: #2a1723;
+  --lp-plum-2: #3d2434;
+  --lp-plum-deep: #140a10;
+  --lp-bg: #f7f3ee;
+  --lp-bg-elevated: #fdfaf6;
+  --lp-text: #1f1f1f;
+  --lp-muted: #5a534f;
+  --lp-line: rgba(42, 23, 35, 0.1);
+  --lp-rose: #a67c52;
+  --lp-rose-soft: rgba(166, 124, 82, 0.22);
+  --lp-radius: 10px;
+  --lp-radius-sm: 8px;
+  --lp-shadow: 0 1px 0 rgba(42, 23, 35, 0.06), 0 12px 40px rgba(20, 10, 20, 0.06);
+  --lp-shadow-hover: 0 1px 0 rgba(42, 23, 35, 0.08), 0 20px 48px rgba(20, 10, 20, 0.1);
+}
+
+// --- Premium navbar (transparent → solid) ---
+body.mgrid-landing-premium .mgrid-navbar--premium {
+  --bs-navbar-color: rgba(255, 255, 255, 0.88);
+  --bs-navbar-hover-color: #ffffff;
+  --bs-navbar-active-color: rgba(255, 255, 255, 0.95);
+  --bs-navbar-brand-color: #ffffff;
+  --bs-navbar-brand-hover-color: #ffffff;
+
+  background: transparent !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+
+  .navbar-brand .mgrid-brand-mark {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #fff !important;
+  }
+
+  .mgrid-brand-name {
+    color: #fff !important;
+  }
+
+  .mgrid-brand-tagline {
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+
+  .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.88) !important;
+
+    &:hover,
+    &:focus-visible {
+      color: #fff !important;
+      background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
+
+  .mgrid-lang-toggle .btn-outline-secondary {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.92);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+    }
+  }
+
+  .mgrid-lang-toggle .btn-check:checked + .btn {
+    background: #fff;
+    border-color: #fff;
+    color: var(--lp-plum);
+  }
+
+  .btn-primary {
+    background: #fff !important;
+    color: var(--lp-plum) !important;
+    border-color: #fff !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+  }
+
+  .btn-outline-dark {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    color: #fff !important;
+    background: transparent !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border-color: rgba(255, 255, 255, 0.65) !important;
+      color: #fff !important;
+    }
+  }
+
+  .mgrid-nav-session-name {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  &.mgrid-navbar--solid {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    --bs-navbar-color: var(--lp-muted);
+    --bs-navbar-hover-color: var(--lp-text);
+    --bs-navbar-active-color: var(--lp-plum);
+    --bs-navbar-brand-color: var(--lp-text);
+    --bs-navbar-brand-hover-color: var(--lp-plum);
+
+    background: rgba(247, 243, 238, 0.94) !important;
+    border-bottom: 1px solid var(--lp-line) !important;
+    box-shadow: 0 10px 40px rgba(20, 10, 20, 0.06) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    .navbar-brand .mgrid-brand-mark {
+      background: linear-gradient(145deg, var(--lp-plum) 0%, var(--lp-plum-2) 100%);
+      border-color: rgba(42, 23, 35, 0.2);
+      color: #f7f3ee !important;
+    }
+
+    .mgrid-brand-name {
+      color: var(--lp-text) !important;
+    }
+
+    .mgrid-brand-tagline {
+      color: var(--lp-muted) !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--lp-muted) !important;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--lp-text) !important;
+        background-color: rgba(42, 23, 35, 0.06) !important;
+      }
+    }
+
+    .navbar-toggler {
+      border-color: rgba(42, 23, 35, 0.2);
+    }
+
+    .navbar-toggler-icon {
+      filter: none;
+    }
+
+    .mgrid-lang-toggle .btn-outline-secondary {
+      border-color: rgba(42, 23, 35, 0.18);
+      color: var(--lp-text);
+
+      &:hover {
+        background: rgba(42, 23, 35, 0.06);
+        border-color: rgba(42, 23, 35, 0.28);
+        color: var(--lp-plum);
+      }
+    }
+
+    .mgrid-lang-toggle .btn-check:checked + .btn {
+      background: var(--lp-plum);
+      border-color: var(--lp-plum);
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: var(--lp-plum) !important;
+      color: #fff !important;
+      border-color: var(--lp-plum) !important;
+      box-shadow: 0 8px 22px rgba(42, 23, 35, 0.22);
+
+      &:hover {
+        filter: brightness(1.08);
+      }
+    }
+
+    .btn-outline-dark {
+      border-color: rgba(42, 23, 35, 0.35) !important;
+      color: var(--lp-text) !important;
+
+      &:hover {
+        background: rgba(42, 23, 35, 0.06) !important;
+        border-color: rgba(42, 23, 35, 0.45) !important;
+      }
+    }
+
+    .mgrid-nav-session-name {
+      color: var(--lp-muted) !important;
+    }
+  }
+}
+
+// --- Hero ---
+.mgrid-lp-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: min(92vh, 900px);
+  display: flex;
+  align-items: stretch;
+}
+
+.mgrid-lp-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--lp-plum-deep);
+  background-image: url("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2400&q=85");
+  background-size: cover;
+  background-position: center 22%;
+  will-change: transform;
+  transform: scale(1.04);
+}
+
+.mgrid-lp-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(105deg, rgba(20, 10, 20, 0.88) 0%, rgba(42, 23, 35, 0.78) 42%, rgba(20, 10, 20, 0.55) 100%);
+}
+
+.mgrid-lp-hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: clamp(5.5rem, 12vw, 7.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.mgrid-lp-hero__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 1.25rem;
+}
+
+.mgrid-lp-hero__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.mgrid-lp-hero__accent {
+  color: #d4b896;
+  font-weight: 600;
+}
+
+.mgrid-lp-hero__lead {
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 32rem;
+  margin-bottom: 2rem;
+}
+
+.mgrid-lp-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.875rem;
+}
+
+.mgrid-lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--lp-radius-sm);
+  text-decoration: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease;
+}
+
+.mgrid-lp-btn--primary {
+  background: #fff;
+  color: var(--lp-plum) !important;
+  border: 1px solid #fff;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    color: var(--lp-plum-deep) !important;
+  }
+}
+
+.mgrid-lp-btn--ghost {
+  background: transparent;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.65);
+    color: #fff !important;
+  }
+}
+
+// Primary CTA on light surfaces (e.g. CTA panel) — hero keeps white primary above
+.mgrid-lp-cta__panel .mgrid-lp-btn--primary {
+  background: var(--lp-plum) !important;
+  color: #fff !important;
+  border-color: var(--lp-plum) !important;
+  box-shadow: 0 10px 28px rgba(42, 23, 35, 0.22);
+
+  &:hover {
+    filter: brightness(1.08);
+    color: #fff !important;
+  }
+}
+
+// Hero entrance
+body.mgrid-landing-premium .mgrid-lp-hero__anim {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: mgridLpHeroIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+body.mgrid-landing-premium .mgrid-lp-hero__anim--2 {
+  animation-delay: 0.1s;
+}
+
+body.mgrid-landing-premium .mgrid-lp-hero__anim--3 {
+  animation-delay: 0.18s;
+}
+
+body.mgrid-landing-premium .mgrid-lp-hero__anim--4 {
+  animation-delay: 0.26s;
+}
+
+@keyframes mgridLpHeroIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// --- Dashboard preview (system UI) ---
+.mgrid-lp-dash {
+  background: var(--lp-bg-elevated);
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  box-shadow: var(--lp-shadow);
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--lp-shadow-hover);
+  }
+}
+
+.mgrid-lp-dash__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.125rem;
+  border-bottom: 1px solid var(--lp-line);
+  background: #fff;
+}
+
+.mgrid-lp-dash__head-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+
+.mgrid-lp-dash__live {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #2f6f4f;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2f6f4f;
+    animation: mgridLpPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes mgridLpPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.mgrid-lp-dash__body {
+  padding: 1.125rem 1.25rem 1.25rem;
+  background: linear-gradient(180deg, #fff 0%, #faf7f3 100%);
+}
+
+.mgrid-lp-dash__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(42, 23, 35, 0.06);
+  font-size: 0.8125rem;
+
+  &:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.mgrid-lp-dash__label {
+  font-weight: 600;
+  color: var(--lp-muted);
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+}
+
+.mgrid-lp-dash__value {
+  font-family: var(--font-mono-id);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--lp-text);
+}
+
+.mgrid-lp-dash__tier {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--lp-rose);
+  margin-left: 0.5rem;
+}
+
+.mgrid-lp-progress {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(42, 23, 35, 0.08);
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.mgrid-lp-progress__bar {
+  height: 100%;
+  width: 72%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--lp-plum) 0%, #5a3a52 100%);
+}
+
+.mgrid-lp-dash__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #8a6232;
+}
+
+// --- Trust bar ---
+.mgrid-lp-trust {
+  background: var(--lp-bg);
+  border-bottom: 1px solid var(--lp-line);
+  padding: clamp(1.75rem, 4vw, 2.25rem) 0;
+}
+
+.mgrid-lp-trust__panel {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
+  box-shadow: var(--lp-shadow);
+}
+
+.mgrid-lp-trust__label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+  margin-bottom: 1.125rem;
+  text-align: center;
+}
+
+.mgrid-lp-trust__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.mgrid-lp-trust__cell {
+  padding: 0.75rem 0.5rem;
+  border-top: 1px solid var(--lp-line);
+
+  @media (min-width: 768px) {
+    border-top: 0;
+    border-left: 1px solid var(--lp-line);
+    padding: 0.35rem 0.75rem;
+
+    &:first-child {
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    &:nth-child(-n + 2) {
+      border-top: 0;
+    }
+
+    &:nth-child(odd) {
+      border-right: 1px solid var(--lp-line);
+    }
+  }
+}
+
+.mgrid-lp-trust__name {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(31, 31, 31, 0.72);
+  line-height: 1.35;
+}
+
+// --- Section shell & shared headers ---
+.mgrid-lp-section {
+  padding-top: clamp(4.25rem, 9vw, 6rem);
+  padding-bottom: clamp(4.25rem, 9vw, 6rem);
+}
+
+.mgrid-lp-section--muted {
+  background: #ede6dd;
+  border-top: 1px solid var(--lp-line);
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.mgrid-lp-kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lp-rose);
+  margin-bottom: 0.75rem;
+}
+
+.mgrid-lp-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+  letter-spacing: -0.02em;
+  color: var(--lp-text);
+  line-height: 1.12;
+  margin-bottom: 0.75rem;
+}
+
+.mgrid-lp-lead {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--lp-muted);
+  margin-bottom: 0;
+}
+
+.mgrid-lp-rule {
+  height: 1px;
+  margin-top: 2rem;
+  background: linear-gradient(90deg, rgba(166, 124, 82, 0.45) 0%, var(--lp-line) 35%, transparent 100%);
+  border: 0;
+}
+
+.mgrid-lp-section-header {
+  margin-bottom: clamp(2.25rem, 5vw, 3.25rem);
+}
+
+.mgrid-lp-section-header--center {
+  text-align: center;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mgrid-lp-section-header__sub {
+  margin-top: 0.75rem;
+}
+
+.mgrid-lp-section-header--split {
+  display: grid;
+  gap: 1.5rem 2.5rem;
+  align-items: end;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.75fr);
+  }
+}
+
+.mgrid-lp-section-header__aside {
+  max-width: 28rem;
+}
+
+.mgrid-lp-partners__head .mgrid-lp-section-header__sub {
+  max-width: 38rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// --- About: intro + pillars (Bootstrap row/col in markup) ---
+.mgrid-lp-about-intro {
+  max-width: 36rem;
+}
+
+.mgrid-lp-pillar {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 1.35rem 1.35rem 1.5rem;
+  box-shadow: 0 1px 0 rgba(42, 23, 35, 0.04);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow-hover);
+    border-color: rgba(42, 23, 35, 0.12);
+  }
+}
+
+.mgrid-lp-pillar__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mgrid-lp-pillar__index {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: rgba(42, 23, 35, 0.2);
+  line-height: 1;
+}
+
+.mgrid-lp-pillar__icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--lp-radius-sm);
+  background: rgba(42, 23, 35, 0.06);
+  color: var(--lp-plum);
+  font-size: 1.15rem;
+}
+
+.mgrid-lp-pillar__title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--lp-text);
+  margin-bottom: 0.45rem;
+}
+
+.mgrid-lp-pillar__text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--lp-muted);
+  margin: 0;
+}
+
+// --- How it works: horizontal process (Bootstrap row in markup) ---
+.mgrid-lp-process-row {
+  @media (min-width: 992px) {
+    position: relative;
+    padding-top: 0.5rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 1.35rem;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(42, 23, 35, 0.12) 12%, rgba(42, 23, 35, 0.12) 88%, transparent);
+      z-index: 0;
+    }
+  }
+}
+
+.mgrid-lp-process__item {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1.35rem;
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  box-shadow: 0 1px 0 rgba(42, 23, 35, 0.03);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+
+  @media (min-width: 992px) {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--lp-shadow);
+    border-color: rgba(42, 23, 35, 0.14);
+  }
+}
+
+.mgrid-lp-process__marker {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--lp-plum);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(42, 23, 35, 0.22);
+}
+
+.mgrid-lp-process__body {
+  min-width: 0;
+}
+
+.mgrid-lp-process__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--lp-text);
+  margin-bottom: 0.35rem;
+}
+
+.mgrid-lp-process__text {
+  font-size: 0.8125rem;
+  line-height: 1.58;
+  color: var(--lp-muted);
+  margin: 0;
+}
+
+.mgrid-lp-feature {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 1.5rem 1.5rem 1.65rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow-hover);
+    border-color: rgba(42, 23, 35, 0.14);
+
+    .mgrid-lp-feature__glyph {
+      color: var(--lp-rose);
+      transform: scale(1.06);
+    }
+  }
+}
+
+.mgrid-lp-feature__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(42, 23, 35, 0.08);
+}
+
+.mgrid-lp-feature__glyph {
+  font-size: 1.35rem;
+  color: var(--lp-plum);
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.mgrid-lp-feature__code {
+  font-family: var(--font-mono-id);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--lp-text);
+  letter-spacing: 0.02em;
+}
+
+.mgrid-lp-feature__copy {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--lp-muted);
+  margin: 0;
+}
+
+.mgrid-lp-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 0;
+
+  li {
+    position: relative;
+    padding-left: 1.35rem;
+    margin-bottom: 0.85rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--lp-muted);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 1px;
+      background: var(--lp-plum);
+      opacity: 0.85;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.mgrid-lp-mod {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 1.15rem 1.25rem 1.25rem;
+  min-height: 100%;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow);
+    border-color: rgba(42, 23, 35, 0.12);
+  }
+}
+
+.mgrid-lp-mod__label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(90, 83, 79, 0.75);
+  margin-bottom: 0.35rem;
+}
+
+.mgrid-lp-mod__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lp-text);
+  margin-bottom: 0.35rem;
+}
+
+.mgrid-lp-mod__text {
+  font-size: 0.8125rem;
+  line-height: 1.58;
+  color: var(--lp-muted);
+  margin: 0;
+}
+
+.mgrid-lp-partner-card {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 1.35rem 1.25rem 1.45rem;
+  text-align: left;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lp-shadow-hover);
+    border-color: rgba(166, 124, 82, 0.35);
+  }
+}
+
+.mgrid-lp-partner-card__eyebrow {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(90, 83, 79, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.mgrid-lp-partner-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--lp-text);
+  margin-bottom: 0.5rem;
+}
+
+.mgrid-lp-partner-card__meta {
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--lp-muted);
+  margin: 0;
+}
+
+// --- CTA: elevated panel on plum band ---
+.mgrid-lp-cta {
+  background: linear-gradient(160deg, var(--lp-plum-deep) 0%, var(--lp-plum) 48%, #352430 100%);
+  padding: clamp(3.25rem, 8vw, 5rem) 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 100% 0%, rgba(212, 184, 150, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.mgrid-lp-cta__panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: calc(var(--lp-radius) + 2px);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.28);
+}
+
+.mgrid-lp-cta__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lp-rose);
+  margin-bottom: 0.5rem;
+}
+
+.mgrid-lp-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  font-weight: 600;
+  color: var(--lp-text);
+  line-height: 1.18;
+  margin-bottom: 0.75rem;
+}
+
+.mgrid-lp-cta__text {
+  color: var(--lp-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.mgrid-lp-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.mgrid-lp-btn--block {
+  width: 100%;
+  justify-content: center;
+}
+
+.mgrid-lp-btn--outline-dark {
+  background: transparent;
+  color: var(--lp-plum) !important;
+  border: 1px solid rgba(42, 23, 35, 0.35);
+
+  &:hover {
+    background: rgba(42, 23, 35, 0.06);
+    border-color: rgba(42, 23, 35, 0.55);
+    color: var(--lp-plum-deep) !important;
+  }
+}
+
+// --- FAQ ---
+.mgrid-lp-faq--panel {
+  background: #fff;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 0.35rem 0.5rem 0.5rem;
+  box-shadow: 0 1px 0 rgba(42, 23, 35, 0.04);
+}
+
+body.mgrid-landing-premium .mgrid-lp-faq .accordion-item {
+  border: 0;
+  border-bottom: 1px solid rgba(42, 23, 35, 0.08);
+  border-radius: 0 !important;
+  margin-bottom: 0;
+  background: transparent;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+body.mgrid-landing-premium .mgrid-lp-faq .accordion-button {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--lp-text);
+  box-shadow: none !important;
+  padding: 1rem 1rem;
+  background: transparent;
+}
+
+body.mgrid-landing-premium .mgrid-lp-faq .accordion-button:not(.collapsed) {
+  background: rgba(42, 23, 35, 0.03);
+  color: var(--lp-plum);
+}
+
+body.mgrid-landing-premium .mgrid-lp-faq .accordion-body {
+  padding: 0 1rem 1.1rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+// --- Section reveal (scroll) ---
+body.mgrid-landing-premium .mgrid-section-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  width: 100%;
+  max-width: 100%;
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.mgrid-landing-premium .mgrid-section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// --- Footer on landing ---
+body.mgrid-landing-premium .mgrid-footer {
+  background: #ede8e1;
+  border-top: 1px solid var(--lp-line);
+}
+
+body.mgrid-landing-premium .mgrid-footer a:not(.btn) {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    border-bottom-color: rgba(166, 124, 82, 0.55);
+  }
+}
+
+// --- Responsive ---
+@media (max-width: 991.98px) {
+  .mgrid-lp-hero__bg {
+    background-position: center center;
+  }
+
+  .mgrid-lp-dash {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+}

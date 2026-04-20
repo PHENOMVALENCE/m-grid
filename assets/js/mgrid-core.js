@@ -30,8 +30,12 @@
   function initNavbarScroll() {
     const nav = document.querySelector("[data-mgrid-navbar]");
     if (!nav) return;
+    const premium = nav.getAttribute("data-mgrid-navbar-premium") === "1";
+    const solidClass = nav.classList.contains("mgrid-nav-vanilla") ? "mgrid-nav-vanilla--solid" : "mgrid-navbar--solid";
     const onScroll = function () {
-      if (window.scrollY > 48) {
+      if (premium) {
+        nav.classList.toggle(solidClass, window.scrollY > 28);
+      } else if (window.scrollY > 48) {
         nav.classList.add("navbar-mgrid-scrolled");
         nav.classList.remove("navbar-mgrid-transparent");
       } else {
@@ -41,6 +45,111 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+  }
+
+  /**
+   * Hero background — subtle parallax on scroll
+   */
+  function initHeroParallax() {
+    const root = document.querySelector("[data-mgrid-hero-parallax]");
+    if (!root) return;
+    const bg = root.querySelector(".mgrid-lp-hero__bg");
+    if (!bg) return;
+    const tick = function () {
+      const y = window.scrollY;
+      const translate = Math.min(y * 0.1, 80);
+      bg.style.transform = "scale(1.06) translate3d(0, " + translate + "px, 0)";
+    };
+    window.addEventListener("scroll", tick, { passive: true });
+    tick();
+  }
+
+  /**
+   * Smooth scrolling for in-page anchors
+   */
+  /**
+   * Mobile nav panel (vanilla public header)
+   */
+  function initPublicMobileNav() {
+    const nav = document.querySelector(".mgrid-nav-vanilla");
+    const btn = document.querySelector("[data-mgrid-nav-toggle]");
+    if (!nav || !btn) return;
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const open = nav.classList.toggle("mgrid-nav-vanilla--open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    document.addEventListener("click", function (e) {
+      if (!nav.classList.contains("mgrid-nav-vanilla--open")) return;
+      if (nav.contains(e.target)) return;
+      nav.classList.remove("mgrid-nav-vanilla--open");
+      btn.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  /**
+   * FAQ accordion without Bootstrap
+   */
+  function initVanillaFaq() {
+    const root = document.querySelector("[data-mgrid-faq]");
+    if (!root) return;
+    root.querySelectorAll(".mgrid-faq__trigger").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const item = btn.closest(".mgrid-faq__item");
+        if (!item) return;
+        const wasOpen = item.classList.contains("is-open");
+        root.querySelectorAll(".mgrid-faq__item").forEach(function (el) {
+          el.classList.remove("is-open");
+          var t = el.querySelector(".mgrid-faq__trigger");
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+        if (!wasOpen) {
+          item.classList.add("is-open");
+          btn.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
+  function initSmoothAnchorScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener("click", function (e) {
+        const href = anchor.getAttribute("href");
+        if (!href || href === "#") return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  /**
+   * Reveal sections progressively as users scroll
+   */
+  function initSectionReveal() {
+    const sections = document.querySelectorAll(".mgrid-section-reveal");
+    if (!sections.length) return;
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+      return;
+    }
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+    );
+    sections.forEach(function (el) {
+      observer.observe(el);
+    });
   }
 
   /**
@@ -195,6 +304,11 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initNavbarScroll();
+    initPublicMobileNav();
+    initVanillaFaq();
+    initHeroParallax();
+    initSmoothAnchorScroll();
+    initSectionReveal();
     initDemoForms();
     initDemoButtons();
     initPasswordStrength();

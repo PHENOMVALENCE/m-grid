@@ -39,6 +39,7 @@ CREATE TABLE admins (
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
+  role ENUM('super_admin', 'admin') NOT NULL DEFAULT 'admin',
   status ENUM('active', 'disabled') NOT NULL DEFAULT 'active',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -141,11 +142,12 @@ INSERT INTO admin_id_counters (year, last_number) VALUES (YEAR(CURDATE()), 0);
 -- Login: admin@m-grid.local  /  Admin@123
 -- Admin ID uses ADM-YYYY-0001 and is separate from public M-ID.
 -- ---------------------------------------------------------------------------
-INSERT INTO admins (admin_id, full_name, email, password_hash, status)
+INSERT INTO admins (admin_id, full_name, email, password_hash, role, status)
 VALUES (
   CONCAT('ADM-', YEAR(CURDATE()), '-0001'),
   'System Administrator',
   'admin@m-grid.local',
   '$2y$10$1DqrPWYe3NBEANit4ZYd4.4u50bsmy94CfUN99wlwtsmqxmJH6WKS',
+  'super_admin',
   'active'
 );

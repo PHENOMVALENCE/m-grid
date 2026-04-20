@@ -1,0 +1,6 @@
+// Public landing — plain CSS pipeline (no Bootstrap). PHP still loads this bundle only when $mgrid_public_vanilla is set.
+
+@import "./variables/mgrid-root";
+@import "../css/icons/tabler-icons/tabler-icons.css";
+@import "./component/mgrid-landing-premium";
+@import "./component/public-vanilla-patch";

@@ -1,0 +1,709 @@
+// -----------------------------------------------------------------------------
+// Public pages — no Bootstrap: layout shell, nav, FAQ, small utilities
+// Loaded after _mgrid-landing-premium (body.mgrid-landing-premium tokens)
+// -----------------------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.mgrid-public-vanilla.mgrid-public {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mgrid-container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 576px) {
+  .mgrid-container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mgrid-container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .mgrid-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mgrid-container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .mgrid-container {
+    max-width: 1320px;
+  }
+}
+
+.mgrid-list-plain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mgrid-mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mgrid-mt-3 {
+  margin-top: 1rem !important;
+}
+
+.mgrid-mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+// --- Hero two-column (replaces .row / .col-lg-6) ---
+.mgrid-lp-hero-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: center;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// --- About: intro + pillars ---
+.mgrid-lp-about-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  align-items: start;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  }
+}
+
+.mgrid-lp-pillars-grid {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --- Process steps ---
+body.mgrid-public-vanilla .mgrid-lp-process-row {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+// --- Features 2×2 ---
+.mgrid-lp-feature-grid {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+// --- Benefits: copy + modules ---
+.mgrid-lp-benefits-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  }
+}
+
+.mgrid-lp-mod-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// --- Partners ---
+.mgrid-lp-partner-row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 576px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+// --- CTA panel ---
+.mgrid-lp-cta-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  }
+}
+
+// --- FAQ two-column ---
+.mgrid-lp-faq-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+
+  @media (min-width: 992px) {
+    grid-template-columns: minmax(0, 0.32fr) minmax(0, 1fr);
+  }
+}
+
+// --- Dashboard preview: completion row ---
+.mgrid-lp-dash-completion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--lp-muted);
+}
+
+// --- Top nav (vanilla) ---
+.mgrid-nav-vanilla {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  font-family: var(--font-sans);
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.mgrid-nav-vanilla:not(.mgrid-nav-vanilla--premium) {
+  background: #fff;
+  border-bottom: 1px solid rgba(42, 23, 35, 0.08);
+}
+
+.mgrid-nav-vanilla__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.mgrid-nav-vanilla--premium {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+
+  .mgrid-nav-vanilla__brand .mgrid-brand-mark {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+
+  .mgrid-brand-name {
+    color: #fff;
+  }
+
+  .mgrid-brand-tagline {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .mgrid-nav-vanilla__link {
+    color: rgba(255, 255, 255, 0.88);
+
+    &:hover,
+    &:focus-visible {
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .mgrid-nav-vanilla__toggle {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+
+    span {
+      background: #fff;
+    }
+  }
+
+  .mgrid-lang-vanilla label {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .mgrid-lang-vanilla input:checked + label {
+    background: #fff;
+    border-color: #fff;
+    color: var(--lp-plum);
+  }
+
+  .mgrid-nav-vanilla__btn--primary {
+    background: #fff;
+    color: var(--lp-plum);
+    border-color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+    }
+  }
+
+  .mgrid-nav-vanilla__btn--outline {
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #fff;
+    background: transparent;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+
+  .mgrid-nav-session-name {
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.mgrid-nav-vanilla--premium.mgrid-nav-vanilla--solid {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(247, 243, 238, 0.94) !important;
+  border-bottom: 1px solid var(--lp-line) !important;
+  box-shadow: 0 10px 40px rgba(20, 10, 20, 0.06) !important;
+
+  .mgrid-nav-vanilla__brand .mgrid-brand-mark {
+    background: linear-gradient(145deg, var(--lp-plum) 0%, var(--lp-plum-2) 100%);
+    border-color: rgba(42, 23, 35, 0.2);
+    color: #f7f3ee;
+  }
+
+  .mgrid-brand-name {
+    color: var(--lp-text);
+  }
+
+  .mgrid-brand-tagline {
+    color: var(--lp-muted);
+  }
+
+  .mgrid-nav-vanilla__link {
+    color: var(--lp-muted);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--lp-text);
+      background-color: rgba(42, 23, 35, 0.06);
+    }
+  }
+
+  .mgrid-nav-vanilla__toggle {
+    border-color: rgba(42, 23, 35, 0.2);
+    color: var(--lp-text);
+
+    span {
+      background: var(--lp-text);
+    }
+  }
+
+  .mgrid-lang-vanilla label {
+    border-color: rgba(42, 23, 35, 0.18);
+    color: var(--lp-text);
+  }
+
+  .mgrid-lang-vanilla input:checked + label {
+    background: var(--lp-plum);
+    border-color: var(--lp-plum);
+    color: #fff;
+  }
+
+  .mgrid-nav-vanilla__btn--primary {
+    background: var(--lp-plum);
+    color: #fff;
+    border-color: var(--lp-plum);
+    box-shadow: 0 8px 22px rgba(42, 23, 35, 0.22);
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+
+  .mgrid-nav-vanilla__btn--outline {
+    border-color: rgba(42, 23, 35, 0.35);
+    color: var(--lp-text);
+
+    &:hover {
+      background: rgba(42, 23, 35, 0.06);
+    }
+  }
+
+  .mgrid-nav-session-name {
+    color: var(--lp-muted);
+  }
+}
+
+.mgrid-nav-vanilla__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mgrid-nav-vanilla__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid rgba(42, 23, 35, 0.2);
+  border-radius: var(--lp-radius-sm);
+  background: transparent;
+  cursor: pointer;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  span {
+    display: block;
+    height: 2px;
+    width: 1.25rem;
+    margin: 0 auto;
+    border-radius: 1px;
+    background: var(--lp-text);
+  }
+}
+
+.mgrid-nav-vanilla__panel {
+  flex: 1 1 100%;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+
+  @media (min-width: 992px) {
+    display: flex !important;
+    flex: 1 1 auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    padding: 0;
+    gap: 0.25rem;
+  }
+}
+
+.mgrid-nav-vanilla--open .mgrid-nav-vanilla__panel {
+  display: flex;
+}
+
+.mgrid-nav-vanilla__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem;
+  }
+}
+
+.mgrid-nav-vanilla__link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--lp-radius-sm);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mgrid-nav-vanilla__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+
+  @media (min-width: 992px) {
+    padding: 0;
+    margin-left: 0.5rem;
+  }
+}
+
+.mgrid-nav-vanilla__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--lp-radius-sm);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.mgrid-brand-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid rgba(42, 23, 35, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: var(--font-display);
+}
+
+.mgrid-brand-lockup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.mgrid-brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.mgrid-brand-tagline {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 0.1rem;
+}
+
+@media (max-width: 575.98px) {
+  .mgrid-brand-tagline--hide-xs {
+    display: none;
+  }
+}
+
+// --- Language toggle (vanilla) ---
+.mgrid-lang-vanilla {
+  display: inline-flex;
+  border-radius: var(--lp-radius-sm);
+  overflow: hidden;
+  border: 1px solid rgba(42, 23, 35, 0.15);
+}
+
+.mgrid-lang-vanilla input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mgrid-lang-vanilla label {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-right: 1px solid rgba(42, 23, 35, 0.12);
+  background: transparent;
+  user-select: none;
+}
+
+.mgrid-lang-vanilla label:last-of-type {
+  border-right: 0;
+}
+
+// --- FAQ accordion (vanilla) ---
+.mgrid-faq {
+  border: 0;
+}
+
+.mgrid-faq__item {
+  border-bottom: 1px solid rgba(42, 23, 35, 0.08);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.mgrid-faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1rem;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--lp-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mgrid-faq__trigger:hover,
+.mgrid-faq__trigger:focus-visible {
+  background: rgba(42, 23, 35, 0.04);
+  outline: none;
+}
+
+.mgrid-faq__item.is-open .mgrid-faq__trigger {
+  background: rgba(42, 23, 35, 0.03);
+  color: var(--lp-plum);
+}
+
+.mgrid-faq__chevron {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  margin-top: -0.2rem;
+}
+
+.mgrid-faq__item.is-open .mgrid-faq__chevron {
+  transform: rotate(225deg);
+  margin-top: 0.15rem;
+}
+
+.mgrid-faq__panel {
+  display: none;
+  padding: 0 1rem 1.1rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--lp-muted);
+}
+
+.mgrid-faq__item.is-open .mgrid-faq__panel {
+  display: block;
+}
+
+.mgrid-faq__panel code {
+  font-family: var(--font-mono-id);
+  font-size: 0.8125em;
+}
+
+// --- Public footer grid ---
+.mgrid-footer-grid {
+  display: grid;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.mgrid-footer--public {
+  padding-top: 3rem;
+  padding-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
+.mgrid-mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+body.mgrid-public-vanilla .mgrid-footer {
+  margin-top: 0;
+}
+
+body.mgrid-public-vanilla .mgrid-footer-hr {
+  border: 0;
+  height: 1px;
+  background: rgba(42, 23, 35, 0.12);
+  margin: 1.5rem 0;
+}
+
+body.mgrid-public-vanilla .mgrid-footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+body.mgrid-public-vanilla .mgrid-footer a:hover {
+  border-bottom-color: rgba(166, 124, 82, 0.55);
+}
+
+.mgrid-footer-heading {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.mgrid-footer-grid .mgrid-list-plain li + li {
+  margin-top: 0.35rem;
+}
+
+.mgrid-footer-brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.mgrid-text-small {
+  font-size: 0.875rem;
+}
+
+.mgrid-text-center {
+  text-align: center;
+}
+
+.mgrid-opacity-80 {
+  opacity: 0.85;
+}
+
+.mgrid-opacity-75 {
+  opacity: 0.75;
+}

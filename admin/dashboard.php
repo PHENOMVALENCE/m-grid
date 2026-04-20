@@ -53,9 +53,10 @@ require __DIR__ . '/includes/shell_open.php';
   <div class="col-md-3">
     <div class="card border-0 shadow-sm mgrid-dash-stat">
       <div class="card-body">
-        <p class="mgrid-dash-stat-label mb-0">Administrators</p>
-        <?php $ac = $pdo->query("SELECT COUNT(*) AS c FROM admins WHERE status = 'active'")->fetch(); ?>
+        <p class="mgrid-dash-stat-label mb-0">Admin accounts</p>
+        <?php $ac = $pdo->query("SELECT COUNT(*) AS c, SUM(CASE WHEN role = 'super_admin' THEN 1 ELSE 0 END) AS super_c FROM admins WHERE status = 'active'")->fetch(); ?>
         <p class="mgrid-dash-stat-value mb-0"><?= (int) ($ac['c'] ?? 0) ?></p>
+        <p class="small text-muted mb-0">Super admins: <?= (int) ($ac['super_c'] ?? 0) ?></p>
       </div>
     </div>
   </div>

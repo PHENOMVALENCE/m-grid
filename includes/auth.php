@@ -31,12 +31,18 @@ function auth_user(): ?array
     if (empty($_SESSION['user_id']) || (string) ($_SESSION['account_type'] ?? '') !== 'user') {
         return null;
     }
+    $pref = (string) ($_SESSION['preferred_language'] ?? 'en');
+    if (!in_array($pref, ['en', 'sw'], true)) {
+        $pref = 'en';
+    }
+
     return [
         'user_id' => (int) $_SESSION['user_id'],
         'full_name' => (string) $_SESSION['full_name'],
         'm_id' => (string) $_SESSION['m_id'],
         'email' => (string) ($_SESSION['email'] ?? ''),
         'phone' => (string) ($_SESSION['phone'] ?? ''),
+        'preferred_language' => $pref,
         'account_type' => 'user',
     ];
 }
@@ -47,11 +53,17 @@ function auth_admin(): ?array
     if (empty($_SESSION['admin_id']) || (string) ($_SESSION['account_type'] ?? '') !== 'admin') {
         return null;
     }
+    $role = (string) ($_SESSION['admin_role'] ?? 'admin');
+    if (!in_array($role, ['super_admin', 'admin'], true)) {
+        $role = 'admin';
+    }
     return [
         'admin_id' => (int) $_SESSION['admin_id'],
         'full_name' => (string) $_SESSION['full_name'],
         'admin_code' => (string) $_SESSION['admin_code'],
         'email' => (string) ($_SESSION['email'] ?? ''),
+        'role' => $role,
+        'preferred_language' => 'en',
         'account_type' => 'admin',
     ];
 }
@@ -77,6 +89,8 @@ function auth_login_user(array $row): void
     $_SESSION['m_id'] = (string) $row['m_id'];
     $_SESSION['email'] = (string) $row['email'];
     $_SESSION['phone'] = (string) $row['phone'];
+    $pref = (string) ($row['preferred_language'] ?? 'en');
+    $_SESSION['preferred_language'] = in_array($pref, ['en', 'sw'], true) ? $pref : 'en';
     session_regenerate_id(true);
 }
 
@@ -85,11 +99,17 @@ function auth_login_user(array $row): void
  */
 function auth_login_admin(array $row): void
 {
+    $role = (string) ($row['role'] ?? 'admin');
+    if (!in_array($role, ['super_admin', 'admin'], true)) {
+        $role = 'admin';
+    }
     $_SESSION['account_type'] = 'admin';
     $_SESSION['admin_id'] = (int) $row['id'];
     $_SESSION['full_name'] = (string) $row['full_name'];
     $_SESSION['admin_code'] = (string) $row['admin_id'];
     $_SESSION['email'] = (string) $row['email'];
+    $_SESSION['admin_role'] = $role;
+    $_SESSION['preferred_language'] = 'en';
     session_regenerate_id(true);
 }
 
@@ -129,6 +149,22 @@ function auth_require_admin(): void
     if ($a === null) {
         http_response_code(403);
         echo 'Access denied.';
+        exit;
+    }
+}
+
+function auth_is_super_admin(): bool
+{
+    $a = auth_admin();
+    return $a !== null && (string) ($a['role'] ?? '') === 'super_admin';
+}
+
+function auth_require_super_admin(): void
+{
+    auth_require_admin();
+    if (!auth_is_super_admin()) {
+        http_response_code(403);
+        echo 'Super admin access required.';
         exit;
     }
 }
