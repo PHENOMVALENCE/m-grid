@@ -27,6 +27,12 @@ if (!isset($mgrid_navbar_premium)) {
 if (!isset($mgrid_public_vanilla)) {
     $mgrid_public_vanilla = false;
 }
+if (!isset($mgrid_meta_description)) {
+    $mgrid_meta_description = 'M GRID is a women-focused digital identity and opportunity platform for profile credibility, growth, and inclusive economic access.';
+}
+if (!isset($mgrid_meta_image)) {
+    $mgrid_meta_image = asset('images/logos/logo.png');
+}
 
 $mgrid_default_lang = 'en';
 if (session_status() === PHP_SESSION_ACTIVE) {
@@ -35,6 +41,14 @@ if (session_status() === PHP_SESSION_ACTIVE) {
         $mgrid_default_lang = $pl;
     }
 }
+
+$mgrid_is_https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || ((string) ($_SERVER['SERVER_PORT'] ?? '') === '443');
+$mgrid_scheme = $mgrid_is_https ? 'https' : 'http';
+$mgrid_host = (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
+$mgrid_request_uri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+$mgrid_path_only = (string) parse_url($mgrid_request_uri, PHP_URL_PATH);
+$mgrid_canonical = $mgrid_scheme . '://' . $mgrid_host . ($mgrid_path_only !== '' ? $mgrid_path_only : '/');
 ?>
 <!doctype html>
 <html lang="<?= $mgrid_default_lang === 'sw' ? 'sw' : 'en' ?>" data-mgrid-default-lang="<?= e($mgrid_default_lang) ?>" data-mgrid-theme="regal-rose">
@@ -47,8 +61,23 @@ if (session_status() === PHP_SESSION_ACTIVE) {
   <meta name="mgrid-set-lang-url" content="<?= e(url('set_ui_language.php')) ?>" />
   <?php endif; ?>
   <title><?= e($mgrid_page_title) ?></title>
+  <meta name="description" content="<?= e((string) $mgrid_meta_description) ?>" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="<?= e($mgrid_canonical) ?>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="M GRID" />
+  <meta property="og:title" content="<?= e($mgrid_page_title) ?>" />
+  <meta property="og:description" content="<?= e((string) $mgrid_meta_description) ?>" />
+  <meta property="og:url" content="<?= e($mgrid_canonical) ?>" />
+  <meta property="og:image" content="<?= e((string) $mgrid_meta_image) ?>" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?= e($mgrid_page_title) ?>" />
+  <meta name="twitter:description" content="<?= e((string) $mgrid_meta_description) ?>" />
+  <meta name="twitter:image" content="<?= e((string) $mgrid_meta_image) ?>" />
+  <meta name="theme-color" content="#C9A58A" />
   <link rel="icon" type="image/png" href="<?= e(asset('images/logos/logo.png')) ?>" />
   <link rel="shortcut icon" type="image/png" href="<?= e(asset('images/logos/logo.png')) ?>" />
+  <link rel="apple-touch-icon" href="<?= e(asset('images/logos/logo.png')) ?>" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">

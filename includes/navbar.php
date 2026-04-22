@@ -40,12 +40,12 @@ if ($vanilla) {
     </button>
     <div class="mgrid-nav-vanilla__panel" id="mgridNavPanel">
       <ul class="mgrid-nav-vanilla__links">
-        <li><a class="mgrid-nav-vanilla__link" href="#about" data-i18n="nav.about">About</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="#how" data-i18n="nav.how">How it works</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="#features">Features</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="#benefits" data-i18n="nav.benefits">Benefits</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="#partners" data-i18n="nav.partners">Partners</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#about')) ?>" data-i18n="nav.about">About</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#how')) ?>" data-i18n="nav.how">How it works</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#features')) ?>">Features</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#benefits')) ?>" data-i18n="nav.benefits">Benefits</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#partners')) ?>" data-i18n="nav.partners">Partners</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#faq')) ?>" data-i18n="nav.faq">FAQ</a></li>
       </ul>
       <div class="mgrid-nav-vanilla__row">
         <?php require __DIR__ . '/lang_toggle.php'; ?>
@@ -87,12 +87,12 @@ if ($vanilla) {
     </button>
     <div class="collapse navbar-collapse" id="mgridNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav.about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#how" data-i18n="nav.how">How it works</a></li>
-        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-        <li class="nav-item"><a class="nav-link" href="#benefits" data-i18n="nav.benefits">Benefits</a></li>
-        <li class="nav-item"><a class="nav-link" href="#partners" data-i18n="nav.partners">Partners</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#about')) ?>" data-i18n="nav.about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#how')) ?>" data-i18n="nav.how">How it works</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#features')) ?>">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#benefits')) ?>" data-i18n="nav.benefits">Benefits</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#partners')) ?>" data-i18n="nav.partners">Partners</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= e(url('index.php#faq')) ?>" data-i18n="nav.faq">FAQ</a></li>
         <li class="nav-item d-flex align-items-center py-2 py-lg-0 me-lg-1">
           <?php require __DIR__ . '/lang_toggle.php'; ?>
         </li>

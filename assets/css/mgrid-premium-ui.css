@@ -112,6 +112,17 @@ body.mgrid-ui-premium .mgrid-sidebar-logo {
   border-bottom-color: rgba(255, 255, 255, 0.07);
 }
 
+body.mgrid-ui-premium .mgrid-sidebar-logo-name {
+  color: #fffaf7;
+  text-shadow: 0 1px 1px rgba(60, 44, 38, 0.4);
+}
+
+body.mgrid-ui-premium .mgrid-sidebar-logo-sub {
+  color: #f2d6a3;
+  text-shadow: 0 1px 1px rgba(60, 44, 38, 0.35);
+  font-weight: 700;
+}
+
 body.mgrid-ui-premium .mgrid-brand-mark {
   width: 42px;
   height: 42px;
@@ -134,9 +145,10 @@ body.mgrid-ui-premium .mgrid-brand-mark img {
 }
 
 body.mgrid-ui-premium .mgrid-nav-section-label {
-  color: rgba(255, 249, 245, 0.72);
-  font-weight: 600;
+  color: rgba(255, 250, 246, 0.9);
+  font-weight: 700;
   letter-spacing: 0.14em;
+  text-shadow: 0 1px 1px rgba(60, 44, 38, 0.24);
 }
 
 body.mgrid-ui-premium .mgrid-nav-link {
@@ -145,10 +157,15 @@ body.mgrid-ui-premium .mgrid-nav-link {
   border-radius: var(--mgrid-radius-md);
   border-left: none;
   position: relative;
-  color: rgba(255, 249, 245, 0.88);
+  color: rgba(255, 252, 249, 0.98);
+  font-weight: 600;
   transition: color var(--mgrid-duration) var(--mgrid-ease-out),
     background var(--mgrid-duration) var(--mgrid-ease-out),
     transform var(--mgrid-duration) var(--mgrid-ease-out);
+}
+
+body.mgrid-ui-premium .mgrid-nav-link i {
+  color: rgba(255, 251, 247, 0.96);
 }
 
 body.mgrid-ui-premium .mgrid-nav-link::before {
@@ -743,6 +760,69 @@ body.mgrid-ui-premium.mgrid-page-profile .mgrid-profile-hero {
   box-shadow: 0 8px 30px rgba(74, 63, 53, 0.12);
 }
 
+/* Dashboard readability pass */
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-topbar-breadcrumb,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-topbar-breadcrumb-current {
+  color: var(--mgrid-charcoal-brown) !important;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-sidebar {
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.16) 0%, transparent 46%),
+    linear-gradient(180deg, #9f8176 0%, #7f6258 100%);
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-nav-section-label {
+  color: rgba(255, 251, 247, 0.94);
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-nav-link {
+  color: rgba(255, 252, 249, 0.99);
+  font-weight: 600;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-sidebar-logo-name {
+  color: #fffaf7;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-sidebar-logo-sub {
+  color: #f2d6a3;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-user-hero p,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-stat-sub,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-stat-sub--meta,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-progress-meta,
+body.mgrid-ui-premium.mgrid-page-dashboard .small.text-muted {
+  color: #5f5248 !important;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-stat-label {
+  color: #4d4036;
+  font-weight: 700;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-card-title,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-card-title i,
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-quick-link {
+  color: var(--mgrid-charcoal-brown);
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-quick-link {
+  border-color: rgba(74, 63, 53, 0.14);
+  background: #fff;
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-quick-link:hover {
+  border-color: rgba(193, 123, 107, 0.4);
+  background: #fff9f5;
+}
+
 body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-module-tile,
 body.mgrid-ui-premium.mgrid-page-opportunities .mgrid-card,
 body.mgrid-ui-premium.mgrid-page-trainings .mgrid-card,
@@ -814,4 +894,97 @@ body.mgrid-ui-premium.mgrid-page-users .table-responsive {
 body.mgrid-auth.mgrid-page-login .mgrid-auth-card,
 body.mgrid-auth.mgrid-page-register .mgrid-auth-card {
   border-top: 3px solid var(--mgrid-rose-gold);
+}
+
+/* Admin accounts page polish */
+body.mgrid-ui-premium .mgrid-admin-accounts-head {
+  margin-bottom: 1.1rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-accounts-kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--mgrid-warm-gray);
+}
+
+body.mgrid-ui-premium .mgrid-admin-accounts-head h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+}
+
+body.mgrid-ui-premium .mgrid-admin-accounts-head p {
+  color: #5e4f46;
+  max-width: 58ch;
+}
+
+body.mgrid-ui-premium .mgrid-admin-stat {
+  min-height: 132px;
+  justify-content: center;
+}
+
+body.mgrid-ui-premium .mgrid-admin-stat .mgrid-stat-mid-value {
+  color: #5f4a40;
+}
+
+body.mgrid-ui-premium .mgrid-admin-table-wrap .mgrid-table td {
+  vertical-align: middle;
+}
+
+body.mgrid-ui-premium .mgrid-admin-profile-meta {
+  color: #6b5d52;
+  line-height: 1.45;
+}
+
+body.mgrid-ui-premium .mgrid-admin-create-form {
+  max-width: 980px;
+}
+
+body.mgrid-ui-premium .mgrid-admin-manage-form {
+  max-width: 980px;
+}
+
+body.mgrid-ui-premium .dataTables_wrapper {
+  padding: 0.75rem 0.9rem 0.95rem;
+}
+
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_length,
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_filter {
+  margin-bottom: 0.65rem;
+}
+
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_filter input,
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_length select {
+  border: 1px solid var(--mgrid-warm-beige);
+  border-radius: 10px;
+  background: #fff;
+  padding: 0.32rem 0.55rem;
+  color: var(--mgrid-charcoal-brown);
+}
+
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_paginate .paginate_button {
+  border-radius: 999px !important;
+  border: 1px solid transparent !important;
+  color: var(--mgrid-charcoal-brown) !important;
+}
+
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: linear-gradient(135deg, rgba(212, 165, 165, 0.28), rgba(201, 165, 138, 0.22)) !important;
+  border-color: rgba(74, 63, 53, 0.18) !important;
+}
+
+body.mgrid-ui-premium .dataTables_wrapper .dataTables_info {
+  color: #6a5a4f;
+}
+
+@media (max-width: 768px) {
+  body.mgrid-ui-premium .mgrid-admin-accounts-head p {
+    max-width: none;
+  }
+
+  body.mgrid-ui-premium .dataTables_wrapper {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
 }

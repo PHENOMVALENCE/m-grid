@@ -53,3 +53,32 @@ function mgrid_ensure_admin_role_schema(): void
 }
 
 mgrid_ensure_admin_role_schema();
+
+/**
+ * Backward-compatible schema guard for richer admin profiles.
+ * Adds optional descriptive columns to admins table if missing.
+ */
+function mgrid_ensure_admin_extended_profile_schema(): void
+{
+    static $checked = false;
+    if ($checked) {
+        return;
+    }
+    $checked = true;
+
+    $pdo = db();
+    $columns = [
+        'phone' => "ALTER TABLE admins ADD COLUMN phone VARCHAR(32) NULL AFTER email",
+        'title' => "ALTER TABLE admins ADD COLUMN title VARCHAR(120) NULL AFTER phone",
+        'department' => "ALTER TABLE admins ADD COLUMN department VARCHAR(120) NULL AFTER title",
+    ];
+
+    foreach ($columns as $name => $sql) {
+        $col = $pdo->query("SHOW COLUMNS FROM admins LIKE '{$name}'")->fetch();
+        if (!$col) {
+            $pdo->exec($sql);
+        }
+    }
+}
+
+mgrid_ensure_admin_extended_profile_schema();
