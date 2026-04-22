@@ -1,34 +1,9 @@
 (function () {
   "use strict";
-  var THEME_KEY = "mgrid.theme";
-  var THEMES = ["regal-rose", "forest-jade", "royal-amethyst"];
-
-  function applyTheme(theme) {
-    var next = THEMES.indexOf(theme) >= 0 ? theme : "regal-rose";
-    document.documentElement.setAttribute("data-mgrid-theme", next);
-    try {
-      localStorage.setItem(THEME_KEY, next);
-    } catch (e) {}
-    var select = document.getElementById("mgridThemeSelect");
-    if (select) select.value = next;
-  }
-
-  function initTheme() {
-    var current = "regal-rose";
-    try {
-      current = localStorage.getItem(THEME_KEY) || current;
-    } catch (e) {}
-    applyTheme(current);
-
-    var select = document.getElementById("mgridThemeSelect");
-    if (select) {
-      select.addEventListener("change", function () {
-        applyTheme(select.value);
-      });
-    }
-  }
-
-  initTheme();
+  document.documentElement.setAttribute("data-mgrid-theme", "regal-rose");
+  try {
+    localStorage.removeItem("mgrid.theme");
+  } catch (e) {}
 
   document.querySelectorAll("[data-score-ring]").forEach(function (el) {
     var pct = Math.min(100, Math.max(0, parseFloat(el.dataset.scoreRing || "0")));

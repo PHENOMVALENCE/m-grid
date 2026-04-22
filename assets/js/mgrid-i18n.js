@@ -8,14 +8,14 @@
     en: {
       "lang.en": "English",
       "lang.sw": "Kiswahili",
-      "nav.tagline": "Women's economic network",
+      "nav.tagline": "Women Rising in Power and Opportunity",
       "nav.home": "Home",
       "nav.get_mid": "Get Your M-ID",
       "hero.title": "Your Digital Passport to Economic Power",
       "hero.subtitle":
         "Malkia Grid gives every woman in Tanzania a verified identity, a credit score, and access to finance, training, and opportunities.",
       "cta.watch": "Watch How It Works",
-      "footer.tagline": "Women's digital identity for opportunity and trust.",
+      "footer.tagline": "Women Rising in Power and Opportunity.",
       "nav.about": "About",
       "nav.how": "How it works",
       "nav.benefits": "Benefits",
@@ -23,7 +23,7 @@
       "nav.faq": "FAQ",
       "nav.features": "Features",
       "nav.brand_mgrid": "M GRID",
-      "nav.brand_sub": "Malkia Grid",
+      "nav.brand_sub": "Women Rising in Power and Opportunity",
       "nav.sign_in": "Sign in",
       "nav.register_mid": "Register for M-ID",
       "nav.dashboard": "Dashboard",
@@ -49,7 +49,7 @@
       "footer.link_register": "Register for M-ID",
       "footer.link_signin": "Member sign-in",
       "footer.link_faq": "FAQ",
-      "footer.copyright": "Malkia Grid. All rights reserved.",
+      "footer.copyright": "M GRID. All rights reserved.",
       "landing.hero_eyebrow": "Malkia wa Nguvu · Clouds Media Group",
       "landing.cta_learn": "Learn how it works",
       "landing.cta_register": "Register for M-ID",
@@ -179,11 +179,96 @@
       "dash.stat_score_help": "Methodology updates and tier criteria are published as modules roll out.",
       "dash.stat_lang_label": "Language",
       "dash.stat_member_label": "Member since",
+      "topbar.role_member": "Member",
+      "topbar.role_admin": "Admin",
+      "sidebar.section_overview": "Overview",
+      "sidebar.section_identity": "Identity",
+      "sidebar.section_opportunities": "Opportunities",
+      "sidebar.section_account": "Account",
+      "sidebar.m_score": "M-SCORE",
+      "sidebar.opportunities_link": "Opportunities",
+      "sidebar.trainings": "Trainings",
+      "sidebar.m_fund": "M-Fund (Loans)",
+      "sidebar.m_partners": "M-Partners",
+      "sidebar.notifications": "Notifications",
+      "dash.stat_completion_label": "Profile completion",
+      "dash.stat_target_full": "Target 100%",
+      "dash.profile_completion_tail": "— complete key fields to improve partner readiness.",
+      "dash.card_profile_title": "Profile summary",
+      "dash.lbl_region": "Region:",
+      "dash.lbl_business": "Business status:",
+      "dash.lbl_language": "Language:",
+      "dash.lbl_member_since": "Member since:",
+      "dash.edit_profile": "Edit profile details",
+      "dash.card_quick_title": "Quick actions",
+      "dash.qa_profile": "Update profile",
+      "dash.qa_mscore": "View M-SCORE",
+      "dash.qa_verify": "ID verification",
+      "dash.qa_settings": "Account settings",
+      "dash.qa_documents": "My documents",
+      "dash.coming_modules": "Coming modules",
+      "dash.tile_docs_title": "Documents",
+      "dash.tile_docs_desc": "Secure uploads & verification status.",
+      "dash.tile_opp_title": "Opportunities",
+      "dash.tile_opp_desc": "Curated programmes aligned to your profile.",
+      "dash.tile_ben_title": "M-Benefits",
+      "dash.tile_ben_desc": "Grants, learning, and wellness journeys.",
+      "dash.tile_fund_title": "Loan access (M-Fund)",
+      "dash.tile_fund_desc": "Finance-ready pathways when you choose to apply.",
+      "dash.tile_planned": "Planned",
+      "profile.page_kicker": "M-Profile",
+      "profile.score_card_label": "M-SCORE",
+      "profile.score_updated": "Updated",
+      "profile.cta_methodology": "View methodology",
+      "profile.overview_title": "Your particulars",
+      "profile.overview_sub": "Everything partners and programmes see from your M-Profile record.",
+      "profile.badge_complete": "complete",
+      "profile.sec_identity": "Identity & account",
+      "profile.sec_contact": "Contact & preferences",
+      "profile.sec_business": "Location & business context",
+      "profile.sec_nid": "National ID verification",
+      "profile.sec_bio": "Biography & narrative",
+      "profile.sec_meta": "Record metadata",
+      "profile.lbl_mid": "M-ID",
+      "profile.lbl_full_legal_name": "Full legal name",
+      "profile.lbl_account_status": "Account status",
+      "profile.lbl_member_since": "Member since",
+      "profile.lbl_account_updated": "Account last updated",
+      "profile.lbl_email": "Email",
+      "profile.lbl_phone": "Phone",
+      "profile.lbl_pref_lang": "Preferred language",
+      "profile.lbl_region": "Region",
+      "profile.lbl_business_status": "Business status",
+      "profile.lbl_dob": "Date of birth",
+      "profile.lbl_age_range": "Age range",
+      "profile.lbl_profile_strength": "Profile strength",
+      "profile.progress_tail": "aligned with M-Profile milestones",
+      "profile.lbl_nid_status": "Status",
+      "profile.lbl_nid_submitted": "Submitted",
+      "profile.lbl_nid_reviewed": "Reviewed",
+      "profile.lbl_nid_note": "Reviewer note",
+      "profile.status_active": "Active",
+      "profile.status_suspended": "Suspended",
+      "profile.status_pending_verification": "Pending verification",
+      "profile.nid_not_submitted": "Not submitted",
+      "profile.nid_under_review": "Under review",
+      "profile.nid_verified": "Verified",
+      "profile.nid_update_required": "Update required",
+      "profile.bio_empty": "You have not added a biography yet. Use the form below to share your story, goals, and the impact you are building.",
+      "profile.bio_placeholder": "Tell us about your work and goals.",
+      "profile.lbl_profile_record_opened": "M-Profile record opened",
+      "profile.lbl_profile_last_saved": "M-Profile last saved",
+      "profile.form_title": "Manage profile details",
+      "profile.form_sub": "Update your contact and profile information below.",
+      "profile.lbl_bio": "Biography",
+      "profile.form_save": "Save changes",
+      "profile.opt_choose": "Choose...",
+      "profile.hero_member_since": "Member since",
     },
     sw: {
       "lang.en": "English",
       "lang.sw": "Kiswahili",
-      "nav.tagline": "Mtandao wa uchumi wa wanawake",
+      "nav.tagline": "Wanawake wakiinuka kwa nguvu na fursa",
       "nav.home": "Nyumbani",
       "nav.get_mid": "Pata M-ID yako",
       "hero.title": "Pasipoti Yako ya Kidijitali ya Nguvu ya Kiuchumi",
@@ -198,7 +283,7 @@
       "nav.faq": "Maswali",
       "nav.features": "Vipengele",
       "nav.brand_mgrid": "M GRID",
-      "nav.brand_sub": "Malkia Grid",
+      "nav.brand_sub": "Wanawake wakiinuka kwa nguvu na fursa",
       "nav.sign_in": "Ingia",
       "nav.register_mid": "Jisajili kwa M-ID",
       "nav.dashboard": "Dashibodi",
@@ -224,7 +309,7 @@
       "footer.link_register": "Jisajili kwa M-ID",
       "footer.link_signin": "Ingia kama mwanachama",
       "footer.link_faq": "Maswali yanayoulizwa mara kwa mara",
-      "footer.copyright": "Malkia Grid. Haki zote zimehifadhiwa.",
+      "footer.copyright": "M GRID. Haki zote zimehifadhiwa.",
       "landing.hero_eyebrow": "Malkia wa Nguvu · Clouds Media Group",
       "landing.cta_learn": "Jifunze jinsi inavyofanya kazi",
       "landing.cta_register": "Jisajili kwa M-ID",
@@ -353,6 +438,91 @@
       "dash.stat_score_help": "Masasisho ya mbinu na vigezo vya ngazi hutangazwa moduli zinapoanza kutumika.",
       "dash.stat_lang_label": "Lugha",
       "dash.stat_member_label": "Mwanachama tangu",
+      "topbar.role_member": "Mwanachama",
+      "topbar.role_admin": "Msimamizi",
+      "sidebar.section_overview": "Muhtasari",
+      "sidebar.section_identity": "Utambulisho",
+      "sidebar.section_opportunities": "Fursa",
+      "sidebar.section_account": "Akaunti",
+      "sidebar.m_score": "M-SCORE",
+      "sidebar.opportunities_link": "Fursa",
+      "sidebar.trainings": "Mafunzo",
+      "sidebar.m_fund": "M-Fund (Mikopo)",
+      "sidebar.m_partners": "M-Washirika",
+      "sidebar.notifications": "Arifa",
+      "dash.stat_completion_label": "Ukamilishaji wa wasifu",
+      "dash.stat_target_full": "Lengo 100%",
+      "dash.profile_completion_tail": "— kamilisha sehemu muhimu ili kuongeza uwezo wa washirika.",
+      "dash.card_profile_title": "Muhtasari wa wasifu",
+      "dash.lbl_region": "Mkoa:",
+      "dash.lbl_business": "Hali ya biashara:",
+      "dash.lbl_language": "Lugha:",
+      "dash.lbl_member_since": "Mwanachama tangu:",
+      "dash.edit_profile": "Hariri maelezo ya wasifu",
+      "dash.card_quick_title": "Vitendo vya haraka",
+      "dash.qa_profile": "Sasisha wasifu",
+      "dash.qa_mscore": "Tazama M-SCORE",
+      "dash.qa_verify": "Uhakiki wa kitambulisho",
+      "dash.qa_settings": "Mipangilio ya akaunti",
+      "dash.qa_documents": "Nyaraka zangu",
+      "dash.coming_modules": "Moduli zinazokuja",
+      "dash.tile_docs_title": "Nyaraka",
+      "dash.tile_docs_desc": "Upakiaji salama na hali ya uhakiki.",
+      "dash.tile_opp_title": "Fursa",
+      "dash.tile_opp_desc": "Programu zilizochaguliwa kulingana na wasifu wako.",
+      "dash.tile_ben_title": "Faida za M",
+      "dash.tile_ben_desc": "Misaada, mafunzo, na safari za ustawi.",
+      "dash.tile_fund_title": "Ufikiaji wa mkopo (M-Fund)",
+      "dash.tile_fund_desc": "Njia za ujiandaa wa fedha unapoamua kuomba.",
+      "dash.tile_planned": "Imepangwa",
+      "profile.page_kicker": "Wasifu wa M",
+      "profile.score_card_label": "M-SCORE",
+      "profile.score_updated": "Imesasishwa",
+      "profile.cta_methodology": "Tazama mbinu",
+      "profile.overview_title": "Maelezo yako",
+      "profile.overview_sub": "Kila kitu washirika na programu wanaona kutoka rekodi yako ya Wasifu wa M.",
+      "profile.badge_complete": "imekamilika",
+      "profile.sec_identity": "Utambulisho na akaunti",
+      "profile.sec_contact": "Mawasiliano na mapendeleo",
+      "profile.sec_business": "Eneo na muktadha wa biashara",
+      "profile.sec_nid": "Uhakiki wa kitambulisho cha taifa",
+      "profile.sec_bio": "Wasifu fupi na hadithi",
+      "profile.sec_meta": "Metadata ya rekodi",
+      "profile.lbl_mid": "M-ID",
+      "profile.lbl_full_legal_name": "Jina kamili la kisheria",
+      "profile.lbl_account_status": "Hali ya akaunti",
+      "profile.lbl_member_since": "Mwanachama tangu",
+      "profile.lbl_account_updated": "Akaunti ilisasishwa mwisho",
+      "profile.lbl_email": "Barua pepe",
+      "profile.lbl_phone": "Simu",
+      "profile.lbl_pref_lang": "Lugha unayopendelea",
+      "profile.lbl_region": "Mkoa",
+      "profile.lbl_business_status": "Hali ya biashara",
+      "profile.lbl_dob": "Tarehe ya kuzaliwa",
+      "profile.lbl_age_range": "Kundi la umri",
+      "profile.lbl_profile_strength": "Nguvu ya wasifu",
+      "profile.progress_tail": "inalingana na hatua za Wasifu wa M",
+      "profile.lbl_nid_status": "Hali",
+      "profile.lbl_nid_submitted": "Imewasilishwa",
+      "profile.lbl_nid_reviewed": "Imepitiwa",
+      "profile.lbl_nid_note": "Maelezo ya mpitaji",
+      "profile.status_active": "Inatumika",
+      "profile.status_suspended": "Imesimamishwa",
+      "profile.status_pending_verification": "Inasubiri uhakiki",
+      "profile.nid_not_submitted": "Haijawasilishwa",
+      "profile.nid_under_review": "Inapitiwa",
+      "profile.nid_verified": "Imethibitishwa",
+      "profile.nid_update_required": "Sasisha inahitajika",
+      "profile.bio_empty": "Bado hujaongeza wasifu fupi. Tumia fomu hapa chini kushiriki hadithi yako, malengo, na athari unayoijenga.",
+      "profile.bio_placeholder": "Tuambie kuhusu kazi na malengo yako.",
+      "profile.lbl_profile_record_opened": "Rekodi ya Wasifu wa M ilifunguliwa",
+      "profile.lbl_profile_last_saved": "Wasifu wa M uliohifadhiwa mwisho",
+      "profile.form_title": "Dhibiti maelezo ya wasifu",
+      "profile.form_sub": "Sasisha mawasiliano na taarifa za wasifu hapa chini.",
+      "profile.lbl_bio": "Wasifu fupi",
+      "profile.form_save": "Hifadhi mabadiliko",
+      "profile.opt_choose": "Chagua...",
+      "profile.hero_member_since": "Mwanachama tangu",
     },
   };
 
@@ -460,6 +630,29 @@
     });
   }
 
+  function getMeta(name) {
+    const m = document.querySelector('meta[name="' + name + '"]');
+    return m ? m.getAttribute("content") || "" : "";
+  }
+
+  function persistLanguage(lang) {
+    const url = getMeta("mgrid-set-lang-url");
+    const csrf = getMeta("mgrid-csrf-token");
+    if (!url || !csrf) {
+      return Promise.resolve();
+    }
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ lang: lang, _csrf: csrf }),
+      credentials: "same-origin",
+    }).then(function (res) {
+      return res.json().catch(function () {
+        return {};
+      });
+    });
+  }
+
   function initLangToggle() {
     const fromDoc = document.documentElement.getAttribute("data-mgrid-default-lang");
     let stored = null;
@@ -468,11 +661,19 @@
     } catch (e) {
       stored = null;
     }
+    const appShell = document.body && document.body.classList.contains("mgrid-app");
     let initial = "en";
-    if (stored === "en" || stored === "sw") {
-      initial = stored;
-    } else if (fromDoc === "sw" || fromDoc === "en") {
+    if (fromDoc === "sw" || fromDoc === "en") {
       initial = fromDoc;
+    }
+    if (appShell) {
+      try {
+        localStorage.setItem("mgrid_lang", initial);
+      } catch (e2) {
+        /* ignore */
+      }
+    } else if (stored === "en" || stored === "sw") {
+      initial = stored;
     }
     const radios = document.querySelectorAll('input[name="mgridLang"]');
     if (radios.length) {
@@ -480,6 +681,9 @@
         r.checked = r.value === initial;
         r.addEventListener("change", function () {
           applyLanguage(r.value);
+          persistLanguage(r.value).catch(function () {
+            /* ignore */
+          });
         });
       });
     }

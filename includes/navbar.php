@@ -15,13 +15,15 @@ if ($vanilla) {
 >
   <div class="mgrid-container mgrid-nav-vanilla__inner">
     <a class="mgrid-nav-vanilla__brand" href="<?= e(url('index.php')) ?>">
-      <span class="mgrid-brand-mark" aria-hidden="true">M</span>
+      <span class="mgrid-brand-mark" aria-hidden="true">
+        <img src="<?= e(asset('images/logos/logo.png')) ?>" alt="" />
+      </span>
       <span class="mgrid-brand-lockup">
         <?php if ($navPremium): ?>
           <span class="mgrid-brand-name" data-i18n="nav.brand_mgrid">M GRID</span>
           <span class="mgrid-brand-tagline mgrid-brand-tagline--hide-xs" data-i18n="nav.brand_sub">Malkia Grid</span>
         <?php else: ?>
-          <span class="mgrid-brand-name">Malkia Grid</span>
+          <span class="mgrid-brand-name">M GRID</span>
           <span class="mgrid-brand-tagline mgrid-brand-tagline--hide-xs" data-i18n="nav.tagline">Women&apos;s economic network</span>
         <?php endif; ?>
       </span>
@@ -66,13 +68,15 @@ if ($vanilla) {
 <nav class="navbar navbar-expand-lg mgrid-navbar<?= $navPremium ? ' mgrid-navbar--premium fixed-top' : ' sticky-top' ?>" data-bs-theme="light" data-mgrid-navbar<?= $navPremium ? ' data-mgrid-navbar-premium="1"' : '' ?>>
   <div class="container py-2">
     <a class="navbar-brand d-flex align-items-center gap-2" href="<?= e(url('index.php')) ?>">
-      <span class="d-inline-flex align-items-center justify-content-center mgrid-brand-mark">M</span>
+      <span class="d-inline-flex align-items-center justify-content-center mgrid-brand-mark" aria-hidden="true">
+        <img src="<?= e(asset('images/logos/logo.png')) ?>" alt="" />
+      </span>
       <span class="mgrid-brand-lockup">
         <?php if ($navPremium): ?>
           <span class="mgrid-brand-name" data-i18n="nav.brand_mgrid">M GRID</span>
           <span class="mgrid-brand-tagline d-none d-sm-block" data-i18n="nav.brand_sub">Malkia Grid</span>
         <?php else: ?>
-          <span class="mgrid-brand-name">Malkia Grid</span>
+          <span class="mgrid-brand-name">M GRID</span>
           <span class="mgrid-brand-tagline d-none d-sm-block" data-i18n="nav.tagline">Women&apos;s economic network</span>
         <?php endif; ?>
       </span>

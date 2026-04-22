@@ -14,7 +14,7 @@ if ($u === null) {
     </button>
     <div class="mgrid-topbar-breadcrumb">
       <span data-i18n="topbar.signed_in_as" class="d-none">Signed in as</span>
-      <span><?= ($mgrid_sidebar_context ?? 'user') === 'admin' ? 'Admin' : 'Member' ?></span>
+      <span data-i18n="<?= ($mgrid_sidebar_context ?? 'user') === 'admin' ? 'topbar.role_admin' : 'topbar.role_member' ?>"><?= ($mgrid_sidebar_context ?? 'user') === 'admin' ? 'Admin' : 'Member' ?></span>
       <i class="ti ti-chevron-right"></i>
       <span class="mgrid-topbar-breadcrumb-current"><?= e((string) ($mgrid_page_title ?? 'Dashboard')) ?></span>
     </div>
@@ -22,11 +22,6 @@ if ($u === null) {
       <?php if (($mgrid_sidebar_context ?? '') === 'user' && auth_user() !== null): ?>
         <?php require __DIR__ . '/../user/notification_dropdown_include.php'; ?>
       <?php endif; ?>
-      <select id="mgridThemeSelect" class="mgrid-theme-select" aria-label="Theme">
-        <option value="regal-rose">Regal Rose</option>
-        <option value="forest-jade">Forest Jade</option>
-        <option value="royal-amethyst">Royal Amethyst</option>
-      </select>
       <?php require __DIR__ . '/lang_toggle.php'; ?>
       <div class="mgrid-sidebar-avatar"><?= e(strtoupper(substr($u['full_name'], 0, 1))) ?></div>
     </div>

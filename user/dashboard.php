@@ -89,62 +89,62 @@ if (trim((string) ($row['bio'] ?? '')) === '') {
     <p class="mgrid-stat-sub mgrid-stat-sub--meta" data-i18n="dash.stat_score_help">Methodology updates and tier criteria are published as modules roll out.</p>
   </div>
   <div class="mgrid-stat-card mgrid-stat-card--completion">
-    <div class="mgrid-stat-label">Profile completion</div>
+    <div class="mgrid-stat-label" data-i18n="dash.stat_completion_label">Profile completion</div>
     <div class="mgrid-stat-main">
       <div class="mgrid-progress-wrap">
         <div class="mgrid-progress-track">
           <div class="mgrid-progress-fill" style="width: <?= $profileCompletion ?>%;"></div>
         </div>
-        <div class="mgrid-progress-meta"><span><?= $profileCompletion ?>%</span><span>Target 100%</span></div>
+        <div class="mgrid-progress-meta"><span><?= $profileCompletion ?>%</span><span data-i18n="dash.stat_target_full">Target 100%</span></div>
       </div>
     </div>
-    <p class="mgrid-stat-sub mgrid-stat-sub--meta"><?= $profileCompletion ?>% — complete key fields to improve partner readiness.</p>
+    <p class="mgrid-stat-sub mgrid-stat-sub--meta"><span><?= $profileCompletion ?>%</span> <span data-i18n="dash.profile_completion_tail">— complete key fields to improve partner readiness.</span></p>
   </div>
 </div>
 
 <div class="mgrid-grid-2 mgrid-page-section">
   <div class="mgrid-card">
-    <div class="mgrid-card-header"><h2 class="mgrid-card-title"><i class="ti ti-user"></i>Profile summary</h2></div>
+    <div class="mgrid-card-header"><h2 class="mgrid-card-title"><i class="ti ti-user"></i><span data-i18n="dash.card_profile_title">Profile summary</span></h2></div>
     <div class="mgrid-card-body">
         <ul class="list-unstyled small text-muted mb-0">
-          <li class="mb-2"><strong class="text-dark">Region:</strong> <?= e((string) ($row['region'] ?? '—')) ?></li>
-          <li class="mb-2"><strong class="text-dark">Business status:</strong> <?= e(str_replace('_', ' ', (string) ($row['business_status'] ?? '—'))) ?></li>
-          <li class="mb-2"><strong class="text-dark">Language:</strong> <?= e($languageLabel) ?></li>
-          <li><strong class="text-dark">Member since:</strong> <?= e($memberSince) ?></li>
+          <li class="mb-2"><strong class="text-dark" data-i18n="dash.lbl_region">Region:</strong> <?= e((string) ($row['region'] ?? '—')) ?></li>
+          <li class="mb-2"><strong class="text-dark" data-i18n="dash.lbl_business">Business status:</strong> <?= e(str_replace('_', ' ', (string) ($row['business_status'] ?? '—'))) ?></li>
+          <li class="mb-2"><strong class="text-dark" data-i18n="dash.lbl_language">Language:</strong> <?= e($languageLabel) ?></li>
+          <li><strong class="text-dark" data-i18n="dash.lbl_member_since">Member since:</strong> <?= e($memberSince) ?></li>
         </ul>
-        <a class="btn-mgrid btn-mgrid-outline mt-3" href="<?= e(url('user/profile.php')) ?>">Edit profile details</a>
+        <a class="btn-mgrid btn-mgrid-outline mt-3" href="<?= e(url('user/profile.php')) ?>"><span data-i18n="dash.edit_profile">Edit profile details</span></a>
     </div>
   </div>
   <div class="mgrid-card">
-    <div class="mgrid-card-header"><h2 class="mgrid-card-title"><i class="ti ti-bolt"></i>Quick actions</h2></div>
+    <div class="mgrid-card-header"><h2 class="mgrid-card-title"><i class="ti ti-bolt"></i><span data-i18n="dash.card_quick_title">Quick actions</span></h2></div>
     <div class="mgrid-card-body">
       <div class="mgrid-grid-2">
-        <a href="<?= e(url('user/profile.php')) ?>" class="mgrid-quick-link"><i class="ti ti-user-edit"></i><span>Update profile</span></a>
-        <a href="<?= e(url('user/my_mscore.php')) ?>" class="mgrid-quick-link"><i class="ti ti-chart-arcs"></i><span>View M-SCORE</span></a>
-        <a href="<?= e(url('user/verify-id.php')) ?>" class="mgrid-quick-link"><i class="ti ti-id-badge-2"></i><span>ID verification</span></a>
-        <a href="<?= e(url('user/settings.php')) ?>" class="mgrid-quick-link"><i class="ti ti-settings"></i><span>Account settings</span></a>
-        <a href="<?= e(url('user/my_documents.php')) ?>" class="mgrid-quick-link"><i class="ti ti-file-certificate"></i><span>My documents</span></a>
+        <a href="<?= e(url('user/profile.php')) ?>" class="mgrid-quick-link"><i class="ti ti-user-edit"></i><span data-i18n="dash.qa_profile">Update profile</span></a>
+        <a href="<?= e(url('user/my_mscore.php')) ?>" class="mgrid-quick-link"><i class="ti ti-chart-arcs"></i><span data-i18n="dash.qa_mscore">View M-SCORE</span></a>
+        <a href="<?= e(url('user/verify-id.php')) ?>" class="mgrid-quick-link"><i class="ti ti-id-badge-2"></i><span data-i18n="dash.qa_verify">ID verification</span></a>
+        <a href="<?= e(url('user/settings.php')) ?>" class="mgrid-quick-link"><i class="ti ti-settings"></i><span data-i18n="dash.qa_settings">Account settings</span></a>
+        <a href="<?= e(url('user/my_documents.php')) ?>" class="mgrid-quick-link"><i class="ti ti-file-certificate"></i><span data-i18n="dash.qa_documents">My documents</span></a>
       </div>
     </div>
   </div>
 </div>
 
-<h2 class="h5 mgrid-dash-section-title mt-5 mb-3 mgrid-page-section">Coming modules</h2>
+<h2 class="h5 mgrid-dash-section-title mt-5 mb-3 mgrid-page-section" data-i18n="dash.coming_modules">Coming modules</h2>
 <div class="mgrid-grid-4 mgrid-page-section">
   <?php
     $tiles = [
-        ['Documents', 'ti ti-file-certificate', 'Secure uploads & verification status.'],
-        ['Opportunities', 'ti ti-briefcase', 'Curated programmes aligned to your profile.'],
-        ['M-Benefits', 'ti ti-heart-handshake', 'Grants, learning, and wellness journeys.'],
-        ['Loan access (M-Fund)', 'ti ti-building-bank', 'Finance-ready pathways when you choose to apply.'],
+        ['dash.tile_docs_title', 'ti ti-file-certificate', 'dash.tile_docs_desc', 'Documents', 'Secure uploads & verification status.'],
+        ['dash.tile_opp_title', 'ti ti-briefcase', 'dash.tile_opp_desc', 'Opportunities', 'Curated programmes aligned to your profile.'],
+        ['dash.tile_ben_title', 'ti ti-heart-handshake', 'dash.tile_ben_desc', 'M-Benefits', 'Grants, learning, and wellness journeys.'],
+        ['dash.tile_fund_title', 'ti ti-building-bank', 'dash.tile_fund_desc', 'Loan access (M-Fund)', 'Finance-ready pathways when you choose to apply.'],
     ];
 foreach ($tiles as $t) {
     ?>
   <div class="mgrid-module-tile">
       <div class="mgrid-module-tile-icon"><i class="<?= e($t[1]) ?>"></i></div>
-      <h3><?= e($t[0]) ?></h3>
-      <p><?= e($t[2]) ?></p>
-      <span class="mgrid-module-tile-badge">Planned</span>
+      <h3 data-i18n="<?= e($t[0]) ?>"><?= e($t[3]) ?></h3>
+      <p data-i18n="<?= e($t[2]) ?>"><?= e($t[4]) ?></p>
+      <span class="mgrid-module-tile-badge" data-i18n="dash.tile_planned">Planned</span>
       </div>
     <?php
 }

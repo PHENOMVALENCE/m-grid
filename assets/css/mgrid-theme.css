@@ -112,7 +112,8 @@ h1, h2, h3, h4, h5 { font-weight: 500; line-height: 1.3; }
 
 .mgrid-sidebar { width: var(--mgrid-sidebar-width); background: linear-gradient(180deg, #2f2431 0%, #241b26 100%); border-right: 1px solid rgba(209,167,94,.24); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; bottom: 0; z-index: 100; overflow-y: auto; }
 .mgrid-sidebar-logo { padding: 20px 20px 16px; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; gap: 10px; }
-.mgrid-sidebar-logo-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--mgrid-gold-400); color: #fff; display: flex; align-items: center; justify-content: center; font-family: "Cormorant Garamond", serif; font-size: 18px; }
+.mgrid-sidebar-logo-mark { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.mgrid-sidebar-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 8px; }
 .mgrid-sidebar-logo-name { font-family: "Cormorant Garamond", serif; font-size: 19px; color: #fff; }
 .mgrid-sidebar-logo-sub { font-size: 10px; color: var(--mgrid-gold-400); letter-spacing: .12em; text-transform: uppercase; display: block; margin-top: -2px; }
 .mgrid-nav-section-label { padding: 20px 20px 6px; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--mgrid-ink-300); opacity: .7; }

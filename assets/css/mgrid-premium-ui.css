@@ -7,33 +7,39 @@
 /* 1. Extended tokens (semantic aliases + plum / mauve / paper)               */
 /* -------------------------------------------------------------------------- */
 :root {
-  --mgrid-plum-950: #1a1218;
-  --mgrid-plum-900: #2a1f28;
-  --mgrid-plum-800: #3d2d3a;
-  --mgrid-plum-700: #52424d;
-  --mgrid-mauve-500: #9d7a8f;
-  --mgrid-mauve-400: #b894a8;
-  --mgrid-paper-0: #fffefc;
-  --mgrid-paper-1: #faf6f3;
-  --mgrid-paper-2: #f3ebe6;
-  --mgrid-line-soft: rgba(83, 46, 71, 0.09);
-  --mgrid-line-strong: rgba(83, 46, 71, 0.14);
-  --mgrid-primary: var(--mgrid-plum-800);
-  --mgrid-primary-soft: var(--mgrid-mauve-500);
-  --mgrid-accent: var(--mgrid-gold-400);
-  --mgrid-accent-muted: var(--mgrid-gold-200);
-  --mgrid-focus-ring: rgba(201, 164, 78, 0.28);
+  --mgrid-soft-blush: #f5e6e0;
+  --mgrid-warm-taupe: #d4b5a8;
+  --mgrid-rose-gold: #c9a58a;
+  --mgrid-cream-white: #faf8f6;
+  --mgrid-warm-beige: #e8ddd5;
+  --mgrid-soft-ivory: #fff9f5;
+  --mgrid-charcoal-brown: #4a3f35;
+  --mgrid-warm-gray: #6b5d52;
+  --mgrid-muted-rose: #b8938a;
+  --mgrid-dusty-rose: #d4a5a5;
+  --mgrid-terracotta: #c17b6b;
+  --mgrid-sage-green: #b5c4b1;
+  --mgrid-paper-0: var(--mgrid-soft-ivory);
+  --mgrid-paper-1: var(--mgrid-cream-white);
+  --mgrid-paper-2: var(--mgrid-soft-blush);
+  --mgrid-line-soft: rgba(74, 63, 53, 0.11);
+  --mgrid-line-strong: rgba(74, 63, 53, 0.18);
+  --mgrid-primary: var(--mgrid-dusty-rose);
+  --mgrid-primary-soft: var(--mgrid-muted-rose);
+  --mgrid-accent: var(--mgrid-rose-gold);
+  --mgrid-accent-muted: var(--mgrid-warm-beige);
+  --mgrid-focus-ring: rgba(212, 165, 165, 0.34);
   --mgrid-radius-pill: 999px;
-  --mgrid-space-section: clamp(1.5rem, 3vw, 2.25rem);
+  --mgrid-space-section: clamp(2.5rem, 6vw, 7rem);
   --mgrid-space-block: clamp(1rem, 2vw, 1.5rem);
-  --mgrid-shadow-soft: 0 2px 8px rgba(46, 31, 44, 0.04);
-  --mgrid-shadow-lift: 0 12px 40px rgba(46, 31, 44, 0.1), 0 2px 8px rgba(46, 31, 44, 0.06);
-  --mgrid-shadow-glow-rose: 0 0 0 1px rgba(188, 106, 139, 0.12), 0 16px 48px rgba(138, 63, 93, 0.08);
+  --mgrid-shadow-soft: 0 2px 8px rgba(74, 63, 53, 0.06);
+  --mgrid-shadow-lift: 0 8px 30px rgba(74, 63, 53, 0.12);
+  --mgrid-shadow-glow-rose: 0 0 0 1px rgba(201, 165, 138, 0.2), 0 16px 48px rgba(193, 123, 107, 0.1);
   --mgrid-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --mgrid-font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mgrid-font-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mgrid-font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --mgrid-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --mgrid-duration: 0.22s;
+  --mgrid-ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --mgrid-duration: 0.3s;
 }
 
 html.mgrid-motion-reduce *,
@@ -50,14 +56,14 @@ html.mgrid-motion-reduce *::after {
 /* -------------------------------------------------------------------------- */
 body.mgrid-ui-premium {
   font-family: var(--mgrid-font-body);
-  font-size: 15px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.65;
   letter-spacing: 0.01em;
-  color: var(--mgrid-ink-950);
+  color: var(--mgrid-charcoal-brown);
   background:
-    radial-gradient(1200px 600px at 12% -10%, rgba(188, 106, 139, 0.06), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(209, 167, 94, 0.07), transparent 50%),
-    linear-gradient(180deg, var(--mgrid-paper-0) 0%, var(--mgrid-surface-alt) 45%, var(--mgrid-paper-1) 100%);
+    radial-gradient(1200px 600px at 12% -10%, rgba(212, 165, 165, 0.1), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(201, 165, 138, 0.08), transparent 50%),
+    linear-gradient(180deg, var(--mgrid-soft-ivory) 0%, var(--mgrid-cream-white) 45%, var(--mgrid-soft-blush) 100%);
 }
 
 body.mgrid-ui-premium h1,
@@ -65,9 +71,9 @@ body.mgrid-ui-premium h2,
 body.mgrid-ui-premium h3,
 body.mgrid-ui-premium h4,
 body.mgrid-ui-premium h5 {
-  font-family: var(--mgrid-font-body);
+  font-family: var(--mgrid-font-display);
   font-weight: 600;
-  color: var(--mgrid-ink-950);
+  color: var(--mgrid-charcoal-brown);
   letter-spacing: -0.02em;
 }
 
@@ -96,18 +102,39 @@ body.mgrid-ui-premium .mgrid-page-section:last-child {
 /* -------------------------------------------------------------------------- */
 body.mgrid-ui-premium .mgrid-sidebar {
   background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.04) 0%, transparent 42%),
-    linear-gradient(180deg, var(--mgrid-plum-900) 0%, var(--mgrid-plum-950) 100%);
-  border-right: 1px solid rgba(209, 167, 94, 0.18);
-  box-shadow: 4px 0 32px rgba(26, 18, 24, 0.18);
+    linear-gradient(165deg, rgba(255, 255, 255, 0.28) 0%, transparent 42%),
+    linear-gradient(180deg, #b8938a 0%, #9f8075 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.34);
+  box-shadow: 4px 0 24px rgba(74, 63, 53, 0.16);
 }
 
 body.mgrid-ui-premium .mgrid-sidebar-logo {
   border-bottom-color: rgba(255, 255, 255, 0.07);
 }
 
+body.mgrid-ui-premium .mgrid-brand-mark {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(74, 63, 53, 0.14);
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.mgrid-ui-premium .mgrid-brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 body.mgrid-ui-premium .mgrid-nav-section-label {
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 249, 245, 0.72);
   font-weight: 600;
   letter-spacing: 0.14em;
 }
@@ -118,7 +145,7 @@ body.mgrid-ui-premium .mgrid-nav-link {
   border-radius: var(--mgrid-radius-md);
   border-left: none;
   position: relative;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgba(255, 249, 245, 0.88);
   transition: color var(--mgrid-duration) var(--mgrid-ease-out),
     background var(--mgrid-duration) var(--mgrid-ease-out),
     transform var(--mgrid-duration) var(--mgrid-ease-out);
@@ -133,19 +160,19 @@ body.mgrid-ui-premium .mgrid-nav-link::before {
   width: 3px;
   height: 0;
   border-radius: 3px;
-  background: linear-gradient(180deg, var(--mgrid-gold-400), var(--mgrid-rose-300));
+  background: linear-gradient(180deg, var(--mgrid-rose-gold), var(--mgrid-dusty-rose));
   opacity: 0;
   transition: height var(--mgrid-duration) var(--mgrid-ease-out), opacity var(--mgrid-duration) var(--mgrid-ease-out);
 }
 
 body.mgrid-ui-premium .mgrid-nav-link:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
 }
 
 body.mgrid-ui-premium .mgrid-nav-link.is-active {
-  background: linear-gradient(90deg, rgba(209, 167, 94, 0.14), rgba(188, 106, 139, 0.12));
-  color: #fff8ef;
+  background: linear-gradient(90deg, rgba(201, 165, 138, 0.32), rgba(212, 165, 165, 0.28));
+  color: #fff;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
@@ -196,16 +223,16 @@ body.mgrid-ui-premium .mgrid-theme-select:focus {
 body.mgrid-ui-premium .mgrid-card,
 body.mgrid-ui-premium .mgrid-stat-card {
   border-radius: calc(var(--mgrid-radius-lg) + 2px);
-  border-color: var(--mgrid-line-soft);
-  background: linear-gradient(180deg, #ffffff 0%, var(--mgrid-paper-0) 100%);
-  box-shadow: var(--mgrid-shadow-card);
+  border-color: rgba(74, 63, 53, 0.1);
+  background: linear-gradient(180deg, #ffffff 0%, var(--mgrid-cream-white) 100%);
+  box-shadow: 0 4px 20px rgba(74, 63, 53, 0.08);
   transition: transform var(--mgrid-duration) var(--mgrid-ease-out), box-shadow var(--mgrid-duration) var(--mgrid-ease-out), border-color var(--mgrid-duration) var(--mgrid-ease-out);
 }
 
 body.mgrid-ui-premium .mgrid-card::before {
   height: 2px;
   opacity: 0.45;
-  background: linear-gradient(90deg, var(--mgrid-mauve-500), var(--mgrid-gold-400));
+  background: linear-gradient(90deg, var(--mgrid-dusty-rose), var(--mgrid-rose-gold));
 }
 
 body.mgrid-ui-premium .mgrid-card:hover,
@@ -217,7 +244,7 @@ body.mgrid-ui-premium .mgrid-stat-card:hover {
 
 body.mgrid-ui-premium .mgrid-card-header {
   padding: 18px 22px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 246, 243, 0.5));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 224, 0.42));
   border-bottom-color: var(--mgrid-line-soft);
 }
 
@@ -259,29 +286,29 @@ body.mgrid-ui-premium .btn-mgrid {
 }
 
 body.mgrid-ui-premium .btn-mgrid-primary {
-  background: linear-gradient(135deg, #8f6a7d 0%, #6b4d62 52%, #5c4258 100%);
-  color: #fffefc;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 6px 20px rgba(91, 61, 82, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background: var(--mgrid-dusty-rose);
+  color: var(--mgrid-cream-white);
+  border: 1px solid rgba(193, 123, 107, 0.3);
+  box-shadow: 0 4px 20px rgba(74, 63, 53, 0.08);
 }
 
 body.mgrid-ui-premium .btn-mgrid-primary:hover {
-  background: linear-gradient(135deg, #9a7489 0%, #755a68 55%, #634a5c 100%);
-  color: #fff;
+  background: var(--mgrid-terracotta);
+  color: var(--mgrid-cream-white);
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(91, 61, 82, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(74, 63, 53, 0.12);
 }
 
 body.mgrid-ui-premium .btn-mgrid-outline {
-  border-color: var(--mgrid-line-strong);
-  background: rgba(255, 255, 255, 0.65);
-  color: var(--mgrid-ink-800);
+  border: 2px solid var(--mgrid-dusty-rose);
+  background: transparent;
+  color: var(--mgrid-charcoal-brown);
 }
 
 body.mgrid-ui-premium .btn-mgrid-outline:hover {
-  border-color: var(--mgrid-gold-400);
-  color: var(--mgrid-gold-800);
-  background: var(--mgrid-gold-50);
+  border-color: var(--mgrid-dusty-rose);
+  color: var(--mgrid-cream-white);
+  background: var(--mgrid-dusty-rose);
 }
 
 body.mgrid-ui-premium .btn-mgrid-ghost:hover {
@@ -295,15 +322,15 @@ body.mgrid-ui-premium .btn-mgrid:focus-visible {
 
 /* Bootstrap buttons inside app */
 body.mgrid-ui-premium .btn-primary {
-  background: linear-gradient(135deg, #8f6a7d, #5c4258);
-  border-color: rgba(91, 61, 82, 0.35);
+  background: var(--mgrid-dusty-rose);
+  border-color: rgba(193, 123, 107, 0.35);
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(91, 61, 82, 0.18);
+  box-shadow: 0 4px 14px rgba(74, 63, 53, 0.12);
 }
 
 body.mgrid-ui-premium .btn-primary:hover {
-  background: linear-gradient(135deg, #9a7489, #634a5c);
-  border-color: rgba(91, 61, 82, 0.45);
+  background: var(--mgrid-terracotta);
+  border-color: rgba(193, 123, 107, 0.45);
 }
 
 body.mgrid-ui-premium .btn-outline-secondary {
@@ -325,7 +352,7 @@ body.mgrid-ui-premium .form-label,
 body.mgrid-ui-premium .mgrid-form-label {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--mgrid-ink-700);
+  color: var(--mgrid-warm-gray);
   margin-bottom: 0.4rem;
   letter-spacing: 0.03em;
 }
@@ -334,8 +361,8 @@ body.mgrid-ui-premium .form-control,
 body.mgrid-ui-premium .form-select,
 body.mgrid-ui-premium .mgrid-form-control {
   border-radius: var(--mgrid-radius-md);
-  border: 1px solid var(--mgrid-line-strong);
-  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--mgrid-warm-beige);
+  background: var(--mgrid-cream-white);
   padding: 0.55rem 0.9rem;
   font-size: 0.9375rem;
   transition: border-color var(--mgrid-duration) var(--mgrid-ease-out), box-shadow var(--mgrid-duration) var(--mgrid-ease-out);
@@ -344,7 +371,7 @@ body.mgrid-ui-premium .mgrid-form-control {
 body.mgrid-ui-premium .form-control:focus,
 body.mgrid-ui-premium .form-select:focus,
 body.mgrid-ui-premium .mgrid-form-control:focus {
-  border-color: var(--mgrid-gold-400);
+  border-color: var(--mgrid-dusty-rose);
   box-shadow: 0 0 0 3px var(--mgrid-focus-ring);
   outline: none;
 }
@@ -705,4 +732,86 @@ body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-card,
 body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature,
 body.mgrid-landing-premium.mgrid-public .mgrid-lp-mod {
   transition: box-shadow var(--mgrid-duration) var(--mgrid-ease-out), border-color var(--mgrid-duration) var(--mgrid-ease-out), transform var(--mgrid-duration) var(--mgrid-ease-out);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 16. Page-by-page polish                                                     */
+/* -------------------------------------------------------------------------- */
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-user-hero,
+body.mgrid-ui-premium.mgrid-page-profile .mgrid-profile-hero {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(74, 63, 53, 0.12);
+}
+
+body.mgrid-ui-premium.mgrid-page-dashboard .mgrid-module-tile,
+body.mgrid-ui-premium.mgrid-page-opportunities .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-trainings .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-benefits .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-funding-overview .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-my-documents .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-notifications .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-settings .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-users .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-documents .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-mscores .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-analytics .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-reports .mgrid-card {
+  background: linear-gradient(180deg, #fff 0%, var(--mgrid-cream-white) 100%);
+  border: 1px solid rgba(74, 63, 53, 0.11);
+  box-shadow: 0 4px 20px rgba(74, 63, 53, 0.08);
+}
+
+body.mgrid-ui-premium.mgrid-page-my-mscore .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-mscores .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-mscore-detail .mgrid-card {
+  border-top: 2px solid var(--mgrid-rose-gold);
+}
+
+body.mgrid-ui-premium.mgrid-page-verify-id .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-my-documents .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-documents .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-review-document .mgrid-card {
+  border-left: 3px solid rgba(201, 165, 138, 0.55);
+}
+
+body.mgrid-ui-premium.mgrid-page-notifications .mgrid-card,
+body.mgrid-ui-premium.mgrid-page-admin-announcements .mgrid-card {
+  border-left: 3px solid rgba(212, 165, 165, 0.52);
+}
+
+body.mgrid-ui-premium.mgrid-page-settings .form-control,
+body.mgrid-ui-premium.mgrid-page-settings .form-select,
+body.mgrid-ui-premium.mgrid-page-profile .form-control,
+body.mgrid-ui-premium.mgrid-page-profile .form-select {
+  background: #fff;
+}
+
+body.mgrid-ui-premium.mgrid-page-opportunities .badge,
+body.mgrid-ui-premium.mgrid-page-benefits .badge,
+body.mgrid-ui-premium.mgrid-page-funding-overview .badge,
+body.mgrid-ui-premium.mgrid-page-admin-funding-applications .badge,
+body.mgrid-ui-premium.mgrid-page-admin-benefit-claims .badge,
+body.mgrid-ui-premium.mgrid-page-admin-applications .badge {
+  border-radius: 999px;
+  padding: 0.35em 0.75em;
+  font-weight: 600;
+}
+
+body.mgrid-ui-premium.mgrid-page-opportunities .table-responsive,
+body.mgrid-ui-premium.mgrid-page-trainings .table-responsive,
+body.mgrid-ui-premium.mgrid-page-benefits .table-responsive,
+body.mgrid-ui-premium.mgrid-page-my-documents .table-responsive,
+body.mgrid-ui-premium.mgrid-page-admin-documents .table-responsive,
+body.mgrid-ui-premium.mgrid-page-admin-funding-applications .table-responsive,
+body.mgrid-ui-premium.mgrid-page-admin-benefit-claims .table-responsive,
+body.mgrid-ui-premium.mgrid-page-admin-training-registrations .table-responsive,
+body.mgrid-ui-premium.mgrid-page-users .table-responsive {
+  border: 1px solid rgba(74, 63, 53, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(74, 63, 53, 0.06);
+}
+
+body.mgrid-auth.mgrid-page-login .mgrid-auth-card,
+body.mgrid-auth.mgrid-page-register .mgrid-auth-card {
+  border-top: 3px solid var(--mgrid-rose-gold);
 }

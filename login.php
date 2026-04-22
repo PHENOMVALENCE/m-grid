@@ -80,10 +80,12 @@ require __DIR__ . '/includes/header.php';
 
 <div class="mgrid-auth-card" style="max-width:560px; margin:0 auto;">
   <div class="mgrid-auth-brand-wrap">
-    <div class="mgrid-auth-logo-mark">M</div>
+    <div class="mgrid-auth-logo-mark">
+      <img src="<?= e(asset('images/logos/logo.png')) ?>" alt="Malkia Grid logo" />
+    </div>
     <div>
-      <span class="mgrid-auth-brand-name">Malkia Grid</span>
-      <span class="mgrid-auth-brand-tagline">Women's Digital Identity Platform</span>
+      <span class="mgrid-auth-brand-name">M GRID</span>
+      <span class="mgrid-auth-brand-tagline">Women Rising in Power and Opportunity</span>
     </div>
   </div>
   <p class="mb-3"><a class="text-decoration-none" href="<?= e(url('index.php')) ?>" data-i18n="auth.back_home">&larr; Back to Home</a></p>

@@ -10,7 +10,7 @@ if ($vanilla) {
   <div class="mgrid-container">
     <div class="mgrid-footer-grid">
       <div>
-        <div class="mgrid-footer-brand mgrid-mb-2">Malkia Grid</div>
+        <div class="mgrid-footer-brand mgrid-mb-2">M GRID</div>
         <p class="mgrid-text-small mgrid-mb-0 mgrid-opacity-80 mgrid-footer-lead" data-i18n-html="footer.brand_lead">
           A membership platform for women entrepreneurs in Tanzania — verified <strong>M-ID</strong>, <strong>M-Profile</strong>, and structured access to opportunity.
         </p>
@@ -40,7 +40,7 @@ if ($vanilla) {
   <div class="container">
     <div class="row g-4">
       <div class="col-md-4">
-        <div class="mgrid-footer-brand mb-2">Malkia Grid</div>
+        <div class="mgrid-footer-brand mb-2">M GRID</div>
         <p class="small mb-0 opacity-80 mgrid-footer-lead" data-i18n-html="footer.brand_lead">
           A membership platform for women entrepreneurs in Tanzania — verified <strong>M-ID</strong>, <strong>M-Profile</strong>, and structured access to opportunity.
         </p>

@@ -13,6 +13,18 @@
 .mgrid-stat-mid-value { font-family: "JetBrains Mono", monospace; font-size: 29px; color: var(--mgrid-gold-600); letter-spacing: 0.05em; word-break: break-word; line-height: 1.2; }
 .mgrid-stat-sub--meta { margin-top: 12px; margin-bottom: 0; }
 .mgrid-score-ring-wrap { position: relative; width: 112px; height: 112px; margin: 0 auto; flex-shrink: 0; }
+/* Reset legacy conic-ring styles from base bundle for dashboard M-SCORE widget */
+.mgrid-stat-card--score .mgrid-score-ring {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  display: block;
+  position: static;
+  background: none;
+  box-shadow: none;
+  animation: none;
+}
+.mgrid-stat-card--score .mgrid-score-ring::after { content: none; }
 .mgrid-score-ring svg { display: block; width: 112px; height: 112px; transform: rotate(-90deg); }
 .mgrid-score-ring-track { fill: none; stroke: rgba(83, 46, 71, 0.14); stroke-width: 9; }
 .mgrid-score-ring-fill {
@@ -81,7 +93,14 @@
   .mgrid-score-ring-wrap { width: 100px; height: 100px; }
   .mgrid-score-ring svg { width: 100px; height: 100px; }
   .mgrid-score-ring-number { font-size: 1.45rem; }
-  .mgrid-stat-card--score .mgrid-stat-sub--meta { text-align: left; }
+  .mgrid-stat-card--score { gap: 6px; }
+  .mgrid-stat-card--score .mgrid-stat-main { padding-bottom: 4px; }
+  .mgrid-stat-card--score .mgrid-stat-sub--meta {
+    margin-top: 8px;
+    padding-top: 0;
+    text-align: center;
+    line-height: 1.45;
+  }
   .mgrid-quick-link { padding: 11px 12px; font-size: 13px; }
   .mgrid-module-tile { padding: 16px; }
   .mgrid-table { min-width: 620px; }
@@ -90,6 +109,7 @@
   .mgrid-user-hero-badges { gap: 6px; }
   .mgrid-score-ring-wrap { width: 92px; height: 92px; }
   .mgrid-score-ring svg { width: 92px; height: 92px; }
+  .mgrid-stat-card--score .mgrid-stat-sub--meta { font-size: 12.5px; }
   .mgrid-table th, .mgrid-table td { padding-left: 10px; padding-right: 10px; }
 }
 
@@ -110,10 +130,9 @@
   margin-bottom: 1.5rem;
   border-radius: calc(var(--mgrid-radius-lg) + 4px);
   background:
-    radial-gradient(120% 90% at 0% 0%, rgba(255, 243, 247, 0.98) 0%, transparent 58%),
-    radial-gradient(90% 70% at 100% 0%, rgba(249, 231, 197, 0.45) 0%, transparent 52%),
-    radial-gradient(70% 50% at 50% 100%, rgba(188, 106, 139, 0.06) 0%, transparent 45%),
-    linear-gradient(165deg, #ffffff 0%, var(--mgrid-surface-alt) 42%, #faf6f3 100%);
+    linear-gradient(135deg, rgba(255, 251, 246, 0.93) 0%, rgba(250, 240, 246, 0.9) 48%, rgba(247, 236, 227, 0.9) 100%),
+    radial-gradient(90% 70% at 100% 0%, rgba(249, 231, 197, 0.35) 0%, transparent 52%),
+    url("../images/backgrounds/w1.jpg") center/cover no-repeat;
   border: 1px solid rgba(188, 106, 139, 0.14);
   box-shadow: var(--mgrid-shadow-card), 0 0 0 1px rgba(255, 255, 255, 0.65) inset;
   color: var(--mgrid-ink-800);

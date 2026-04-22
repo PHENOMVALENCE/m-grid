@@ -192,6 +192,11 @@ $userStatusLabel = match ($userStatus) {
     'suspended' => 'Suspended',
     default => 'Pending verification',
 };
+$userStatusKey = match ($userStatus) {
+    'active' => 'profile.status_active',
+    'suspended' => 'profile.status_suspended',
+    default => 'profile.status_pending_verification',
+};
 
 $langLabel = ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'Kiswahili' : 'English';
 $bizKey = (string) ($row['business_status'] ?? '');
@@ -205,6 +210,12 @@ $nidLabels = [
     'rejected' => 'Update required',
 ];
 $nidLabel = $nidLabels[$nidStatus] ?? $nidStatus;
+$nidStatusKey = match ($nidStatus) {
+    'approved' => 'profile.nid_verified',
+    'rejected' => 'profile.nid_update_required',
+    'pending' => 'profile.nid_under_review',
+    default => 'profile.nid_not_submitted',
+};
 $profileCompletion = (int) ($row['profile_completion'] ?? 0);
 
 $dobRaw = $row['date_of_birth'] ?? null;
@@ -215,14 +226,14 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
 <div class="mgrid-profile-page mgrid-page-section">
   <section class="mgrid-profile-hero" aria-labelledby="mprofile-hero-name">
     <div class="mgrid-profile-hero-main">
-      <p class="mgrid-profile-hero-kicker">M-Profile</p>
+      <p class="mgrid-profile-hero-kicker" data-i18n="profile.page_kicker">M-Profile</p>
       <h1 id="mprofile-hero-name" class="mgrid-profile-hero-name mgrid-display"><?= e((string) ($row['full_name'] ?? 'Member')) ?></h1>
       <p class="mgrid-profile-hero-mid mgrid-mono-id"><i class="ti ti-fingerprint" aria-hidden="true"></i> <?= e((string) ($row['m_id'] ?? '—')) ?></p>
-      <p class="mgrid-profile-hero-lead"><?= e($userStatusLabel) ?> · <?= e($langLabel) ?> · Member since <?= e($fmtDate(isset($row['created_at']) ? (string) $row['created_at'] : null)) ?></p>
+      <p class="mgrid-profile-hero-lead"><span data-i18n="<?= e($userStatusKey) ?>"><?= e($userStatusLabel) ?></span> · <span data-i18n="<?= ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span> · <span data-i18n="profile.hero_member_since">Member since</span> <?= e($fmtDate(isset($row['created_at']) ? (string) $row['created_at'] : null)) ?></p>
     </div>
     <div class="mgrid-profile-hero-aside">
       <div class="mgrid-profile-score-card" data-score-ring="<?= e((string) round($scorePct)) ?>">
-        <div class="mgrid-profile-score-card-label">M-SCORE</div>
+        <div class="mgrid-profile-score-card-label" data-i18n="profile.score_card_label">M-SCORE</div>
         <div class="mgrid-profile-score-card-ring">
           <svg width="108" height="108" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="mgrid-score-ring-track" cx="50" cy="50" r="45"></circle>
@@ -233,8 +244,8 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
           </div>
         </div>
         <span class="mgrid-tier-badge mgrid-tier-badge--<?= e($tierSlug) ?>"><?= e($tierDisplay) ?></span>
-        <p class="mgrid-profile-score-card-meta">Updated <?= e($fmtDate(isset($row['m_score_updated']) ? (string) $row['m_score_updated'] : null)) ?></p>
-        <a class="btn-mgrid btn-mgrid-outline mgrid-profile-score-cta" href="<?= e(url('user/my_mscore.php')) ?>">View methodology</a>
+        <p class="mgrid-profile-score-card-meta"><span data-i18n="profile.score_updated">Updated</span> <?= e($fmtDate(isset($row['m_score_updated']) ? (string) $row['m_score_updated'] : null)) ?></p>
+        <a class="btn-mgrid btn-mgrid-outline mgrid-profile-score-cta" href="<?= e(url('user/my_mscore.php')) ?>"><span data-i18n="profile.cta_methodology">View methodology</span></a>
       </div>
     </div>
   </section>
@@ -242,10 +253,10 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
   <div class="mgrid-card mgrid-profile-overview">
     <div class="mgrid-card-header mgrid-profile-overview-header">
       <div>
-        <h2 class="mgrid-card-title mb-1"><i class="ti ti-id-badge-2"></i> Your particulars</h2>
-        <p class="mgrid-profile-overview-sub mb-0">Everything partners and programmes see from your M-Profile record.</p>
+        <h2 class="mgrid-card-title mb-1"><i class="ti ti-id-badge-2"></i> <span data-i18n="profile.overview_title">Your particulars</span></h2>
+        <p class="mgrid-profile-overview-sub mb-0" data-i18n="profile.overview_sub">Everything partners and programmes see from your M-Profile record.</p>
       </div>
-      <span class="mgrid-badge mgrid-badge--<?= $profileCompletion >= 100 ? 'verified' : ($profileCompletion >= 50 ? 'review' : 'pending') ?>"><?= $profileCompletion ?>% complete</span>
+      <span class="mgrid-badge mgrid-badge--<?= $profileCompletion >= 100 ? 'verified' : ($profileCompletion >= 50 ? 'review' : 'pending') ?>"><?= $profileCompletion ?>% <span data-i18n="profile.badge_complete">complete</span></span>
     </div>
     <div class="mgrid-card-body">
     <?php if ($msg = flash_get('success')): ?>
@@ -257,98 +268,98 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
 
       <div class="mgrid-profile-sections">
         <section class="mgrid-profile-block" aria-labelledby="mprofile-identity">
-          <h3 id="mprofile-identity" class="mgrid-profile-block-title">Identity &amp; account</h3>
+          <h3 id="mprofile-identity" class="mgrid-profile-block-title" data-i18n="profile.sec_identity">Identity &amp; account</h3>
           <div class="mgrid-profile-fields">
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">M-ID</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_mid">M-ID</span>
               <span class="mgrid-profile-field-value mgrid-mono-id"><?= e((string) ($row['m_id'] ?? '—')) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Full legal name</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_full_legal_name">Full legal name</span>
               <span class="mgrid-profile-field-value"><?= e((string) ($row['full_name'] ?? '—')) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Account status</span>
-              <span class="mgrid-profile-field-value"><?= e($userStatusLabel) ?></span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_account_status">Account status</span>
+              <span class="mgrid-profile-field-value" data-i18n="<?= e($userStatusKey) ?>"><?= e($userStatusLabel) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Member since</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_member_since">Member since</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['created_at']) ? (string) $row['created_at'] : null)) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Account last updated</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_account_updated">Account last updated</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['updated_at']) ? (string) $row['updated_at'] : null)) ?></span>
             </div>
           </div>
         </section>
 
         <section class="mgrid-profile-block" aria-labelledby="mprofile-contact">
-          <h3 id="mprofile-contact" class="mgrid-profile-block-title">Contact &amp; preferences</h3>
+          <h3 id="mprofile-contact" class="mgrid-profile-block-title" data-i18n="profile.sec_contact">Contact &amp; preferences</h3>
           <div class="mgrid-profile-fields">
             <div class="mgrid-profile-field mgrid-profile-field--wide">
-              <span class="mgrid-profile-field-label">Email</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_email">Email</span>
               <span class="mgrid-profile-field-value"><a href="mailto:<?= e((string) ($row['email'] ?? '')) ?>"><?= e((string) ($row['email'] ?? '—')) ?></a></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Phone</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_phone">Phone</span>
               <span class="mgrid-profile-field-value"><a href="tel:<?= e(preg_replace('/\s+/', '', (string) ($row['phone'] ?? ''))) ?>"><?= e((string) ($row['phone'] ?? '—')) ?></a></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Preferred language</span>
-              <span class="mgrid-profile-field-value"><?= e($langLabel) ?></span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_pref_lang">Preferred language</span>
+              <span class="mgrid-profile-field-value" data-i18n="<?= ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span>
             </div>
           </div>
         </section>
 
         <section class="mgrid-profile-block" aria-labelledby="mprofile-business">
-          <h3 id="mprofile-business" class="mgrid-profile-block-title">Location &amp; business context</h3>
+          <h3 id="mprofile-business" class="mgrid-profile-block-title" data-i18n="profile.sec_business">Location &amp; business context</h3>
           <div class="mgrid-profile-fields">
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Region</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_region">Region</span>
               <span class="mgrid-profile-field-value"><?= (string) ($row['region'] ?? '') !== '' ? e((string) $row['region']) : '—' ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Business status</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_business_status">Business status</span>
               <span class="mgrid-profile-field-value"><?= e($bizLabel) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Date of birth</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_dob">Date of birth</span>
               <span class="mgrid-profile-field-value"><?= e($dobDisp) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Age range</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_age_range">Age range</span>
               <span class="mgrid-profile-field-value"><?= e($ageRangeDisp) ?></span>
             </div>
             <div class="mgrid-profile-field mgrid-profile-field--full">
-              <span class="mgrid-profile-field-label">Profile strength</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_profile_strength">Profile strength</span>
               <div class="mgrid-profile-progress">
                 <div class="mgrid-progress-track" role="progressbar" aria-valuenow="<?= $profileCompletion ?>" aria-valuemin="0" aria-valuemax="100">
                   <div class="mgrid-progress-fill" style="width: <?= max(0, min(100, $profileCompletion)) ?>%;"></div>
                 </div>
-                <span class="mgrid-profile-progress-caption"><?= $profileCompletion ?>% aligned with M-Profile milestones</span>
+                <span class="mgrid-profile-progress-caption"><?= $profileCompletion ?>% <span data-i18n="profile.progress_tail">aligned with M-Profile milestones</span></span>
               </div>
             </div>
           </div>
         </section>
 
         <section class="mgrid-profile-block" aria-labelledby="mprofile-verify">
-          <h3 id="mprofile-verify" class="mgrid-profile-block-title">National ID verification</h3>
+          <h3 id="mprofile-verify" class="mgrid-profile-block-title" data-i18n="profile.sec_nid">National ID verification</h3>
           <div class="mgrid-profile-fields">
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Status</span>
-              <span class="mgrid-profile-field-value"><span class="mgrid-badge mgrid-badge--<?= $nidStatus === 'approved' ? 'verified' : ($nidStatus === 'rejected' ? 'rejected' : ($nidStatus === 'pending' ? 'review' : 'inactive')) ?>"><?= e($nidLabel) ?></span></span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_nid_status">Status</span>
+              <span class="mgrid-profile-field-value"><span class="mgrid-badge mgrid-badge--<?= $nidStatus === 'approved' ? 'verified' : ($nidStatus === 'rejected' ? 'rejected' : ($nidStatus === 'pending' ? 'review' : 'inactive')) ?>" data-i18n="<?= e($nidStatusKey) ?>"><?= e($nidLabel) ?></span></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Submitted</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_nid_submitted">Submitted</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['national_id_submitted_at']) ? (string) $row['national_id_submitted_at'] : null)) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">Reviewed</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_nid_reviewed">Reviewed</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['national_id_reviewed_at']) ? (string) $row['national_id_reviewed_at'] : null)) ?></span>
             </div>
             <?php if ($nidStatus === 'rejected' && trim((string) ($row['national_id_notes'] ?? '')) !== ''): ?>
             <div class="mgrid-profile-field mgrid-profile-field--full">
-              <span class="mgrid-profile-field-label">Reviewer note</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_nid_note">Reviewer note</span>
               <span class="mgrid-profile-field-value mgrid-profile-field-value--note"><?= e((string) $row['national_id_notes']) ?></span>
             </div>
             <?php endif; ?>
@@ -356,25 +367,25 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
         </section>
 
         <section class="mgrid-profile-block mgrid-profile-block--bio" aria-labelledby="mprofile-bio">
-          <h3 id="mprofile-bio" class="mgrid-profile-block-title">Biography &amp; narrative</h3>
+          <h3 id="mprofile-bio" class="mgrid-profile-block-title" data-i18n="profile.sec_bio">Biography &amp; narrative</h3>
           <div class="mgrid-profile-bio">
             <?php if (!empty($row['bio'])): ?>
               <p class="mgrid-profile-bio-text"><?= nl2br(e((string) $row['bio'])) ?></p>
             <?php else: ?>
-              <p class="mgrid-profile-bio-empty">You have not added a biography yet. Use the form below to share your story, goals, and the impact you are building.</p>
+              <p class="mgrid-profile-bio-empty" data-i18n="profile.bio_empty">You have not added a biography yet. Use the form below to share your story, goals, and the impact you are building.</p>
             <?php endif; ?>
           </div>
         </section>
 
         <section class="mgrid-profile-block mgrid-profile-block--meta" aria-labelledby="mprofile-record">
-          <h3 id="mprofile-record" class="mgrid-profile-block-title">Record metadata</h3>
+          <h3 id="mprofile-record" class="mgrid-profile-block-title" data-i18n="profile.sec_meta">Record metadata</h3>
           <div class="mgrid-profile-fields mgrid-profile-fields--compact">
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">M-Profile record opened</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_profile_record_opened">M-Profile record opened</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['profile_created_at']) ? (string) $row['profile_created_at'] : null)) ?></span>
             </div>
             <div class="mgrid-profile-field">
-              <span class="mgrid-profile-field-label">M-Profile last saved</span>
+              <span class="mgrid-profile-field-label" data-i18n="profile.lbl_profile_last_saved">M-Profile last saved</span>
               <span class="mgrid-profile-field-value"><?= e($fmtDate(isset($row['profile_updated_at']) ? (string) $row['profile_updated_at'] : null)) ?></span>
             </div>
           </div>
@@ -386,56 +397,56 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
   <div class="mgrid-card mgrid-page-section mgrid-profile-edit-card">
     <div class="mgrid-card-header">
       <div>
-        <h2 class="mgrid-card-title mb-1"><i class="ti ti-edit"></i> Manage profile details</h2>
-        <p class="mgrid-profile-overview-sub mb-0">Update your contact and profile information below.</p>
+        <h2 class="mgrid-card-title mb-1"><i class="ti ti-edit"></i> <span data-i18n="profile.form_title">Manage profile details</span></h2>
+        <p class="mgrid-profile-overview-sub mb-0" data-i18n="profile.form_sub">Update your contact and profile information below.</p>
       </div>
     </div>
     <div class="mgrid-card-body">
     <form method="post" class="row g-3" novalidate>
       <?= csrf_field() ?>
       <div class="col-md-6">
-        <label class="form-label" for="full_name">Full name</label>
+        <label class="form-label" for="full_name" data-i18n="auth.label_full_name">Full name</label>
         <input class="form-control" type="text" id="full_name" name="full_name" required value="<?= e((string) ($row['full_name'] ?? '')) ?>">
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="phone">Phone</label>
+        <label class="form-label" for="phone" data-i18n="auth.label_phone">Phone</label>
         <input class="form-control" type="text" id="phone" name="phone" required value="<?= e((string) ($row['phone'] ?? '')) ?>">
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="email">Email</label>
+        <label class="form-label" for="email" data-i18n="auth.label_email">Email</label>
         <input class="form-control" type="email" id="email" name="email" required value="<?= e((string) ($row['email'] ?? '')) ?>">
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="region">Region</label>
+        <label class="form-label" for="region" data-i18n="auth.label_region">Region</label>
         <select class="form-select" id="region" name="region" required>
-          <option value="">Choose...</option>
+          <option value="" data-i18n="profile.opt_choose">Choose...</option>
           <?php foreach ($regions as $regionName): ?>
             <option value="<?= e($regionName) ?>" <?= (string) ($row['region'] ?? '') === $regionName ? 'selected' : '' ?>><?= e($regionName) ?></option>
           <?php endforeach; ?>
         </select>
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="business_status">Business status</label>
+        <label class="form-label" for="business_status" data-i18n="auth.label_business">Business status</label>
         <select class="form-select" id="business_status" name="business_status" required>
-          <option value="">Choose...</option>
+          <option value="" data-i18n="profile.opt_choose">Choose...</option>
           <?php foreach ($businessStatuses as $statusKey => $statusLabel): ?>
             <option value="<?= e($statusKey) ?>" <?= (string) ($row['business_status'] ?? '') === $statusKey ? 'selected' : '' ?>><?= e($statusLabel) ?></option>
           <?php endforeach; ?>
         </select>
       </div>
       <div class="col-md-6">
-        <label class="form-label" for="preferred_language">Preferred language</label>
+        <label class="form-label" for="preferred_language" data-i18n="auth.label_pref_lang">Preferred language</label>
         <select class="form-select" id="preferred_language" name="preferred_language">
-          <option value="en" <?= (string) ($row['preferred_language'] ?? 'en') === 'en' ? 'selected' : '' ?>>English (default)</option>
-          <option value="sw" <?= (string) ($row['preferred_language'] ?? 'en') === 'sw' ? 'selected' : '' ?>>Kiswahili (coming)</option>
+          <option value="en" <?= (string) ($row['preferred_language'] ?? 'en') === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English (default)</option>
+          <option value="sw" <?= (string) ($row['preferred_language'] ?? 'en') === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili (coming)</option>
         </select>
       </div>
       <div class="col-12">
-        <label class="form-label" for="bio">Biography</label>
-        <textarea class="form-control" id="bio" name="bio" rows="4" maxlength="500" placeholder="Tell us about your work and goals."><?= e((string) ($row['bio'] ?? '')) ?></textarea>
+        <label class="form-label" for="bio" data-i18n="profile.lbl_bio">Biography</label>
+        <textarea class="form-control" id="bio" name="bio" rows="4" maxlength="500" placeholder="Tell us about your work and goals." data-i18n-placeholder="profile.bio_placeholder"><?= e((string) ($row['bio'] ?? '')) ?></textarea>
       </div>
       <div class="col-12 d-flex justify-content-end gap-2 pt-2">
-        <button type="submit" class="btn-mgrid btn-mgrid-primary px-4">Save changes</button>
+        <button type="submit" class="btn-mgrid btn-mgrid-primary px-4" data-i18n="profile.form_save">Save changes</button>
       </div>
     </form>
     </div>
