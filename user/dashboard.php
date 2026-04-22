@@ -75,7 +75,7 @@ if (trim((string) ($row['bio'] ?? '')) === '') {
     <div class="mgrid-stat-main mgrid-stat-main--center">
       <div class="mgrid-score-ring-wrap" data-score-ring="<?= e((string) round($scorePct)) ?>">
         <div class="mgrid-score-ring">
-          <svg width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
+          <svg width="112" height="112" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="mgrid-score-ring-track" cx="50" cy="50" r="45"></circle>
             <circle class="mgrid-score-ring-fill mgrid-score-ring-fill--<?= e($tierSlug) ?>" cx="50" cy="50" r="45"></circle>
           </svg>

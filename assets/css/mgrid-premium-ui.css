@@ -603,7 +603,15 @@ body.mgrid-ui-premium .mgrid-progress-fill {
 }
 
 body.mgrid-ui-premium .mgrid-score-ring-track {
-  stroke: rgba(83, 46, 71, 0.1);
+  stroke: rgba(83, 46, 71, 0.16);
+}
+
+body.mgrid-ui-premium .mgrid-stat-card--score {
+  background: linear-gradient(165deg, #ffffff 0%, rgba(255, 247, 252, 0.92) 55%, #fffefc 100%);
+}
+
+body.mgrid-ui-premium .mgrid-stat-card--score .mgrid-score-ring-inner {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* -------------------------------------------------------------------------- */
