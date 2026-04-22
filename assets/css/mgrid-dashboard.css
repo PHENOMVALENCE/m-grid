@@ -1,0 +1,68 @@
+.mgrid-user-hero { background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,244,250,.95)); border: 1px solid var(--mgrid-ink-100); border-radius: var(--mgrid-radius-xl); padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; position: relative; overflow: hidden; box-shadow: var(--mgrid-shadow-card); }
+.mgrid-user-hero::before { content: ""; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(188,106,139,.12) 0%, transparent 70%); pointer-events: none; }
+.mgrid-user-hero h1 { font-size: 2.2rem; margin: 4px 0 12px; }
+.mgrid-user-hero p { font-size: 14px; color: var(--mgrid-ink-500); margin-bottom: 16px; max-width: 420px; }
+.mgrid-user-hero-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mgrid-user-hero-actions { display: flex; flex-direction: column; gap: 8px; }
+.mgrid-stat-card { min-height: 210px; display: flex; flex-direction: column; }
+.mgrid-stat-main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.mgrid-stat-main--center { align-items: center; }
+.mgrid-stat-mid-value { font-family: "JetBrains Mono", monospace; font-size: 29px; color: var(--mgrid-gold-600); letter-spacing: 0.05em; word-break: break-word; line-height: 1.2; }
+.mgrid-stat-sub--meta { margin-top: 12px; margin-bottom: 0; }
+.mgrid-stat-card--score .mgrid-stat-sub--meta { text-align: center; }
+.mgrid-score-ring-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto; }
+.mgrid-score-ring svg { transform: rotate(-90deg); }
+.mgrid-score-ring-track { fill: none; stroke: var(--mgrid-ink-100); stroke-width: 8; }
+.mgrid-score-ring-fill { fill: none; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1); }
+.mgrid-score-ring-fill--gold { stroke: var(--mgrid-gold-400); }
+.mgrid-score-ring-fill--silver { stroke: var(--mgrid-tier-silver-ring); }
+.mgrid-score-ring-fill--bronze { stroke: var(--mgrid-tier-bronze-ring); }
+.mgrid-score-ring-fill--diamond { stroke: var(--mgrid-tier-diamond-ring); }
+.mgrid-score-ring-fill--pending { stroke: var(--mgrid-ink-100); }
+.mgrid-score-ring-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.mgrid-score-ring-number { font-family: "JetBrains Mono", monospace; font-size: 22px; }
+.mgrid-score-ring-label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--mgrid-ink-300); }
+.mgrid-progress-wrap { margin: 8px 0; }
+.mgrid-progress-track { height: 6px; background: var(--mgrid-ink-100); border-radius: 100px; overflow: hidden; }
+.mgrid-progress-fill { height: 100%; background: linear-gradient(90deg, var(--mgrid-gold-400), var(--mgrid-gold-200)); transition: width 1s ease; }
+.mgrid-progress-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--mgrid-ink-500); margin-top: 6px; }
+.mgrid-quick-link { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--mgrid-ink-50); border: 1px solid var(--mgrid-ink-100); border-radius: var(--mgrid-radius-md); font-size: 13.5px; font-weight: 500; color: var(--mgrid-ink-800); text-decoration: none; transition: .15s; }
+.mgrid-quick-link:hover { background: var(--mgrid-gold-50); border-color: rgba(201,164,78,.3); transform: translateY(-2px); box-shadow: 0 3px 8px rgba(201,164,78,.12); }
+.mgrid-module-tile { background: var(--mgrid-surface-raised); border: 1px solid var(--mgrid-ink-100); border-radius: var(--mgrid-radius-lg); padding: 20px; position: relative; overflow: hidden; }
+.mgrid-module-tile::after { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(20,18,16,.02) 8px, rgba(20,18,16,.02) 9px); pointer-events: none; }
+.mgrid-module-tile-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--mgrid-gold-50); border: 1px solid rgba(201,164,78,.2); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.mgrid-module-tile-badge { display: inline-flex; margin-top: 12px; padding: 3px 10px; border-radius: 100px; font-size: 11px; letter-spacing: .06em; background: var(--mgrid-ink-100); color: var(--mgrid-ink-500); text-transform: uppercase; }
+.mgrid-card-title i { color: var(--mgrid-rose-500); }
+.mgrid-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.mgrid-table thead tr { border-bottom: 1.5px solid var(--mgrid-ink-100); }
+.mgrid-table th { padding: 10px 16px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--mgrid-ink-300); text-align: left; }
+.mgrid-table td { padding: 13px 16px; color: var(--mgrid-ink-800); }
+.mgrid-table tbody tr { border-bottom: 1px solid var(--mgrid-ink-100); animation: mgridRowReveal .32s ease both; }
+.mgrid-table tbody tr:nth-child(1) { animation-delay: .03s; } .mgrid-table tbody tr:nth-child(2) { animation-delay: .06s; } .mgrid-table tbody tr:nth-child(3) { animation-delay: .09s; }
+.mgrid-table-mid-cell { font-family: "JetBrains Mono", monospace; color: var(--mgrid-gold-600); }
+@keyframes mgridRowReveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (max-width: 992px) {
+  .mgrid-user-hero { flex-direction: column; align-items: flex-start; padding: 22px 20px; }
+  .mgrid-user-hero h1 { font-size: 1.9rem; }
+  .mgrid-user-hero-actions { flex-direction: row; flex-wrap: wrap; width: 100%; }
+}
+@media (max-width: 768px) {
+  .mgrid-user-hero { border-radius: var(--mgrid-radius-lg); padding: 18px 16px; margin-bottom: 16px; }
+  .mgrid-user-hero h1 { font-size: 1.7rem; }
+  .mgrid-user-hero p { font-size: 13px; margin-bottom: 12px; }
+  .mgrid-user-hero-actions { flex-direction: column; }
+  .mgrid-user-hero-actions .btn-mgrid { width: 100%; }
+  .mgrid-stat-card { min-height: auto; }
+  .mgrid-stat-mid-value { font-size: 24px; }
+  .mgrid-score-ring-wrap { width: 88px; height: 88px; }
+  .mgrid-score-ring-number { font-size: 19px; }
+  .mgrid-stat-card--score .mgrid-stat-sub--meta { text-align: left; }
+  .mgrid-quick-link { padding: 11px 12px; font-size: 13px; }
+  .mgrid-module-tile { padding: 16px; }
+  .mgrid-table { min-width: 620px; }
+}
+@media (max-width: 480px) {
+  .mgrid-user-hero-badges { gap: 6px; }
+  .mgrid-score-ring-wrap { width: 82px; height: 82px; }
+  .mgrid-table th, .mgrid-table td { padding-left: 10px; padding-right: 10px; }
+}

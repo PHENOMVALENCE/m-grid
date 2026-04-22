@@ -12,6 +12,21 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/m_id_generator.php';
+require_once __DIR__ . '/document_helpers.php';
+require_once __DIR__ . '/mscore_helper.php';
+require_once __DIR__ . '/mscore_engine.php';
+require_once __DIR__ . '/mfund_helper.php';
+require_once __DIR__ . '/mfund_eligibility_helper.php';
+require_once __DIR__ . '/repayment_helper.php';
+require_once __DIR__ . '/mbenefits_helper.php';
+require_once __DIR__ . '/opportunities_helper.php';
+require_once __DIR__ . '/trainings_helper.php';
+require_once __DIR__ . '/application_status_helper.php';
+require_once __DIR__ . '/training_completion_helper.php';
+require_once __DIR__ . '/notification_helper.php';
+require_once __DIR__ . '/announcement_helper.php';
+require_once __DIR__ . '/analytics_helper.php';
+require_once __DIR__ . '/reporting_helper.php';
 
 auth_start_session();
 

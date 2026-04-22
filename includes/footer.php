@@ -16,14 +16,11 @@ if ($mgrid_layout === 'public') {
     ?>
       </div>
     </div>
-  </div>
     <?php
 } elseif (in_array($mgrid_layout, ['user', 'admin'], true)) {
     ?>
-        </div><!-- /.container-fluid -->
-      </div><!-- /.body-wrapper-inner -->
-    </div><!-- /.body-wrapper -->
-  </div><!-- /.page-wrapper -->
+    </div><!-- /.mgrid-content -->
+  </div><!-- /.mgrid-main -->
     <?php
 }
 
@@ -36,10 +33,9 @@ $publicVanilla = $mgrid_layout === 'public' && !empty($mgrid_public_vanilla);
 <?php endif; ?>
 <script src="<?= e(asset('js/mgrid-i18n.js')) ?>"></script>
 <script src="<?= e(asset('js/mgrid-core.js')) ?>"></script>
+<script src="<?= e(asset('js/mgrid-ui.js')) ?>"></script>
 <?php if ($dashScripts): ?>
   <script src="<?= e(asset('js/sidebarmenu.js')) ?>"></script>
-  <script src="<?= e(asset('js/app.min.js')) ?>"></script>
-  <script src="<?= e(asset('libs/simplebar/dist/simplebar.js')) ?>"></script>
 <?php endif; ?>
 <?php if (!$publicVanilla): ?>
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>

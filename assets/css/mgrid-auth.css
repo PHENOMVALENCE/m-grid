@@ -1,0 +1,35 @@
+.mgrid-auth-wrapper { min-height: 100vh; background: radial-gradient(circle at 10% 10%, rgba(188,106,139,.08), transparent 40%), radial-gradient(circle at 90% 90%, rgba(209,167,94,.1), transparent 38%), var(--mgrid-surface-alt); display: flex; align-items: center; justify-content: center; padding: 24px 16px; position: relative; overflow: hidden; }
+.mgrid-auth-wrapper::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(201,164,78,.08) 1.5px, transparent 1.5px); background-size: 28px 28px; pointer-events: none; }
+.mgrid-auth-wrapper::after { content: ""; position: absolute; right: -180px; bottom: -180px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(201,164,78,.07) 0%, transparent 70%); pointer-events: none; }
+.mgrid-auth-container { width: 100%; max-width: 720px; position: relative; z-index: 1; }
+.mgrid-auth-lang-wrap { position: absolute; top: 12px; right: 12px; z-index: 2; }
+.mgrid-auth-card { background: #fff; border-radius: 20px; box-shadow: 0 16px 44px rgba(83,46,71,.14); padding: 36px 40px; border: 1px solid var(--mgrid-ink-100); position: relative; overflow: hidden; }
+.mgrid-auth-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--mgrid-rose-500), var(--mgrid-gold-400)); }
+.mgrid-auth-brand-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.mgrid-auth-logo-mark { width: 38px; height: 38px; border-radius: 10px; background: var(--mgrid-gold-400); color: #fff; display: flex; align-items: center; justify-content: center; font-family: "Cormorant Garamond", serif; font-size: 23px; }
+.mgrid-auth-brand-name { display: block; font-family: "Cormorant Garamond", serif; font-size: 29px; line-height: 1; }
+.mgrid-auth-brand-tagline { display: block; font-size: 11px; letter-spacing: .08em; color: var(--mgrid-ink-500); text-transform: uppercase; }
+.mgrid-auth-tabs { display: flex; gap: 2px; background: var(--mgrid-ink-50); border-radius: 10px; padding: 3px; margin-bottom: 28px; }
+.mgrid-auth-tab { flex: 1; padding: 9px 0; border-radius: 8px; font-size: 14px; font-weight: 500; text-align: center; text-decoration: none; color: var(--mgrid-ink-500); }
+.mgrid-auth-tab.is-active { background: #fff; color: var(--mgrid-ink-950); box-shadow: 0 4px 10px rgba(83,46,71,.12); }
+.mgrid-form-label { display: block; font-size: 13px; font-weight: 500; color: var(--mgrid-ink-700); margin-bottom: 6px; }
+.mgrid-form-control { width: 100%; padding: 10px 14px; border: 1px solid var(--mgrid-ink-100); border-radius: var(--mgrid-radius-md); font-size: 14.5px; }
+.mgrid-form-control:focus { border-color: var(--mgrid-gold-400); box-shadow: 0 0 0 3px rgba(201,164,78,.12); outline: none; }
+.mgrid-auth-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) {
+  .mgrid-auth-wrapper { align-items: flex-start; padding-top: 64px; }
+  .mgrid-auth-container { max-width: 100%; }
+  .mgrid-auth-lang-wrap { top: 10px; right: 10px; }
+  .mgrid-auth-card { padding: 24px 16px; border-radius: 16px; }
+  .mgrid-auth-brand-wrap { gap: 10px; margin-bottom: 14px; }
+  .mgrid-auth-logo-mark { width: 34px; height: 34px; font-size: 20px; }
+  .mgrid-auth-brand-name { font-size: 24px; }
+  .mgrid-auth-brand-tagline { font-size: 10px; letter-spacing: .06em; }
+  .mgrid-auth-tabs { margin-bottom: 18px; }
+  .mgrid-auth-tab { font-size: 13px; padding: 8px 0; }
+  .mgrid-auth-grid-2 { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 420px) {
+  .mgrid-auth-wrapper { padding: 56px 10px 14px; }
+  .mgrid-auth-card { padding: 18px 12px; }
+}

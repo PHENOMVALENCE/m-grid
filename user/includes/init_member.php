@@ -23,7 +23,15 @@ $accountStatus = (string) ($statusRow['status'] ?? 'pending');
 
 $currentScript = basename((string) ($_SERVER['SCRIPT_NAME'] ?? ''));
 $verificationPage = 'verify-id.php';
-if ($accountStatus !== 'active' && $currentScript !== $verificationPage) {
+$allowedPendingPages = [
+    'verify-id.php',
+    'my_documents.php',
+    'upload_document.php',
+    'reupload_document.php',
+    'save_document.php',
+    'document_view.php',
+];
+if ($accountStatus !== 'active' && !in_array($currentScript, $allowedPendingPages, true)) {
     flash_set('error', 'Your account is pending verification. Upload your National ID to continue.');
     redirect('user/verify-id.php');
 }

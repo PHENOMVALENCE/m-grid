@@ -78,57 +78,48 @@ $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>
 
-<div class="row justify-content-center w-100 px-2">
-  <div class="col-md-8 col-lg-6 col-xxl-4">
-    <div class="card mb-0 shadow-sm border-0">
-      <div class="card-body p-4 p-md-5">
-        <a href="<?= e(url('index.php')) ?>" class="text-center d-block py-2 text-decoration-none">
-          <span class="mgrid-auth-brand">Malkia Grid</span>
-        </a>
-        <div class="text-center mb-3">
-          <a class="small mgrid-auth-home-link text-decoration-none" href="<?= e(url('index.php')) ?>" data-i18n="auth.back_home">&larr; Back to Home</a>
-        </div>
-
-        <div class="mgrid-auth-switch mb-3" role="tablist" aria-label="Authentication pages">
-          <a class="mgrid-auth-switch-link is-active" href="<?= e(url('login.php')) ?>" role="tab" aria-selected="true" data-i18n="auth.sign_in_tab">Sign in</a>
-          <a class="mgrid-auth-switch-link" href="<?= e(url('register.php')) ?>" role="tab" aria-selected="false" data-i18n="auth.register_tab">Register</a>
-        </div>
-
-        <div class="text-center mb-4">
-          <h1 class="h4 mb-2 mgrid-auth-title" data-i18n="auth.welcome_login">Welcome back</h1>
-          <p class="lead-tight mb-0" data-i18n="auth.lead_login">Sign in to continue to your verified member profile.</p>
-        </div>
-
-        <?php if ($msg = flash_get('success')): ?>
-          <div class="alert alert-success small"><?= e($msg) ?></div>
-        <?php endif; ?>
-        <?php if ($msg = flash_get('error')): ?>
-          <div class="alert alert-danger small"><?= e($msg) ?></div>
-        <?php endif; ?>
-        <?php foreach ($errors as $err): ?>
-          <div class="alert alert-danger small py-2"><?= e($err) ?></div>
-        <?php endforeach; ?>
-
-        <form method="post" novalidate>
-          <?= csrf_field() ?>
-          <div class="mb-3">
-            <label for="login" class="form-label" data-i18n="auth.label_login">Email or phone</label>
-            <input type="text" class="form-control" id="login" name="login" autocomplete="username"
-              value="<?= e($loginValue) ?>" required>
-          </div>
-          <div class="mb-4">
-            <label for="password" class="form-label" data-i18n="auth.label_password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-3" data-i18n="auth.submit_login">Sign in</button>
-          <div class="text-center mgrid-auth-meta">
-            <span class="text-muted" data-i18n="auth.meta_new">New to Malkia Grid?</span>
-            <a class="fw-semibold" href="<?= e(url('register.php')) ?>" data-i18n="auth.meta_create">Create your account</a>
-          </div>
-        </form>
-      </div>
+<div class="mgrid-auth-card" style="max-width:560px; margin:0 auto;">
+  <div class="mgrid-auth-brand-wrap">
+    <div class="mgrid-auth-logo-mark">M</div>
+    <div>
+      <span class="mgrid-auth-brand-name">Malkia Grid</span>
+      <span class="mgrid-auth-brand-tagline">Women's Digital Identity Platform</span>
     </div>
   </div>
+  <p class="mb-3"><a class="text-decoration-none" href="<?= e(url('index.php')) ?>" data-i18n="auth.back_home">&larr; Back to Home</a></p>
+  <div class="mgrid-auth-tabs" role="tablist" aria-label="Authentication pages">
+    <a class="mgrid-auth-tab is-active" href="<?= e(url('login.php')) ?>" role="tab" aria-selected="true" data-i18n="auth.sign_in_tab">Sign in</a>
+    <a class="mgrid-auth-tab" href="<?= e(url('register.php')) ?>" role="tab" aria-selected="false" data-i18n="auth.register_tab">Register</a>
+  </div>
+  <h1 class="mgrid-display" style="font-size:2rem; margin-bottom:6px;" data-i18n="auth.welcome_login">Welcome back</h1>
+  <p style="color: var(--mgrid-ink-500); font-size: 14.5px;" data-i18n="auth.lead_login">Sign in to continue to your verified member profile.</p>
+
+  <?php if ($msg = flash_get('success')): ?>
+    <div class="mgrid-alert mgrid-alert-success"><?= e($msg) ?></div>
+  <?php endif; ?>
+  <?php if ($msg = flash_get('error')): ?>
+    <div class="mgrid-alert mgrid-alert-danger"><?= e($msg) ?></div>
+  <?php endif; ?>
+  <?php foreach ($errors as $err): ?>
+    <div class="mgrid-alert mgrid-alert-danger"><?= e($err) ?></div>
+  <?php endforeach; ?>
+
+  <form method="post" novalidate>
+    <?= csrf_field() ?>
+    <div class="mb-3">
+      <label for="login" class="mgrid-form-label" data-i18n="auth.label_login">Email or phone</label>
+      <input type="text" class="mgrid-form-control" id="login" name="login" autocomplete="username" value="<?= e($loginValue) ?>" required>
+    </div>
+    <div class="mb-4">
+      <label for="password" class="mgrid-form-label" data-i18n="auth.label_password">Password</label>
+      <input type="password" class="mgrid-form-control" id="password" name="password" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn-mgrid btn-mgrid-primary w-100 justify-content-center py-3 mb-3" data-i18n="auth.submit_login">Sign in</button>
+    <p class="text-center" style="font-size: 13.5px; color: var(--mgrid-ink-500); margin-top: 20px;">
+      <span data-i18n="auth.meta_new">New to Malkia Grid?</span>
+      <a href="<?= e(url('register.php')) ?>" style="color: var(--mgrid-gold-600); font-weight: 500;" data-i18n="auth.meta_create">Create your account</a>
+    </p>
+  </form>
 </div>
 
 <?php

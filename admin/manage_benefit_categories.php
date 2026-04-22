@@ -1,0 +1,152 @@
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/includes/init_admin.php';
+$pdo = db();
+
+if (!mbenefits_module_ready($pdo)) {
+    flash_set('error', 'M-Benefits schema missing.');
+    redirect('admin/admin_benefits.php');
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $token = $_POST['_csrf'] ?? null;
+    if (!csrf_verify(is_string($token) ? $token : null)) {
+        flash_set('error', 'Invalid token.');
+        redirect('admin/manage_benefit_categories.php');
+    }
+    $action = clean_string($_POST['action'] ?? '');
+
+    if ($action === 'add') {
+        $name = clean_string($_POST['name'] ?? '');
+        $slug = strtolower(preg_replace('/[^a-z0-9_]+/', '_', clean_string($_POST['slug'] ?? '')) ?? '');
+        $slug = trim((string) $slug, '_');
+        $sort = (int) ($_POST['sort_order'] ?? 10);
+        $active = isset($_POST['is_active']) ? 1 : 0;
+        if ($name === '' || $slug === '') {
+            flash_set('error', 'Name and slug required.');
+        } else {
+            try {
+                $pdo->prepare('INSERT INTO benefit_categories (name, slug, sort_order, is_active) VALUES (:n,:s,:o,:a)')
+                    ->execute(['n' => $name, 's' => $slug, 'o' => $sort, 'a' => $active]);
+                flash_set('success', 'Category added.');
+            } catch (Throwable $e) {
+                flash_set('error', 'Could not add (duplicate slug?).');
+            }
+        }
+    } elseif ($action === 'update') {
+        $id = (int) ($_POST['id'] ?? 0);
+        $name = clean_string($_POST['name'] ?? '');
+        $slug = strtolower(preg_replace('/[^a-z0-9_]+/', '_', clean_string($_POST['slug'] ?? '')) ?? '');
+        $slug = trim((string) $slug, '_');
+        $sort = (int) ($_POST['sort_order'] ?? 10);
+        $active = isset($_POST['is_active']) ? 1 : 0;
+        if ($id <= 0 || $name === '' || $slug === '') {
+            flash_set('error', 'Invalid category.');
+        } else {
+            try {
+                $pdo->prepare('UPDATE benefit_categories SET name=:n, slug=:s, sort_order=:o, is_active=:a WHERE id=:id LIMIT 1')
+                    ->execute(['n' => $name, 's' => $slug, 'o' => $sort, 'a' => $active, 'id' => $id]);
+                flash_set('success', 'Category saved.');
+            } catch (Throwable $e) {
+                flash_set('error', 'Could not save.');
+            }
+        }
+    } elseif ($action === 'delete') {
+        $id = (int) ($_POST['id'] ?? 0);
+        if ($id > 0) {
+            try {
+                $pdo->prepare('DELETE FROM benefit_categories WHERE id = :id LIMIT 1')->execute(['id' => $id]);
+                flash_set('success', 'Category deleted.');
+            } catch (Throwable $e) {
+                flash_set('error', 'Cannot delete: offers may still reference this category.');
+            }
+        }
+    }
+    redirect('admin/manage_benefit_categories.php');
+}
+
+$rows = $pdo->query('SELECT * FROM benefit_categories ORDER BY sort_order ASC, name ASC')->fetchAll() ?: [];
+$editId = (int) ($_GET['edit'] ?? 0);
+$editRow = null;
+if ($editId > 0) {
+    $st = $pdo->prepare('SELECT * FROM benefit_categories WHERE id = :id LIMIT 1');
+    $st->execute(['id' => $editId]);
+    $editRow = $st->fetch() ?: null;
+}
+
+$mgrid_page_title = 'Benefit categories — Admin';
+require __DIR__ . '/includes/shell_open.php';
+?>
+
+<?php if ($msg = flash_get('success')): ?><div class="mgrid-alert mgrid-alert-success"><?= e($msg) ?></div><?php endif; ?>
+<?php if ($msg = flash_get('error')): ?><div class="mgrid-alert mgrid-alert-danger"><?= e($msg) ?></div><?php endif; ?>
+
+<div class="mb-3"><a href="<?= e(url('admin/admin_benefits.php')) ?>" class="btn btn-sm btn-outline-secondary">← Offers</a></div>
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="mgrid-card">
+      <div class="mgrid-card-header"><h2 class="mgrid-card-title"><?= $editRow ? 'Edit category' : 'Add category' ?></h2></div>
+      <div class="mgrid-card-body">
+        <form method="post">
+          <?= csrf_field() ?>
+          <input type="hidden" name="action" value="<?= $editRow ? 'update' : 'add' ?>">
+          <?php if ($editRow): ?><input type="hidden" name="id" value="<?= (int) $editRow['id'] ?>"><?php endif; ?>
+          <div class="mb-2">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="mgrid-form-control" required value="<?= e((string) ($editRow['name'] ?? '')) ?>">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Slug</label>
+            <input type="text" name="slug" class="mgrid-form-control" required value="<?= e((string) ($editRow['slug'] ?? '')) ?>">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Sort order</label>
+            <input type="number" name="sort_order" class="mgrid-form-control" value="<?= (int) ($editRow['sort_order'] ?? 10) ?>">
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="is_active" id="ca" <?= !$editRow || (int) ($editRow['is_active'] ?? 0) === 1 ? 'checked' : '' ?>>
+            <label class="form-check-label" for="ca">Active</label>
+          </div>
+          <button type="submit" class="btn-mgrid btn-mgrid-primary"><?= $editRow ? 'Save' : 'Add' ?></button>
+          <?php if ($editRow): ?><a class="btn btn-outline-secondary ms-1" href="<?= e(url('admin/manage_benefit_categories.php')) ?>">Cancel</a><?php endif; ?>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-7">
+    <div class="mgrid-card">
+      <div class="mgrid-card-header"><h2 class="mgrid-card-title">All categories</h2></div>
+      <div class="mgrid-card-body p-0">
+        <div class="table-responsive">
+          <table class="mgrid-table mb-0">
+            <thead><tr><th>Name</th><th>Slug</th><th>Order</th><th>Active</th><th></th></tr></thead>
+            <tbody>
+              <?php foreach ($rows as $r): ?>
+                <tr>
+                  <td><?= e((string) $r['name']) ?></td>
+                  <td><code><?= e((string) $r['slug']) ?></code></td>
+                  <td><?= (int) $r['sort_order'] ?></td>
+                  <td><?= (int) $r['is_active'] === 1 ? 'Yes' : 'No' ?></td>
+                  <td class="text-nowrap">
+                    <a class="btn btn-sm btn-outline-primary" href="<?= e(url('admin/manage_benefit_categories.php?edit=' . (int) $r['id'])) ?>">Edit</a>
+                    <form method="post" class="d-inline" onsubmit="return confirm('Delete this category?');">
+                      <?= csrf_field() ?>
+                      <input type="hidden" name="action" value="delete">
+                      <input type="hidden" name="id" value="<?= (int) $r['id'] ?>">
+                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php require __DIR__ . '/includes/shell_close.php'; ?>

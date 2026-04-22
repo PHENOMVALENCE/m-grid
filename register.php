@@ -148,63 +148,56 @@ $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>
 
-<div class="row justify-content-center w-100 px-2">
-  <div class="col-xl-9 col-xxl-7">
-    <div class="card mb-0 shadow-sm border-0">
-      <div class="card-body p-4 p-md-5">
-        <div class="text-center mb-4">
-          <a href="<?= e(url('index.php')) ?>" class="text-decoration-none d-inline-block"><span class="mgrid-auth-brand">Malkia Grid</span></a>
-          <div class="mt-2">
-            <a class="small mgrid-auth-home-link text-decoration-none" href="<?= e(url('index.php')) ?>" data-i18n="auth.back_home">&larr; Back to Home</a>
-          </div>
-        </div>
-
-        <div class="mgrid-auth-switch mb-3" role="tablist" aria-label="Authentication pages">
-          <a class="mgrid-auth-switch-link" href="<?= e(url('login.php')) ?>" role="tab" aria-selected="false" data-i18n="auth.sign_in_tab">Sign in</a>
-          <a class="mgrid-auth-switch-link is-active" href="<?= e(url('register.php')) ?>" role="tab" aria-selected="true" data-i18n="auth.register_tab">Register</a>
-        </div>
-
-        <div class="text-center mb-4">
-          <h1 class="h4 mb-2 mgrid-auth-title" data-i18n="auth.register_title">Create your M-ID account</h1>
-          <p class="lead-tight mb-0 mt-2" data-i18n="auth.register_lead">Provide accurate details. Your M-ID is issued automatically after submission.</p>
-        </div>
-
-        <?php foreach ($errors as $err): ?>
-          <div class="alert alert-danger small py-2"><?= e($err) ?></div>
-        <?php endforeach; ?>
-
-        <form method="post" class="row g-3" novalidate>
-          <?= csrf_field() ?>
-          <div class="col-md-6">
-            <label class="form-label" for="full_name" data-i18n="auth.label_full_name">Full name</label>
-            <input class="form-control" type="text" id="full_name" name="full_name" required value="<?= e($form['full_name']) ?>">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="phone" data-i18n="auth.label_phone">Phone</label>
-            <input class="form-control" type="text" id="phone" name="phone" required value="<?= e($form['phone']) ?>"
-              placeholder="+255…">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="email" data-i18n="auth.label_email">Email</label>
-            <input class="form-control" type="email" id="email" name="email" required value="<?= e($form['email']) ?>">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="region" data-i18n="auth.label_region">Region</label>
-            <select class="form-select" id="region" name="region" required>
-              <option value="">Choose…</option>
-              <?php foreach ($regions as $r): ?>
-                <option value="<?= e($r) ?>" <?= $form['region'] === $r ? 'selected' : '' ?>><?= e($r) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="date_of_birth"><span data-i18n="auth.label_dob">Date of birth (optional if age range given)</span></label>
-            <input class="form-control" type="date" id="date_of_birth" name="date_of_birth" value="<?= e($form['date_of_birth']) ?>">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="age_range" data-i18n="auth.label_age">Age range</label>
-            <select class="form-select" id="age_range" name="age_range">
-              <option value="">Choose…</option>
+<div class="mgrid-auth-card" style="max-width:680px; margin:0 auto;">
+  <div class="mgrid-auth-brand-wrap">
+    <div class="mgrid-auth-logo-mark">M</div>
+    <div>
+      <span class="mgrid-auth-brand-name">Malkia Grid</span>
+      <span class="mgrid-auth-brand-tagline">Women's Digital Identity Platform</span>
+    </div>
+  </div>
+  <p class="mb-3"><a class="text-decoration-none" href="<?= e(url('index.php')) ?>" data-i18n="auth.back_home">&larr; Back to Home</a></p>
+  <div class="mgrid-auth-tabs" role="tablist" aria-label="Authentication pages">
+    <a class="mgrid-auth-tab" href="<?= e(url('login.php')) ?>" role="tab" aria-selected="false" data-i18n="auth.sign_in_tab">Sign in</a>
+    <a class="mgrid-auth-tab is-active" href="<?= e(url('register.php')) ?>" role="tab" aria-selected="true" data-i18n="auth.register_tab">Register</a>
+  </div>
+  <h1 class="mgrid-display" style="font-size:2rem; margin-bottom:6px;" data-i18n="auth.register_title">Create your M-ID account</h1>
+  <p style="color: var(--mgrid-ink-500); font-size: 14.5px;" data-i18n="auth.register_lead">Provide accurate details. Your M-ID is issued automatically after submission.</p>
+  <?php foreach ($errors as $err): ?>
+    <div class="mgrid-alert mgrid-alert-danger"><?= e($err) ?></div>
+  <?php endforeach; ?>
+  <form method="post" novalidate>
+    <?= csrf_field() ?>
+    <div class="mgrid-auth-grid-2">
+      <div>
+        <label class="mgrid-form-label" for="full_name" data-i18n="auth.label_full_name">Full name</label>
+        <input class="mgrid-form-control" type="text" id="full_name" name="full_name" required value="<?= e($form['full_name']) ?>">
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="phone" data-i18n="auth.label_phone">Phone</label>
+        <input class="mgrid-form-control" type="text" id="phone" name="phone" required value="<?= e($form['phone']) ?>" placeholder="+255...">
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="email" data-i18n="auth.label_email">Email</label>
+        <input class="mgrid-form-control" type="email" id="email" name="email" required value="<?= e($form['email']) ?>">
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="region" data-i18n="auth.label_region">Region</label>
+        <select class="mgrid-form-control" id="region" name="region" required>
+          <option value="">Choose...</option>
+          <?php foreach ($regions as $r): ?>
+            <option value="<?= e($r) ?>" <?= $form['region'] === $r ? 'selected' : '' ?>><?= e($r) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="date_of_birth"><span data-i18n="auth.label_dob">Date of birth (optional if age range given)</span></label>
+        <input class="mgrid-form-control" type="date" id="date_of_birth" name="date_of_birth" value="<?= e($form['date_of_birth']) ?>">
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="age_range" data-i18n="auth.label_age">Age range</label>
+        <select class="mgrid-form-control" id="age_range" name="age_range">
+          <option value="">Choose...</option>
               <?php
                 $ranges = ['18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
 foreach ($ranges as $ar) {
@@ -213,12 +206,12 @@ foreach ($ranges as $ar) {
               <?php
 }
 ?>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="business_status" data-i18n="auth.label_business">Business status</label>
-            <select class="form-select" id="business_status" name="business_status" required>
-              <option value="">Choose…</option>
+        </select>
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="business_status" data-i18n="auth.label_business">Business status</label>
+        <select class="mgrid-form-control" id="business_status" name="business_status" required>
+          <option value="">Choose...</option>
               <?php
     $bss = [
         'employed' => 'Employed',
@@ -234,34 +227,32 @@ foreach ($bss as $val => $label) {
               <?php
 }
 ?>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="preferred_language" data-i18n="auth.label_pref_lang">Preferred language</label>
-            <select class="form-select" id="preferred_language" name="preferred_language">
-              <option value="en" <?= $form['preferred_language'] === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English (default)</option>
-              <option value="sw" <?= $form['preferred_language'] === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili (coming)</option>
-            </select>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="password" data-i18n="auth.label_pw">Password</label>
-            <input class="form-control" type="password" id="password" name="password" autocomplete="new-password" required minlength="8">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label" for="confirm_password" data-i18n="auth.label_pw_confirm">Confirm password</label>
-            <input class="form-control" type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary w-100 py-3" data-i18n="auth.submit_register">Create account &amp; receive M-ID</button>
-            <div class="text-center mt-3 mgrid-auth-meta">
-              <span class="text-muted" data-i18n="auth.meta_have_account">Already registered?</span>
-              <a class="fw-semibold" href="<?= e(url('login.php')) ?>" data-i18n="auth.meta_sign_in">Sign in</a>
-            </div>
-          </div>
-        </form>
+        </select>
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="preferred_language" data-i18n="auth.label_pref_lang">Preferred language</label>
+        <select class="mgrid-form-control" id="preferred_language" name="preferred_language">
+          <option value="en" <?= $form['preferred_language'] === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English (default)</option>
+          <option value="sw" <?= $form['preferred_language'] === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili (coming)</option>
+        </select>
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="password" data-i18n="auth.label_pw">Password</label>
+        <input class="mgrid-form-control" type="password" id="password" name="password" autocomplete="new-password" required minlength="8">
+      </div>
+      <div>
+        <label class="mgrid-form-label" for="confirm_password" data-i18n="auth.label_pw_confirm">Confirm password</label>
+        <input class="mgrid-form-control" type="password" id="confirm_password" name="confirm_password" autocomplete="new-password" required>
       </div>
     </div>
-  </div>
+    <div class="mt-4">
+      <button type="submit" class="btn-mgrid btn-mgrid-primary w-100 justify-content-center py-3" data-i18n="auth.submit_register">Create account &amp; receive M-ID</button>
+      <p class="text-center" style="font-size: 13.5px; color: var(--mgrid-ink-500); margin-top: 20px;">
+        <span data-i18n="auth.meta_have_account">Already registered?</span>
+        <a href="<?= e(url('login.php')) ?>" style="color: var(--mgrid-gold-600); font-weight: 500;" data-i18n="auth.meta_sign_in">Sign in</a>
+      </p>
+    </div>
+  </form>
 </div>
 
 <?php

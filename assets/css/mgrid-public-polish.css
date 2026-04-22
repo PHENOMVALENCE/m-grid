@@ -1,0 +1,168 @@
+body.mgrid-landing-premium.mgrid-public {
+  background: var(--mgrid-surface-alt);
+  color: var(--mgrid-ink-950);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__overlay {
+  background: linear-gradient(110deg, rgba(46, 27, 43, 0.88) 0%, rgba(91, 46, 74, 0.76) 45%, rgba(46, 27, 43, 0.55) 100%);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__accent {
+  color: #f5d7a5;
+}
+
+body.mgrid-landing-premium.mgrid-public main.mgrid-lp > section {
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero {
+  min-height: 86vh;
+  margin-bottom: 8px;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__inner {
+  padding-top: clamp(6rem, 12vw, 8rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-lead,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-card__meta,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature__copy,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-cta__text {
+  color: var(--mgrid-ink-500);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-card,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-pillar,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-mod,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-cta__panel,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-faq--panel {
+  border-color: var(--mgrid-ink-100);
+  border-radius: var(--mgrid-radius-lg);
+  box-shadow: var(--mgrid-shadow-card);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-row,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature-grid,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-mod-grid,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-faq-grid,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-cta-grid {
+  gap: 20px;
+  align-items: stretch;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn--primary,
+body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla__btn--primary {
+  background: linear-gradient(135deg, var(--mgrid-rose-500), var(--mgrid-gold-400)) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn--outline-dark,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn--ghost {
+  border-color: var(--mgrid-ink-100) !important;
+  color: var(--mgrid-ink-800) !important;
+  background: #fff !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn--outline-dark:hover,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn--ghost:hover {
+  border-color: var(--mgrid-gold-400) !important;
+  color: var(--mgrid-gold-600) !important;
+  background: var(--mgrid-gold-50) !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-process__item,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-card,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-pillar,
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-mod {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-process-row > [role="listitem"] {
+  display: flex;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-lp-process-row > [role="listitem"] .mgrid-lp-process__item {
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  body.mgrid-landing-premium.mgrid-public main.mgrid-lp > section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero {
+    min-height: 72vh;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__title {
+    font-size: clamp(1.9rem, 8vw, 2.4rem);
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__lead {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body.mgrid-landing-premium.mgrid-public main.mgrid-lp > section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__inner {
+    padding-top: 80px;
+    padding-bottom: 26px;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-h2 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-process__item,
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-partner-card,
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-feature,
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-pillar,
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-mod {
+    padding: 14px;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-faq__trigger {
+    padding: 12px;
+    font-size: 0.88rem;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-faq__panel {
+    padding: 0 12px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.mgrid-landing-premium.mgrid-public .mgrid-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero {
+    min-height: 64vh;
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-lp-hero__title {
+    font-size: 1.75rem;
+    line-height: 1.16;
+  }
+}

@@ -29,3 +29,13 @@ define('MGRID_DB_CHARSET', 'utf8mb4');
 
 /** Session cookie name (avoid clashing with other PHP apps on same host) */
 define('MGRID_SESSION_NAME', 'MGRIDSESSID');
+
+/** Secure storage root (kept outside public web root when possible). */
+if (!defined('MGRID_STORAGE_ROOT')) {
+    $storageRoot = dirname(MGRID_ROOT) . DIRECTORY_SEPARATOR . 'm-grid-storage';
+    define('MGRID_STORAGE_ROOT', $storageRoot);
+}
+
+/** Document upload limits and allow-list. */
+define('MGRID_DOCUMENT_MAX_BYTES', 8 * 1024 * 1024); // 8MB
+define('MGRID_FUNDING_MAX_BYTES', 8 * 1024 * 1024); // 8MB
