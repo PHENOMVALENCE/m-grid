@@ -40,6 +40,13 @@ $publicVanilla = $mgrid_layout === 'public' && !empty($mgrid_public_vanilla);
 <?php if (!$publicVanilla): ?>
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 <?php endif; ?>
+<?php
+/** Extra HTML/scripts after jQuery (e.g. DataTables on admin pages). Set `$mgrid_footer_extra` before including this file. */
+$mgrid_footer_extra = $mgrid_footer_extra ?? '';
+if ($mgrid_footer_extra !== '' && is_string($mgrid_footer_extra)) {
+    echo $mgrid_footer_extra;
+}
+?>
 </body>
 
 </html>

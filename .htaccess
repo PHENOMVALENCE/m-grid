@@ -1,2 +1,2 @@
 # Prefer the PHP landing page over the bundled HTML template demo.
-DirectoryIndex index.php index.html
+DirectoryIndex index.php

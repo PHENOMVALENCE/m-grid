@@ -988,3 +988,230 @@ body.mgrid-ui-premium .dataTables_wrapper .dataTables_info {
     padding-right: 0.55rem;
   }
 }
+
+/* Admin team page — directory + side panel */
+body.mgrid-ui-premium .mgrid-admin-accounts-layout {
+  align-items: flex-start;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-head {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-card .mgrid-card-header {
+  border-bottom: 1px solid rgba(74, 63, 53, 0.08);
+}
+
+body.mgrid-ui-premium .mgrid-admin-side-stack {
+  align-items: stretch;
+}
+
+@media (min-width: 1400px) {
+  body.mgrid-ui-premium .mgrid-admin-side-stack {
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+body.mgrid-ui-premium .mgrid-admin-side-card .mgrid-card-body {
+  max-height: none;
+}
+
+body.mgrid-ui-premium .mgrid-admin-code {
+  font-size: 0.85rem;
+  color: #4a3f35;
+  background: rgba(201, 165, 138, 0.12);
+  padding: 0.12rem 0.35rem;
+  border-radius: 6px;
+}
+
+body.mgrid-ui-premium tr.mgrid-admin-row-active td {
+  box-shadow: inset 3px 0 0 0 var(--mgrid-rose-gold);
+}
+
+body.mgrid-ui-premium .mgrid-admin-actions .btn {
+  margin-left: 0.25rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-actions .btn:first-child {
+  margin-left: 0;
+}
+
+@media (max-width: 480px) {
+  body.mgrid-ui-premium .mgrid-admin-actions {
+    white-space: normal !important;
+  }
+
+  body.mgrid-ui-premium .mgrid-admin-actions .btn {
+    display: block;
+    width: 100%;
+    margin: 0.35rem 0 0 0;
+  }
+
+  body.mgrid-ui-premium .mgrid-admin-actions .btn:first-child {
+    margin-top: 0;
+  }
+}
+
+/* Admin directory table — fits main column; sticky actions when scrolling */
+body.mgrid-ui-premium .mgrid-admin-directory-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 0;
+}
+
+body.mgrid-ui-premium .mgrid-admin-col-id { width: 10%; }
+body.mgrid-ui-premium .mgrid-admin-col-name { width: 22%; }
+body.mgrid-ui-premium .mgrid-admin-col-org { width: 18%; }
+body.mgrid-ui-premium .mgrid-admin-col-contact { width: 22%; }
+body.mgrid-ui-premium .mgrid-admin-col-role { width: 10%; }
+body.mgrid-ui-premium .mgrid-admin-col-status { width: 12%; }
+body.mgrid-ui-premium .mgrid-admin-col-status--wide { width: 18%; }
+body.mgrid-ui-premium .mgrid-admin-col-actions { width: 16%; }
+
+body.mgrid-ui-premium .mgrid-admin-dt-toolbar .dataTables_length,
+body.mgrid-ui-premium .mgrid-admin-dt-toolbar .dataTables_filter {
+  margin: 0;
+}
+
+body.mgrid-ui-premium .mgrid-admin-dt-toolbar .dataTables_filter input {
+  min-width: 10rem;
+  max-width: 100%;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-table thead th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b5d52;
+  white-space: nowrap;
+  border-bottom-width: 1px;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-table thead th .mgrid-admin-th-sub {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+body.mgrid-ui-premium .mgrid-admin-directory-table tbody td {
+  vertical-align: top;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-th-id,
+body.mgrid-ui-premium .mgrid-admin-td-id {
+  white-space: nowrap;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-actions {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: #fdfcfa;
+  box-shadow: -6px 0 10px -4px rgba(74, 63, 53, 0.12);
+}
+
+body.mgrid-ui-premium tr.mgrid-admin-row-active .mgrid-admin-td-actions,
+body.mgrid-ui-premium tr.table-active .mgrid-admin-td-actions {
+  background-color: #f0ebe6;
+}
+
+body.mgrid-ui-premium .mgrid-admin-name-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-name-text {
+  font-weight: 600;
+  color: #3d342e;
+}
+
+body.mgrid-ui-premium .mgrid-admin-you-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-org .mgrid-admin-org-primary {
+  font-weight: 500;
+  color: #4a3f35;
+  line-height: 1.35;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-org .mgrid-admin-org-secondary {
+  font-size: 0.82rem;
+  color: #6b5d52;
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-contact .mgrid-admin-email {
+  font-size: 0.88rem;
+  word-break: break-word;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-contact .mgrid-admin-phone {
+  font-size: 0.82rem;
+  color: #5c4f46;
+  line-height: 1.35;
+}
+
+body.mgrid-ui-premium .mgrid-admin-role-badge {
+  font-weight: 600;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.mgrid-ui-premium .mgrid-admin-td-status .badge {
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-updated-line {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  margin-top: 0.25rem;
+  line-height: 1.2;
+}
+
+body.mgrid-ui-premium .mgrid-admin-inline-edit-wrap {
+  margin-top: 0.35rem;
+}
+
+body.mgrid-ui-premium .mgrid-admin-inline-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--mgrid-rose-700);
+}
+
+body.mgrid-ui-premium .mgrid-admin-inline-edit:hover {
+  text-decoration: underline;
+  color: #6d4343;
+}
+
+body.mgrid-ui-premium .mgrid-admin-form-section legend {
+  color: #4a3f35;
+  font-weight: 600;
+}

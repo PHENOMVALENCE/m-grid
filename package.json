@@ -15,7 +15,6 @@
     "sass": "^1.54.8"
   },
   "dependencies": {
-    "apexcharts": "^3.54.1",
     "bootstrap": "^5.3.3",
     "jquery": "^3.6.3"
   }

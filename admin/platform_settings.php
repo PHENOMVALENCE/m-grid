@@ -29,7 +29,7 @@ require __DIR__ . '/includes/shell_open.php';
     </div>
     <div class="mgrid-card-body">
       <div class="mgrid-grid-2">
-        <a class="mgrid-quick-link" href="<?= e(url('admin/admin_accounts.php')) ?>"><i class="ti ti-user-star"></i><span>Admin accounts</span></a>
+        <a class="mgrid-quick-link" href="<?= e(url('admin/admin_accounts.php')) ?>"><i class="ti ti-user-star"></i><span>Administration team</span></a>
         <a class="mgrid-quick-link" href="<?= e(url('admin/admin_analytics.php')) ?>"><i class="ti ti-chart-line"></i><span>Analytics</span></a>
         <a class="mgrid-quick-link" href="<?= e(url('admin/admin_reports.php')) ?>"><i class="ti ti-file-analytics"></i><span>Reports</span></a>
         <a class="mgrid-quick-link" href="<?= e(url('admin/admin_announcements.php')) ?>"><i class="ti ti-bell-ringing"></i><span>Announcements</span></a>

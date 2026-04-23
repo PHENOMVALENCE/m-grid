@@ -85,7 +85,7 @@ require __DIR__ . '/includes/shell_open.php';
   </div>
   <div class="mgrid-stat-card">
     <?php $ac = $pdo->query("SELECT COUNT(*) AS c, SUM(CASE WHEN role = 'super_admin' THEN 1 ELSE 0 END) AS super_c FROM admins WHERE status = 'active'")->fetch(); ?>
-    <div class="mgrid-stat-label">Admin accounts</div>
+    <div class="mgrid-stat-label">Administration team</div>
     <div class="mgrid-stat-value"><?= (int) ($ac['c'] ?? 0) ?></div>
     <div class="mgrid-stat-sub">Super admins: <?= (int) ($ac['super_c'] ?? 0) ?></div>
   </div>

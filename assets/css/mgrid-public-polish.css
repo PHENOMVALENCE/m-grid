@@ -254,6 +254,45 @@ body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla__link:hover {
   color: #c17b6b !important;
 }
 
+/* Mobile menu control: polish forces a light bar — bars must stay dark (premium SCSS used white for transparent hero). */
+body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium .mgrid-nav-vanilla__toggle {
+  flex-shrink: 0;
+  border: 1px solid rgba(74, 63, 53, 0.35) !important;
+  background: #fff !important;
+  box-shadow: 0 1px 4px rgba(74, 63, 53, 0.12);
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium .mgrid-nav-vanilla__toggle span {
+  background: #3d342e !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium .mgrid-nav-vanilla__toggle:hover {
+  border-color: rgba(74, 63, 53, 0.55) !important;
+  background: #faf7f4 !important;
+}
+
+body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium .mgrid-nav-vanilla__toggle:focus-visible {
+  border-color: rgba(74, 63, 53, 0.55) !important;
+  background: #faf7f4 !important;
+  outline: 2px solid #c17b6b;
+  outline-offset: 2px;
+}
+
+@media (max-width: 991.98px) {
+  body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium.mgrid-nav-vanilla--open .mgrid-nav-vanilla__panel {
+    margin-top: 0.35rem;
+    padding: 0.65rem 0.75rem 0.85rem;
+    background: #fff;
+    border: 1px solid rgba(74, 63, 53, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(74, 63, 53, 0.14);
+  }
+
+  body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla--premium.mgrid-nav-vanilla--open .mgrid-nav-vanilla__links {
+    gap: 0.25rem;
+  }
+}
+
 body.mgrid-landing-premium.mgrid-public .mgrid-nav-vanilla__btn--primary:hover {
   background: #c17b6b !important;
   color: #fff !important;

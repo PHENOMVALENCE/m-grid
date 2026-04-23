@@ -78,7 +78,7 @@ $isActive = static function (array $files) use ($current): bool {
       </a>
       <div class="mgrid-nav-section-label">System</div>
       <a class="mgrid-nav-link <?= $isActive(['admin_accounts.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_accounts.php')) ?>">
-        <i class="ti ti-user-star"></i><span>Admin Accounts</span>
+        <i class="ti ti-user-star"></i><span>Administration team</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['platform_settings.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/platform_settings.php')) ?>">
         <i class="ti ti-settings"></i><span>Settings</span>
