@@ -20,7 +20,7 @@ $stmt = $pdo->prepare('
 $stmt->execute(['id' => $uid]);
 $row = $stmt->fetch() ?: [];
 
-$mgrid_page_title = 'My dashboard — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.dashboard');
 require __DIR__ . '/includes/shell_open.php';
 
 $tierRaw = (string) ($row['tier'] ?? 'pending');
@@ -29,7 +29,7 @@ $scorePct = isset($row['score']) && $row['score'] !== null && $row['score'] !== 
     ? max(0, min(100, (float) $row['score']))
     : 0;
 $profileCompletion = (int) ($row['profile_completion'] ?? 0);
-$languageLabel = ($row['preferred_language'] ?? '') === 'sw' ? 'Kiswahili (preference)' : 'English';
+$languageLabel = ($row['preferred_language'] ?? '') === 'sw' ? __('lang.ui_sw') : __('lang.ui_en');
 $memberSince = substr((string) ($row['created_at'] ?? ''), 0, 10);
 
 $missingItems = [];

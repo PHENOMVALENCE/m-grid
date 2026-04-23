@@ -71,7 +71,7 @@ $statPending = (int) $pdo->query("SELECT COUNT(*) FROM user_documents WHERE stat
 $statVerified = (int) $pdo->query("SELECT COUNT(*) FROM user_documents WHERE status = 'verified'")->fetchColumn();
 $statRejected = (int) $pdo->query("SELECT COUNT(*) FROM user_documents WHERE status = 'rejected'")->fetchColumn();
 
-$mgrid_page_title = 'Document Verification — Malkia Grid Admin';
+$mgrid_page_title = mgrid_title('title.admin_documents');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

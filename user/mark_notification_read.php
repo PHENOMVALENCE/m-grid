@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 if (!csrf_verify(is_string($_POST['_csrf'] ?? null) ? $_POST['_csrf'] : null)) {
-    flash_set('error', 'Invalid session.');
+    flash_set('error', __('session.invalid'));
     redirect('user/notifications.php');
 }
 

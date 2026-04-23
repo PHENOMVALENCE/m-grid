@@ -9,12 +9,12 @@ $auth = auth_user();
 $uid = (int) $auth['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_verify($_POST['_csrf'] ?? null)) {
-    flash_set('error', 'Invalid request.');
+    flash_set('error', __('fund.apply.invalid'));
     redirect('user/apply_funding.php');
 }
 
 if (!canUserApplyForFunding($uid)) {
-    flash_set('error', 'You are currently not eligible to apply for funding.');
+    flash_set('error', __('fund.apply.not_eligible'));
     redirect('user/funding_overview.php');
 }
 
@@ -37,7 +37,7 @@ $supportingNotes = clean_string($_POST['supporting_notes'] ?? '');
 $declaration = (int) ($_POST['declaration'] ?? 0) === 1;
 
 if (!in_array($type, ['loan', 'grant', 'support'], true) || $requested < $minAmount || $requested > $maxAmount || $purpose === '' || $businessName === '' || $businessSector === '' || $requestReason === '' || !$declaration) {
-    flash_set('error', 'Please complete all required fields with valid values.');
+    flash_set('error', __('fund.apply.fields_invalid'));
     redirect('user/apply_funding.php');
 }
 
@@ -90,17 +90,17 @@ try {
 
     createNotification(
         $uid,
-        'M-FUND application received',
-        'We received your application (' . $reference . '). You can track status under My applications.',
+        __('fund.notif.received_title'),
+        __('fund.notif.received_body', ['ref' => $reference]),
         'success',
         'mfund',
         $appId,
         url('user/funding_application_detail.php?id=' . $appId)
     );
 
-    flash_set('success', 'Funding application submitted successfully. Reference: ' . $reference);
+    flash_set('success', __('fund.apply.success', ['ref' => $reference]));
     redirect('user/my_funding_applications.php');
 } catch (Throwable $e) {
-    flash_set('error', 'Could not submit application: ' . $e->getMessage());
+    flash_set('error', __('fund.apply.fail', ['msg' => $e->getMessage()]));
     redirect('user/apply_funding.php');
 }

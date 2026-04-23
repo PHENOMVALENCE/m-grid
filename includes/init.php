@@ -30,6 +30,9 @@ require_once __DIR__ . '/reporting_helper.php';
 
 auth_start_session();
 
+require_once __DIR__ . '/i18n.php';
+mgrid_i18n_bootstrap();
+
 /**
  * Backward-compatible schema guard for admin roles.
  * Adds admins.role if missing and promotes earliest admin to super_admin.
@@ -82,3 +85,30 @@ function mgrid_ensure_admin_extended_profile_schema(): void
 }
 
 mgrid_ensure_admin_extended_profile_schema();
+
+/**
+ * Prefer Swahili as default for new rows (existing installs: bump DB default when still English).
+ */
+function mgrid_ensure_users_preferred_language_default_sw(): void
+{
+    static $checked = false;
+    if ($checked) {
+        return;
+    }
+    $checked = true;
+    try {
+        $pdo = db();
+        $row = $pdo->query("SHOW COLUMNS FROM users LIKE 'preferred_language'")->fetch(PDO::FETCH_ASSOC);
+        if (!$row) {
+            return;
+        }
+        $defRaw = isset($row['Default']) ? strtolower(trim((string) $row['Default'], " '\"")) : '';
+        if ($defRaw === '' || $defRaw === 'null' || $defRaw === 'en') {
+            $pdo->exec("ALTER TABLE users MODIFY preferred_language VARCHAR(16) NOT NULL DEFAULT 'sw'");
+        }
+    } catch (Throwable $e) {
+        // Non-fatal: older MySQL or permissions may block ALTER
+    }
+}
+
+mgrid_ensure_users_preferred_language_default_sw();

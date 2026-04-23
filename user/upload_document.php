@@ -7,7 +7,7 @@ require __DIR__ . '/includes/init_member.php';
 $pdo = db();
 $types = mgrid_document_types($pdo);
 
-$mgrid_page_title = 'Upload Document — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.upload_doc');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

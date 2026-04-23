@@ -57,7 +57,7 @@ $stats = $pdo->query('
   FROM funding_applications
 ')->fetch() ?: [];
 
-$mgrid_page_title = 'M-FUND Applications — Admin';
+$mgrid_page_title = mgrid_title('title.admin_funding_apps');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

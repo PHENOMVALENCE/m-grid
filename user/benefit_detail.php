@@ -9,13 +9,13 @@ $uid = (int) auth_user()['user_id'];
 $id = (int) ($_GET['id'] ?? 0);
 
 if (!mbenefits_module_ready($pdo) || $id <= 0) {
-    flash_set('error', 'Benefit not found.');
+    flash_set('error', __('benefit.not_found'));
     redirect('user/benefits.php');
 }
 
 $offer = mbenefits_get_offer($pdo, $id);
 if ($offer === null || (int) $offer['is_active'] !== 1) {
-    flash_set('error', 'Benefit not found.');
+    flash_set('error', __('benefit.not_found'));
     redirect('user/benefits.php');
 }
 
@@ -23,7 +23,7 @@ $ev = mbenefits_evaluate_eligibility($pdo, $uid, $offer);
 $eligible = $ev['ok'];
 $msg = mbenefits_get_eligibility_message($pdo, $uid, $id);
 
-$mgrid_page_title = (string) $offer['title'] . ' — M-Benefits';
+$mgrid_page_title = (string) $offer['title'] . ' — ' . __('site.brand');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

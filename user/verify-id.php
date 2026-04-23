@@ -24,23 +24,23 @@ $profile = $profileStmt->fetch() ?: [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify($_POST['_csrf'] ?? null)) {
-        $errors[] = 'Invalid security token. Please refresh and try again.';
+        $errors[] = __('nid.verify.token');
     } else {
         if (!isset($_FILES['national_id_photo']) || !is_array($_FILES['national_id_photo'])) {
-            $errors[] = 'Please choose a photo file.';
+            $errors[] = __('nid.verify.pick_photo');
         } else {
             $file = $_FILES['national_id_photo'];
             if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
-                $errors[] = 'Upload failed. Please try again.';
+                $errors[] = __('nid.verify.upload_failed');
             } elseif ((int) ($file['size'] ?? 0) <= 0 || (int) $file['size'] > $maxBytes) {
-                $errors[] = 'Photo must be between 1 byte and 5MB.';
+                $errors[] = __('nid.verify.size');
             } else {
                 $tmp = (string) ($file['tmp_name'] ?? '');
                 $original = (string) ($file['name'] ?? '');
                 $ext = strtolower(pathinfo($original, PATHINFO_EXTENSION));
                 $mime = mime_content_type($tmp) ?: '';
                 if (!in_array($ext, $allowedExt, true) || !in_array($mime, $allowedMime, true)) {
-                    $errors[] = 'Only JPG, PNG, or WEBP image files are allowed.';
+                    $errors[] = __('nid.verify.format');
                 } else {
                     $targetDir = MGRID_ROOT . '/uploads/documents/national_ids';
                     if (!is_dir($targetDir)) {
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $targetPath = $targetDir . '/' . $safeName;
                     $relativePath = 'uploads/documents/national_ids/' . $safeName;
                     if (!move_uploaded_file($tmp, $targetPath)) {
-                        $errors[] = 'Could not store your file. Please retry.';
+                        $errors[] = __('nid.verify.store_failed');
                     } else {
                         $up = $pdo->prepare('
                             UPDATE user_profiles
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             WHERE user_id = :uid
                         ');
                         $up->execute(['p' => $relativePath, 'uid' => $uid]);
-                        flash_set('success', 'National ID uploaded. Please wait for admin approval.');
+                        flash_set('success', __('nid.flash.uploaded'));
                         redirect('user/verify-id.php');
                     }
                 }
@@ -78,7 +78,7 @@ $profile = $profileStmt->fetch() ?: [];
 $status = (string) ($profile['status'] ?? 'pending');
 $idStatus = (string) ($profile['national_id_status'] ?? 'not_submitted');
 
-$mgrid_page_title = 'ID Verification — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.verify_id');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

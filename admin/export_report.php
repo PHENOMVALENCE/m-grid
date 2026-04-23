@@ -10,7 +10,7 @@ $dt = clean_string($_GET['date_to'] ?? '');
 
 $allowed = ['users', 'funding', 'documents', 'mscore', 'training', 'benefits', 'opportunities'];
 if (!in_array($type, $allowed, true)) {
-    flash_set('error', 'Invalid report type.');
+    flash_set('error', __('export.invalid_type'));
     redirect('admin/admin_reports.php');
 }
 

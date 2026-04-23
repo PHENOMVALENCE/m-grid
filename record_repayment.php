@@ -9,7 +9,7 @@ $admin = auth_admin();
 $adminId = (int) $admin['admin_id'];
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_verify($_POST['_csrf'] ?? null)) {
-    flash_set('error', 'Invalid request.');
+    flash_set('error', __('error.invalid_request'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -22,7 +22,7 @@ $ref = clean_string($_POST['reference_note'] ?? '');
 $remarks = clean_string($_POST['remarks'] ?? '');
 
 if ($appId <= 0 || $amount <= 0 || $paymentDate === '' || $method === '') {
-    flash_set('error', 'Invalid repayment input.');
+    flash_set('error', __('fund.repay.bad_input'));
     redirect('admin/manage_repayments.php?application_id=' . $appId);
 }
 
@@ -31,7 +31,7 @@ $appStmt = $pdo->prepare('SELECT id, user_id, reference_number, status FROM fund
 $appStmt->execute(['id' => $appId]);
 $app = $appStmt->fetch();
 if (!$app) {
-    flash_set('error', 'Application not found.');
+    flash_set('error', __('fund.repay.app_not_found'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -73,12 +73,12 @@ try {
 
     admin_log($pdo, $adminId, (int) $app['user_id'], 'mfund_repayment_recorded', 'Repayment recorded for ' . $app['reference_number']);
     $pdo->commit();
-    flash_set('success', 'Repayment recorded successfully.');
+    flash_set('success', __('fund.repay.recorded'));
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Failed to record repayment: ' . $e->getMessage());
+    flash_set('error', __('fund.repay.record_fail', ['msg' => $e->getMessage()]));
 }
 
 redirect('admin/manage_repayments.php?application_id=' . $appId);

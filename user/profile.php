@@ -45,7 +45,7 @@ $row = $loadProfile($pdo, $uid);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify($_POST['_csrf'] ?? null)) {
-        $errors[] = 'Invalid security token. Please refresh and try again.';
+        $errors[] = __('settings.error.token');
     } else {
         $fullName = clean_string($_POST['full_name'] ?? '');
         $email = strtolower(clean_string($_POST['email'] ?? ''));
@@ -53,29 +53,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $phoneNorm = normalise_phone($phoneInput);
         $region = clean_string($_POST['region'] ?? '');
         $businessStatus = clean_string($_POST['business_status'] ?? '');
-        $preferredLanguage = clean_string($_POST['preferred_language'] ?? 'en');
+        $preferredLanguage = clean_string($_POST['preferred_language'] ?? 'sw');
         $bio = clean_string($_POST['bio'] ?? '');
 
         if ($fullName === '' || mb_strlen($fullName) < 2) {
-            $errors[] = 'Please enter your full name.';
+            $errors[] = __('register.error.full_name');
         }
         if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'Please provide a valid email address.';
+            $errors[] = __('register.error.email');
         }
         if ($phoneNorm === '') {
-            $errors[] = 'Please provide your phone number.';
+            $errors[] = __('register.error.phone');
         }
         if ($region === '') {
-            $errors[] = 'Please select your region.';
+            $errors[] = __('register.error.region');
         }
         if (!array_key_exists($businessStatus, $businessStatuses)) {
-            $errors[] = 'Please choose your business status.';
+            $errors[] = __('register.error.business');
         }
         if (!in_array($preferredLanguage, ['en', 'sw'], true)) {
-            $errors[] = 'Please choose a valid preferred language.';
+            $errors[] = __('register.error.language');
         }
         if (mb_strlen($bio) > 500) {
-            $errors[] = 'Biography should be 500 characters or fewer.';
+            $errors[] = __('profile.error.bio_length');
         }
 
         if ($errors === []) {
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'id' => $uid,
             ]);
             if ($chk->fetch()) {
-                $errors[] = 'That email or phone number is already used by another account.';
+                $errors[] = __('profile.error.duplicate_contact');
             }
         }
 
@@ -138,13 +138,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $pdo->commit();
                 $_SESSION['preferred_language'] = $preferredLanguage;
-                flash_set('success', 'Your profile details were updated successfully.');
+                flash_set('success', __('profile.success_updated'));
                 redirect('user/profile.php');
             } catch (Throwable $e) {
                 if ($pdo->inTransaction()) {
                     $pdo->rollBack();
                 }
-                $errors[] = 'Unable to save profile changes right now. Please try again.';
+                $errors[] = __('profile.error.save_failed');
             }
         }
 
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$mgrid_page_title = 'M-Profile — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.profile');
 require __DIR__ . '/includes/shell_open.php';
 
 $mTierRaw = (string) ($row['m_tier'] ?? '');
@@ -198,7 +198,7 @@ $userStatusKey = match ($userStatus) {
     default => 'profile.status_pending_verification',
 };
 
-$langLabel = ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'Kiswahili' : 'English';
+$langLabel = ((string) ($row['preferred_language'] ?? 'sw')) === 'sw' ? __('lang.ui_sw') : __('lang.ui_en');
 $bizKey = (string) ($row['business_status'] ?? '');
 $bizLabel = $businessStatuses[$bizKey] ?? ($bizKey !== '' ? ucwords(str_replace('_', ' ', $bizKey)) : '—');
 
@@ -229,7 +229,7 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
       <p class="mgrid-profile-hero-kicker" data-i18n="profile.page_kicker">M-Profile</p>
       <h1 id="mprofile-hero-name" class="mgrid-profile-hero-name mgrid-display"><?= e((string) ($row['full_name'] ?? 'Member')) ?></h1>
       <p class="mgrid-profile-hero-mid mgrid-mono-id"><i class="ti ti-fingerprint" aria-hidden="true"></i> <?= e((string) ($row['m_id'] ?? '—')) ?></p>
-      <p class="mgrid-profile-hero-lead"><span data-i18n="<?= e($userStatusKey) ?>"><?= e($userStatusLabel) ?></span> · <span data-i18n="<?= ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span> · <span data-i18n="profile.hero_member_since">Member since</span> <?= e($fmtDate(isset($row['created_at']) ? (string) $row['created_at'] : null)) ?></p>
+      <p class="mgrid-profile-hero-lead"><span data-i18n="<?= e($userStatusKey) ?>"><?= e($userStatusLabel) ?></span> · <span data-i18n="<?= ((string) ($row['preferred_language'] ?? 'sw')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span> · <span data-i18n="profile.hero_member_since">Member since</span> <?= e($fmtDate(isset($row['created_at']) ? (string) $row['created_at'] : null)) ?></p>
     </div>
     <div class="mgrid-profile-hero-aside">
       <div class="mgrid-profile-score-card" data-score-ring="<?= e((string) round($scorePct)) ?>">
@@ -306,7 +306,7 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
             </div>
             <div class="mgrid-profile-field">
               <span class="mgrid-profile-field-label" data-i18n="profile.lbl_pref_lang">Preferred language</span>
-              <span class="mgrid-profile-field-value" data-i18n="<?= ((string) ($row['preferred_language'] ?? 'en')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span>
+              <span class="mgrid-profile-field-value" data-i18n="<?= ((string) ($row['preferred_language'] ?? 'sw')) === 'sw' ? 'lang.sw' : 'lang.en' ?>"><?= e($langLabel) ?></span>
             </div>
           </div>
         </section>
@@ -437,8 +437,8 @@ $ageRangeDisp = trim((string) ($row['age_range'] ?? '')) !== '' ? (string) $row[
       <div class="col-md-6">
         <label class="form-label" for="preferred_language" data-i18n="auth.label_pref_lang">Preferred language</label>
         <select class="form-select" id="preferred_language" name="preferred_language">
-          <option value="en" <?= (string) ($row['preferred_language'] ?? 'en') === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English (default)</option>
-          <option value="sw" <?= (string) ($row['preferred_language'] ?? 'en') === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili (coming)</option>
+          <option value="en" <?= (string) ($row['preferred_language'] ?? 'sw') === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English</option>
+          <option value="sw" <?= (string) ($row['preferred_language'] ?? 'sw') === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili</option>
         </select>
       </div>
       <div class="col-12">

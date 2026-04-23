@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_verify(is_string($_POST['_csrf
     $act = clean_string($_POST['action'] ?? '');
     if ($act === 'mark_all_read') {
         markAllNotificationsReadForUser($uid);
-        flash_set('success', 'All notifications marked as read.');
+        flash_set('success', __('notif.mark_all_read'));
     } elseif ($act === 'mark_read') {
         $nid = (int) ($_POST['notification_id'] ?? 0);
         if ($nid > 0) {
@@ -31,7 +31,7 @@ $offset = ($page - 1) * $per;
 $items = $ready ? notifications_list_for_user($uid, $unreadOnly, $per, $offset) : [];
 $unreadTotal = $ready ? notifications_unread_count($uid) : 0;
 
-$mgrid_page_title = 'Notifications — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.notifications');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

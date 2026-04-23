@@ -23,7 +23,7 @@ if ($ready) {
     $claims = $st->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'My Benefits — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.my_benefits');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -13,7 +13,7 @@ if (!isset($mgrid_layout)) {
     $mgrid_layout = 'public';
 }
 if (!isset($mgrid_page_title)) {
-    $mgrid_page_title = 'M GRID';
+    $mgrid_page_title = function_exists('__') ? __('site.brand') : 'M GRID';
 }
 if (!isset($mgrid_sidebar_context)) {
     $mgrid_sidebar_context = $mgrid_layout === 'admin' ? 'admin' : 'user';
@@ -34,7 +34,7 @@ if (!isset($mgrid_meta_image)) {
     $mgrid_meta_image = asset('images/logos/logo.png');
 }
 
-$mgrid_default_lang = 'en';
+$mgrid_default_lang = 'sw';
 if (session_status() === PHP_SESSION_ACTIVE) {
     $pl = (string) ($_SESSION['preferred_language'] ?? '');
     if ($pl === 'sw' || $pl === 'en') {
@@ -56,7 +56,7 @@ $mgrid_canonical = $mgrid_scheme . '://' . $mgrid_host . ($mgrid_path_only !== '
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php if (in_array($mgrid_layout ?? '', ['user', 'admin'], true)): ?>
+  <?php if (session_status() === PHP_SESSION_ACTIVE): ?>
   <meta name="mgrid-csrf-token" content="<?= e(csrf_token()) ?>" />
   <meta name="mgrid-set-lang-url" content="<?= e(url('set_ui_language.php')) ?>" />
   <?php endif; ?>

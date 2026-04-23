@@ -15,15 +15,15 @@ if (!$isAdmin) {
     $userId = (int) ($actor['user_id'] ?? 0);
 }
 if ($userId <= 0) {
-    flash_set('error', 'Invalid recalculation request.');
+    flash_set('error', __('mscore.recalc.invalid'));
     redirect($isAdmin ? 'admin/admin_mscores.php' : 'user/my_mscore.php');
 }
 
 try {
     calculateUserMScore($userId);
-    flash_set('success', 'M-SCORE recalculated successfully.');
+    flash_set('success', __('mscore.user.ok'));
 } catch (Throwable $e) {
-    flash_set('error', 'Recalculation failed: ' . $e->getMessage());
+    flash_set('error', __('mscore.recalc.fail', ['msg' => $e->getMessage()]));
 }
 
 if ($isAdmin && $from === 'admin_detail') {

@@ -12,7 +12,7 @@ $catFilter = (int) ($_GET['category'] ?? 0);
 $offers = $ready ? mbenefits_list_active_offers($pdo, $catFilter > 0 ? $catFilter : null) : [];
 $cats = $ready ? ($pdo->query('SELECT id, name FROM benefit_categories WHERE is_active = 1 ORDER BY sort_order ASC, name ASC')->fetchAll() ?: []) : [];
 
-$mgrid_page_title = 'M-Benefits — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.benefits');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

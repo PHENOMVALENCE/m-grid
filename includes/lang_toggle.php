@@ -7,7 +7,7 @@ $vanilla = !empty($mgrid_public_vanilla);
 
 if ($vanilla) {
     ?>
-<div class="mgrid-lang-vanilla mgrid-lang-toggle" role="group" aria-label="Language / Lugha">
+<div class="mgrid-lang-vanilla mgrid-lang-toggle" role="group" aria-label="Lugha / Language">
   <input type="radio" name="mgridLang" id="mgridLangEn" value="en" autocomplete="off" />
   <label for="mgridLangEn"><span class="mgrid-lang-label-en">EN</span></label>
   <input type="radio" name="mgridLang" id="mgridLangSw" value="sw" autocomplete="off" />
@@ -17,7 +17,7 @@ if ($vanilla) {
     return;
 }
 ?>
-<div class="btn-group btn-group-sm mgrid-lang-toggle" role="group" aria-label="Language / Lugha">
+<div class="btn-group btn-group-sm mgrid-lang-toggle" role="group" aria-label="Lugha / Language">
   <input type="radio" class="btn-check" name="mgridLang" id="mgridLangEn" value="en" autocomplete="off" />
   <label class="btn btn-outline-secondary px-2" for="mgridLangEn"><span class="mgrid-lang-label-en">EN</span></label>
   <input type="radio" class="btn-check" name="mgridLang" id="mgridLangSw" value="sw" autocomplete="off" />

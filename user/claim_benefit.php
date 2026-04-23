@@ -13,19 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $token = $_POST['_csrf'] ?? null;
 if (!csrf_verify(is_string($token) ? $token : null)) {
-    flash_set('error', 'Invalid session token. Please try again.');
+    flash_set('error', __('benefit.claim.token'));
     redirect('user/benefits.php');
 }
 
 $bid = (int) ($_POST['benefit_offer_id'] ?? 0);
 if (!mbenefits_module_ready($pdo) || $bid <= 0) {
-    flash_set('error', 'Invalid benefit.');
+    flash_set('error', __('benefit.claim.invalid'));
     redirect('user/benefits.php');
 }
 
 $offer = mbenefits_get_offer($pdo, $bid);
 if ($offer === null || (int) $offer['is_active'] !== 1) {
-    flash_set('error', 'This offer is not available.');
+    flash_set('error', __('benefit.claim.unavailable'));
     redirect('user/benefits.php');
 }
 
@@ -50,12 +50,12 @@ try {
     $cid = (int) $pdo->lastInsertId();
     mbenefits_log_claim_change($pdo, $cid, null, $uid, null, 'pending', 'Member submitted claim.');
     $pdo->commit();
-    flash_set('success', 'Claim submitted. Reference: ' . $ref . '. You can track status under My Benefits.');
+    flash_set('success', __('benefit.claim.success', ['ref' => $ref]));
     redirect('user/my_benefits.php');
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Could not submit claim. Please try again.');
+    flash_set('error', __('benefit.claim.fail'));
     redirect('user/benefit_detail.php?id=' . $bid);
 }

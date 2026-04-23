@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/includes/init.php';
 
-$mgrid_page_title = "M GRID (Malkia Grid) — Women's economic identity platform";
+$mgrid_page_title = mgrid_title('title.landing');
 $mgrid_layout = 'public';
 $mgrid_body_extra_class = 'mgrid-landing-premium';
 $mgrid_navbar_premium = true;

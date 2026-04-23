@@ -31,9 +31,9 @@ function auth_user(): ?array
     if (empty($_SESSION['user_id']) || (string) ($_SESSION['account_type'] ?? '') !== 'user') {
         return null;
     }
-    $pref = (string) ($_SESSION['preferred_language'] ?? 'en');
+    $pref = (string) ($_SESSION['preferred_language'] ?? 'sw');
     if (!in_array($pref, ['en', 'sw'], true)) {
-        $pref = 'en';
+        $pref = 'sw';
     }
 
     return [
@@ -63,7 +63,9 @@ function auth_admin(): ?array
         'admin_code' => (string) $_SESSION['admin_code'],
         'email' => (string) ($_SESSION['email'] ?? ''),
         'role' => $role,
-        'preferred_language' => 'en',
+        'preferred_language' => in_array((string) ($_SESSION['preferred_language'] ?? 'sw'), ['en', 'sw'], true)
+            ? (string) $_SESSION['preferred_language']
+            : 'sw',
         'account_type' => 'admin',
     ];
 }
@@ -89,8 +91,8 @@ function auth_login_user(array $row): void
     $_SESSION['m_id'] = (string) $row['m_id'];
     $_SESSION['email'] = (string) $row['email'];
     $_SESSION['phone'] = (string) $row['phone'];
-    $pref = (string) ($row['preferred_language'] ?? 'en');
-    $_SESSION['preferred_language'] = in_array($pref, ['en', 'sw'], true) ? $pref : 'en';
+    $pref = (string) ($row['preferred_language'] ?? 'sw');
+    $_SESSION['preferred_language'] = in_array($pref, ['en', 'sw'], true) ? $pref : 'sw';
     session_regenerate_id(true);
 }
 
@@ -109,7 +111,8 @@ function auth_login_admin(array $row): void
     $_SESSION['admin_code'] = (string) $row['admin_id'];
     $_SESSION['email'] = (string) $row['email'];
     $_SESSION['admin_role'] = $role;
-    $_SESSION['preferred_language'] = 'en';
+    $sessLang = (string) ($_SESSION['preferred_language'] ?? 'sw');
+    $_SESSION['preferred_language'] = in_array($sessLang, ['en', 'sw'], true) ? $sessLang : 'sw';
     session_regenerate_id(true);
 }
 
@@ -126,7 +129,7 @@ function auth_logout(): void
 function auth_require_login(): void
 {
     if (auth_actor() === null) {
-        flash_set('error', 'Please sign in to continue.');
+        flash_set('error', function_exists('__') ? __('flash.sign_in_required') : 'Please sign in to continue.');
         redirect('login.php');
     }
 }
@@ -137,7 +140,7 @@ function auth_require_user(): void
     $u = auth_user();
     if ($u === null) {
         http_response_code(403);
-        echo 'Access denied.';
+        echo function_exists('__') ? __('error.access_denied') : 'Access denied.';
         exit;
     }
 }
@@ -148,7 +151,7 @@ function auth_require_admin(): void
     $a = auth_admin();
     if ($a === null) {
         http_response_code(403);
-        echo 'Access denied.';
+        echo function_exists('__') ? __('error.access_denied') : 'Access denied.';
         exit;
     }
 }
@@ -164,7 +167,7 @@ function auth_require_super_admin(): void
     auth_require_admin();
     if (!auth_is_super_admin()) {
         http_response_code(403);
-        echo 'Super admin access required.';
+        echo function_exists('__') ? __('error.super_admin_required') : 'Super admin access required.';
         exit;
     }
 }

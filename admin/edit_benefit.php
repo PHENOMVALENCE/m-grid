@@ -7,7 +7,7 @@ $pdo = db();
 $id = (int) ($_GET['id'] ?? 0);
 
 if (!mbenefits_module_ready($pdo) || $id <= 0) {
-    flash_set('error', 'Invalid offer.');
+    flash_set('error', __('ben.edit.invalid'));
     redirect('admin/admin_benefits.php');
 }
 
@@ -15,7 +15,7 @@ $st = $pdo->prepare('SELECT * FROM benefit_offers WHERE id = :id LIMIT 1');
 $st->execute(['id' => $id]);
 $offer = $st->fetch();
 if (!$offer) {
-    flash_set('error', 'Offer not found.');
+    flash_set('error', __('ben.edit.not_found'));
     redirect('admin/admin_benefits.php');
 }
 
@@ -25,7 +25,7 @@ $provs = $pdo->query('SELECT id, name FROM benefit_providers ORDER BY name')->fe
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/edit_benefit.php?id=' . $id);
     }
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isActive = isset($_POST['is_active']) ? 1 : 0;
 
     if ($title === '' || $slug === '' || $short === '' || $valueLabel === '' || $validFrom === '' || $validTo === '' || $categoryId <= 0 || $providerId <= 0) {
-        flash_set('error', 'Please fill required fields.');
+        flash_set('error', __('error.fill_required'));
     } else {
         try {
             $up = $pdo->prepare('
@@ -89,17 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'act' => $isActive,
                 'id' => $id,
             ]);
-            flash_set('success', 'Offer updated.');
+            flash_set('success', __('ben.offer.updated'));
             redirect('admin/admin_benefits.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Could not save (duplicate slug?).');
+            flash_set('error', __('error.save_duplicate_slug'));
         }
     }
     $st->execute(['id' => $id]);
     $offer = $st->fetch() ?: $offer;
 }
 
-$mgrid_page_title = 'Edit benefit — Admin';
+$mgrid_page_title = mgrid_title('title.edit_benefit');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -35,7 +35,7 @@ function ot_dt_local(?string $mysqlDt): string
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/edit_training.php?id=' . $id);
     }
     $title = clean_string($_POST['title'] ?? '');
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $arch = isset($_POST['is_archived']) ? 1 : 0;
 
     if ($title === '' || $slug === '' || $prov === '' || $desc === '') {
-        flash_set('error', 'Required fields missing.');
+        flash_set('error', __('error.required_fields'));
     } else {
         try {
             $pdo->prepare('
@@ -92,17 +92,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'arch' => $arch,
                 'id' => $id,
             ]);
-            flash_set('success', 'Saved.');
+            flash_set('success', __('admin.generic.saved'));
             redirect('admin/admin_trainings.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Save failed.');
+            flash_set('error', __('error.save_failed'));
         }
     }
     $st->execute(['id' => $id]);
     $p = $st->fetch() ?: $p;
 }
 
-$mgrid_page_title = 'Edit training — Admin';
+$mgrid_page_title = mgrid_title('title.edit_training');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

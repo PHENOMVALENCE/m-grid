@@ -19,7 +19,7 @@ $recentStmt = $pdo->prepare('
 $recentStmt->execute(['uid' => $uid]);
 $recent = $recentStmt->fetchAll() ?: [];
 
-$mgrid_page_title = 'M-FUND Overview — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.funding_overview');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

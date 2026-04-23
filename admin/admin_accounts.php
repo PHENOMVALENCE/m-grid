@@ -36,19 +36,19 @@ $adminIdAllocateNext = static function (PDO $pdoConn): string {
 };
 
 $roleLabel = static function (string $role): string {
-    return $role === 'super_admin' ? 'Super administrator' : 'Administrator';
+    return $role === 'super_admin' ? __('admin.role.super') : __('admin.role.admin');
 };
 
 /** Short label for dense table cells (full label in `title`). */
 $roleLabelShort = static function (string $role): string {
-    return $role === 'super_admin' ? 'Super admin' : 'Admin';
+    return $role === 'super_admin' ? __('admin.role.super_short') : __('admin.role.admin_short');
 };
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$isSuperAdmin) {
-        $errors[] = 'Only super administrators can change admin accounts.';
+        $errors[] = __('admin_accounts.err_super_only');
     } elseif (!csrf_verify($_POST['_csrf'] ?? null)) {
-        $errors[] = 'Invalid security token. Please refresh and try again.';
+        $errors[] = __('settings.error.token');
     } else {
         $action = clean_string($_POST['action'] ?? '');
 
@@ -72,49 +72,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             if (mb_strlen($fullName) < 3) {
-                $errors[] = 'Full name should be at least 3 characters.';
+                $errors[] = __('admin_accounts.err_name_short');
             }
             if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = 'Provide a valid email address.';
+                $errors[] = __('admin_accounts.err_email_invalid');
             }
             if (!in_array($status, ['active', 'disabled'], true)) {
-                $errors[] = 'Invalid status selected.';
+                $errors[] = __('admin_accounts.err_status_invalid');
             }
             if ($phone === '' || mb_strlen($phone) < 8) {
-                $errors[] = 'Work phone is required (at least 8 characters, including country code if applicable).';
+                $errors[] = __('admin_accounts.err_phone_required');
             } elseif (mb_strlen($phone) > 32) {
-                $errors[] = 'Phone is too long.';
+                $errors[] = __('admin_accounts.err_phone_long');
             } else {
                 $digitsOnly = preg_replace('/\D+/', '', $phone);
                 if (strlen($digitsOnly) < 8) {
-                    $errors[] = 'Enter a valid phone number with at least 8 digits.';
+                    $errors[] = __('admin_accounts.err_phone_digits');
                 }
             }
             if (mb_strlen($title) < 2) {
-                $errors[] = 'Job title is required (at least 2 characters) for directory and audit records.';
+                $errors[] = __('admin_accounts.err_title_required');
             } elseif (mb_strlen($title) > 120) {
-                $errors[] = 'Title is too long.';
+                $errors[] = __('admin_accounts.err_title_long');
             }
             if (mb_strlen($department) < 2) {
-                $errors[] = 'Department or unit is required (at least 2 characters).';
+                $errors[] = __('admin_accounts.err_dept_required');
             } elseif (mb_strlen($department) > 120) {
-                $errors[] = 'Department is too long.';
+                $errors[] = __('admin_accounts.err_dept_long');
             }
             if (mb_strlen($password) < 8) {
-                $errors[] = 'Password should be at least 8 characters.';
+                $errors[] = __('admin_accounts.err_password_short');
             }
             if ($password !== $passwordConfirm) {
-                $errors[] = 'Passwords do not match.';
+                $errors[] = __('admin_accounts.err_password_mismatch');
             }
             if ((string) ($_POST['create_acknowledged'] ?? '') !== '1') {
-                $errors[] = 'You must confirm that this person is authorized to access the admin console.';
+                $errors[] = __('admin_accounts.err_ack_required');
             }
 
             if ($errors === []) {
                 $chk = $pdo->prepare('SELECT id FROM admins WHERE email = :email LIMIT 1');
                 $chk->execute(['email' => $email]);
                 if ($chk->fetch()) {
-                    $errors[] = 'An admin with this email already exists.';
+                    $errors[] = __('admin_accounts.err_email_exists');
                 }
             }
 
@@ -138,13 +138,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'status' => $status,
                     ]);
                     $pdo->commit();
-                    flash_set('success', 'Administrator account created. You can grant super admin access later from the directory if needed.');
+                    flash_set('success', __('admin_accounts.flash_created'));
                     redirect('admin/admin_accounts.php');
                 } catch (Throwable $e) {
                     if ($pdo->inTransaction()) {
                         $pdo->rollBack();
                     }
-                    $errors[] = 'Unable to create the account right now.';
+                    $errors[] = __('admin_accounts.err_create_failed');
                 }
             }
         } elseif ($action === 'update_admin') {
@@ -159,31 +159,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newPassword = (string) ($_POST['new_password'] ?? '');
 
             if ($targetId <= 0) {
-                $errors[] = 'Invalid admin selected.';
+                $errors[] = __('admin_accounts.err_invalid_admin');
             }
             if (mb_strlen($fullName) < 3) {
-                $errors[] = 'Full name should be at least 3 characters.';
+                $errors[] = __('admin_accounts.err_name_short');
             }
             if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errors[] = 'Provide a valid email address.';
+                $errors[] = __('admin_accounts.err_email_invalid');
             }
             if ($phone !== '' && mb_strlen($phone) > 32) {
-                $errors[] = 'Phone is too long.';
+                $errors[] = __('admin_accounts.err_phone_long');
             }
             if ($title !== '' && mb_strlen($title) > 120) {
-                $errors[] = 'Title is too long.';
+                $errors[] = __('admin_accounts.err_title_long');
             }
             if ($department !== '' && mb_strlen($department) > 120) {
-                $errors[] = 'Department is too long.';
+                $errors[] = __('admin_accounts.err_dept_long');
             }
             if (!in_array($role, ['admin', 'super_admin'], true)) {
-                $errors[] = 'Invalid role selected.';
+                $errors[] = __('admin_accounts.err_role_invalid');
             }
             if (!in_array($status, ['active', 'disabled'], true)) {
-                $errors[] = 'Invalid status selected.';
+                $errors[] = __('admin_accounts.err_status_invalid');
             }
             if ($newPassword !== '' && mb_strlen($newPassword) < 8) {
-                $errors[] = 'New password should be at least 8 characters.';
+                $errors[] = __('admin_accounts.err_password_new_short');
             }
 
             $target = null;
@@ -192,21 +192,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stTarget->execute(['id' => $targetId]);
                 $target = $stTarget->fetch();
                 if (!$target) {
-                    $errors[] = 'That administrator was not found.';
+                    $errors[] = __('admin_accounts.err_admin_not_found');
                 }
             }
 
             if ($errors === [] && $target) {
                 $origRole = (string) ($target['role'] ?? '');
                 if ($targetId !== $actorId && $origRole === 'super_admin') {
-                    $errors[] = 'Another super administrator must sign in to update that account.';
+                    $errors[] = __('admin_accounts.err_super_peer');
                 }
             }
 
             if ($errors === [] && $target) {
                 $origRole = (string) ($target['role'] ?? '');
                 if ($origRole === 'admin' && $role === 'super_admin' && (string) ($_POST['confirm_super_promotion'] ?? '') !== '1') {
-                    $errors[] = 'Confirm super admin promotion using the checkbox below.';
+                    $errors[] = __('admin_accounts.err_promo_checkbox');
                 }
             }
 
@@ -214,19 +214,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $chk = $pdo->prepare('SELECT id FROM admins WHERE email = :email AND id <> :id LIMIT 1');
                 $chk->execute(['email' => $email, 'id' => $targetId]);
                 if ($chk->fetch()) {
-                    $errors[] = 'Another admin already uses this email.';
+                    $errors[] = __('admin_accounts.err_email_taken');
                 }
             }
 
             if ($errors === [] && $target) {
                 if ($targetId === $actorId && $status !== 'active') {
-                    $errors[] = 'You cannot disable your own account while signed in.';
+                    $errors[] = __('admin_accounts.err_disable_self');
                 }
 
                 if ((string) $target['role'] === 'super_admin' && $role === 'admin') {
                     $countSuper = (int) ($pdo->query("SELECT COUNT(*) FROM admins WHERE role = 'super_admin'")->fetchColumn() ?: 0);
                     if ($countSuper <= 1) {
-                        $errors[] = 'At least one super administrator must remain.';
+                        $errors[] = __('admin_accounts.err_last_super');
                     }
                 }
             }
@@ -281,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'id' => $targetId,
                     ]);
                 }
-                flash_set('success', 'Administrator updated.');
+                flash_set('success', __('admin_accounts.flash_updated'));
                 redirect('admin/admin_accounts.php?edit=' . $targetId . '#admin-manage-panel');
             }
         } elseif ($action === 'delete_admin') {
@@ -289,7 +289,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $typed = strtolower(trim((string) ($_POST['delete_confirm_email'] ?? '')));
 
             if ($targetId <= 0) {
-                $errors[] = 'Invalid admin selected.';
+                $errors[] = __('admin_accounts.err_invalid_admin');
             }
 
             $target = null;
@@ -298,20 +298,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stTarget->execute(['id' => $targetId]);
                 $target = $stTarget->fetch();
                 if (!$target) {
-                    $errors[] = 'That administrator was not found.';
+                    $errors[] = __('admin_accounts.err_admin_not_found');
                 }
             }
 
             if ($errors === [] && $target) {
                 if ($targetId === $actorId) {
-                    $errors[] = 'You cannot delete your own account.';
+                    $errors[] = __('admin_accounts.err_delete_self');
                 }
                 if ((string) ($target['role'] ?? '') === 'super_admin') {
-                    $errors[] = 'Super administrator accounts cannot be deleted from here. Demote to administrator first if appropriate.';
+                    $errors[] = __('admin_accounts.err_delete_super');
                 }
                 $want = strtolower((string) ($target['email'] ?? ''));
                 if ($typed === '' || $typed !== $want) {
-                    $errors[] = 'Type the account email exactly to confirm removal.';
+                    $errors[] = __('admin_accounts.err_delete_confirm_email');
                 }
             }
 
@@ -320,13 +320,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $del = $pdo->prepare('DELETE FROM admins WHERE id = :id AND role = :role LIMIT 1');
                     $del->execute(['id' => $targetId, 'role' => 'admin']);
                     if ($del->rowCount() !== 1) {
-                        $errors[] = 'Removal was not applied.';
+                        $errors[] = __('admin_accounts.err_delete_failed');
                     } else {
-                        flash_set('success', 'Administrator account removed.');
+                        flash_set('success', __('admin_accounts.flash_removed'));
                         redirect('admin/admin_accounts.php');
                     }
                 } catch (Throwable $e) {
-                    $errors[] = 'This account is linked to platform history (reviews, disbursements, or announcements) and cannot be deleted. Disable it instead.';
+                    $errors[] = __('admin_accounts.err_delete_history');
                 }
             }
         }
@@ -371,7 +371,7 @@ $peerSuperLocked = $selectedAdmin !== null
     && (string) ($selectedAdmin['role'] ?? '') === 'super_admin'
     && (int) ($selectedAdmin['id'] ?? 0) !== $actorId;
 
-$mgrid_page_title = 'Administration team — M GRID';
+$mgrid_page_title = mgrid_title('title.admin_accounts');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

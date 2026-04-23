@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $token = $_POST['_csrf'] ?? null;
 if (!csrf_verify(is_string($token) ? $token : null)) {
-    flash_set('error', 'Invalid token.');
+    flash_set('error', __('settings.error.token'));
     redirect('admin/admin_training_registrations.php');
 }
 
@@ -34,7 +34,7 @@ if (!trainings_module_ready($pdo) || $rid <= 0
     || !in_array($status, $validReg, true)
     || !in_array($part, $validPart, true)
     || !in_array($cert, $validCert, true)) {
-    flash_set('error', 'Invalid data.');
+    flash_set('error', __('train.admin.bad_data'));
     redirect('admin/admin_training_registrations.php');
 }
 
@@ -47,7 +47,7 @@ $st = $pdo->prepare('
 $st->execute(['id' => $rid]);
 $reg = $st->fetch();
 if (!$reg) {
-    flash_set('error', 'Registration not found.');
+    flash_set('error', __('train.admin.reg_not_found'));
     redirect('admin/admin_training_registrations.php');
 }
 
@@ -89,7 +89,7 @@ try {
 
     $pdo->commit();
     ot_sync_training_registration_to_mscore($pdo, $rid);
-    flash_set('success', 'Registration updated.');
+    flash_set('success', __('train.admin.updated'));
 
     if ($oldSt !== $status || $oldPart !== $part || $oldCert !== $cert) {
         $uidT = (int) $reg['user_id'];
@@ -112,7 +112,7 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Update failed.');
+    flash_set('error', __('train.admin.update_failed'));
 }
 
 redirect('admin/admin_training_registrations.php');

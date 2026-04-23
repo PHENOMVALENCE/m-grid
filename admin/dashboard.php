@@ -62,7 +62,7 @@ if ($docTableExists) {
     ")->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Admin dashboard — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.admin_dashboard');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

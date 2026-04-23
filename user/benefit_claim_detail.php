@@ -9,7 +9,7 @@ $uid = (int) auth_user()['user_id'];
 $id = (int) ($_GET['id'] ?? 0);
 
 if (!mbenefits_module_ready($pdo) || $id <= 0) {
-    flash_set('error', 'Claim not found.');
+    flash_set('error', __('benefit.claim_detail.not_found'));
     redirect('user/my_benefits.php');
 }
 
@@ -24,7 +24,7 @@ $st = $pdo->prepare('
 $st->execute(['id' => $id, 'u' => $uid]);
 $claim = $st->fetch();
 if (!$claim) {
-    flash_set('error', 'Claim not found.');
+    flash_set('error', __('benefit.claim_detail.not_found'));
     redirect('user/my_benefits.php');
 }
 
@@ -38,7 +38,7 @@ $logs = $pdo->prepare('
 $logs->execute(['cid' => $id]);
 $logRows = $logs->fetchAll() ?: [];
 
-$mgrid_page_title = 'Claim ' . (string) $claim['claim_reference'] . ' — M-Benefits';
+$mgrid_page_title = mgrid_title('title.claim_ref', ['ref' => (string) $claim['claim_reference']]);
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -8,7 +8,7 @@ $pdo = db();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/admin_trainings.php');
     }
     $action = clean_string($_POST['action'] ?? '');
@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($pid > 0 && trainings_module_ready($pdo)) {
         if ($action === 'toggle_active') {
             $pdo->prepare('UPDATE training_programs SET is_active = 1 - is_active WHERE id = :id LIMIT 1')->execute(['id' => $pid]);
-            flash_set('success', 'Updated.');
+            flash_set('success', __('admin.generic.updated'));
         } elseif ($action === 'toggle_archive') {
             $pdo->prepare('UPDATE training_programs SET is_archived = 1 - is_archived WHERE id = :id LIMIT 1')->execute(['id' => $pid]);
-            flash_set('success', 'Archive updated.');
+            flash_set('success', __('admin.trainings.archive_updated'));
         }
     }
     redirect('admin/admin_trainings.php');
@@ -37,7 +37,7 @@ if ($ready) {
     $rows = $pdo->query($sql)->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Trainings — Admin';
+$mgrid_page_title = mgrid_title('title.admin_trainings');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

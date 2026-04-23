@@ -20,7 +20,7 @@ $docBreak = getDocumentStatusBreakdown($pdo);
 $trainMonth = getTrainingParticipationByMonth($pdo, null, null);
 $benCat = $b['by_category'] ?? [];
 
-$mgrid_page_title = 'Analytics — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.admin_analytics');
 require __DIR__ . '/includes/shell_open.php';
 
 $labelsGrowth = array_column($growth, 'ym');

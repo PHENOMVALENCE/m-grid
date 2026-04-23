@@ -20,7 +20,7 @@ $b = getBenefitsStats($pdo, $dff, $dtt);
 $o = getOpportunityEngagementStats($pdo, $dff, $dtt);
 $pr = getPartnerRequestStats($pdo);
 
-$mgrid_page_title = 'Reports — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.admin_reports');
 require __DIR__ . '/includes/shell_open.php';
 
 $exportBase = function (string $report) use ($df, $dt): string {

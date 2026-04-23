@@ -62,7 +62,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   status ENUM('active', 'suspended', 'pending') NOT NULL DEFAULT 'pending',
-  preferred_language VARCHAR(16) NOT NULL DEFAULT 'en',
+  preferred_language VARCHAR(16) NOT NULL DEFAULT 'sw',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   UNIQUE KEY uq_users_m_id (m_id),

@@ -31,7 +31,7 @@ $cats = $ready
     ? ($pdo->query('SELECT id, name FROM opportunity_categories WHERE is_active = 1 ORDER BY sort_order, name')->fetchAll() ?: [])
     : [];
 
-$mgrid_page_title = 'Opportunities — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.opportunities');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

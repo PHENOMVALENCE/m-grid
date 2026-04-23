@@ -11,11 +11,11 @@ $docId = (int) ($_GET['id'] ?? 0);
 
 $doc = $docId > 0 ? mgrid_document_find_for_user($pdo, $docId, $uid) : null;
 if ($doc === null) {
-    flash_set('error', 'Document not found.');
+    flash_set('error', __('doc.not_found'));
     redirect('user/my_documents.php');
 }
 if (!mgrid_document_can_reupload((string) $doc['status'])) {
-    flash_set('error', 'This document cannot be re-uploaded in its current status.');
+    flash_set('error', __('doc.reupload.blocked'));
     redirect('user/my_documents.php');
 }
 
@@ -23,7 +23,7 @@ $typeStmt = $pdo->prepare('SELECT id, name FROM document_types WHERE id = :id LI
 $typeStmt->execute(['id' => (int) $doc['document_type_id']]);
 $type = $typeStmt->fetch();
 
-$mgrid_page_title = 'Re-upload Document — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.reupload_doc');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

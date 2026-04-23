@@ -103,7 +103,7 @@
       "landing.benefit_profile": "A private M-Profile dashboard",
       "landing.benefit_score": "A transparent path toward M-Score and programs",
       "landing.benefit_lang":
-        "English interface today, with Kiswahili content planned as the programme grows",
+        "Kiswahili first — switch to English anytime with the toggle in the header.",
       "about.title": "About Malkia Grid",
       "about.lead":
         "Malkia Grid is built for national scale: clear governance, secure sessions, and a single credible profile you can carry into partnerships and programmes.",
@@ -161,8 +161,8 @@
       "auth.label_age": "Age range",
       "auth.label_business": "Business status",
       "auth.label_pref_lang": "Preferred language",
-      "auth.opt_lang_en": "English (default)",
-      "auth.opt_lang_sw": "Kiswahili (coming)",
+      "auth.opt_lang_en": "English",
+      "auth.opt_lang_sw": "Kiswahili",
       "auth.label_pw": "Password",
       "auth.label_pw_confirm": "Confirm password",
       "auth.submit_register": "Create account & receive M-ID",
@@ -264,6 +264,26 @@
       "profile.form_save": "Save changes",
       "profile.opt_choose": "Choose...",
       "profile.hero_member_since": "Member since",
+      "register.help_full_name": "Use your everyday name as on your ID if you have one.",
+      "register.help_phone": "Use the phone number you use every day.",
+      "register.help_email": "We will send important updates here.",
+      "admin.sec_dashboard": "Dashboard",
+      "admin.sec_members": "Members",
+      "admin.sec_platform": "Platform",
+      "admin.sec_system": "System",
+      "admin.link_mscore": "M-SCORE monitoring",
+      "admin.link_documents": "Document verification",
+      "admin.link_pending": "Pending verification",
+      "admin.link_score_mgmt": "M-Score management",
+      "admin.link_partners": "Partners",
+      "admin.link_loans": "Loan applications",
+      "admin.link_benefits": "M-Benefits",
+      "admin.link_opportunities": "Opportunities",
+      "admin.link_trainings": "Trainings",
+      "admin.link_announcements": "Announcements",
+      "admin.link_analytics": "Analytics",
+      "admin.link_reports": "Reports",
+      "admin.link_team": "Administration team",
     },
     sw: {
       "lang.en": "English",
@@ -286,19 +306,19 @@
       "nav.brand_sub": "Wanawake wakiinuka kwa nguvu na fursa",
       "nav.sign_in": "Ingia",
       "nav.register_mid": "Jisajili kwa M-ID",
-      "nav.dashboard": "Dashibodi",
-      "nav.m_profile": "Wasifu wa M",
+      "nav.dashboard": "Nyumbani",
+      "nav.m_profile": "Taarifa zako",
       "nav.settings": "Mipangilio",
       "nav.members": "Wanachama",
       "nav.sign_out": "Toka",
       "topbar.signed_in_as": "Umeingia kama",
       "sidebar.administration": "Utawala",
       "sidebar.your_journey": "Safari yako",
-      "sidebar.dashboard": "Dashibodi",
+      "sidebar.dashboard": "Nyumbani",
       "sidebar.members": "Wanachama",
-      "sidebar.m_profile": "Wasifu wa M",
+      "sidebar.m_profile": "Taarifa zako",
       "sidebar.settings": "Mipangilio",
-      "sidebar.id_verification": "Uhakiki wa kitambulisho",
+      "sidebar.id_verification": "Hakiki kitambulisho",
       "sidebar.coming_soon": "Inakuja hivi karibuni",
       "sidebar.documents": "Nyaraka",
       "sidebar.m_benefits": "Faida za M",
@@ -351,7 +371,7 @@
       "landing.partner_meta_health": "Programu za afya na ustawi kwa ishara za wasifu zinazohifadhi faragha.",
       "landing.partner_meta_skills": "Mafunzo, vyeti, na msaada wa biashara uliopangwa kwa safari yako.",
       "landing.partner_meta_media": "Ufikiaji na hadithi zinazoheshimu idhini na viwango vya programu.",
-      "landing.dash_console": "Dashibodi ya mwanachama",
+      "landing.dash_console": "Ukurasa wa mwanachama",
       "landing.dash_live": "Hai",
       "landing.dash_profile_label": "Wasifu",
       "landing.dash_completion": "Ukamilishaji",
@@ -363,7 +383,7 @@
       "landing.benefit_profile": "Dashibodi ya faragha ya Wasifu wa M",
       "landing.benefit_score": "Njia wazi kuelekea M-Score na programu",
       "landing.benefit_lang":
-        "Kiolesura cha Kiingereza leo, na maudhui ya Kiswahili yanapangwa programu inapoendelea",
+        "Kiswahili ndicho chaguomsingi — geuza Kiingereza wakati wowote kwa kifungo juu.",
       "about.title": "Kuhusu Malkia Grid",
       "about.lead":
         "Malkia Grid imejengwa kwa kiwango cha taifa: utawala wazi, vikao salama, na wasifu mmoja wa kuaminika unaoweza kubeba kwenye ushirika na programu.",
@@ -413,15 +433,15 @@
       "auth.register_title": "Fungua akaunti ya M-ID",
       "auth.register_lead": "Toa maelezo sahihi. M-ID yako hutolewa kiotomatiki baada ya kuwasilisha.",
       "auth.label_full_name": "Jina kamili",
-      "auth.label_phone": "Simu",
+      "auth.label_phone": "Namba ya simu",
       "auth.label_email": "Barua pepe",
       "auth.label_region": "Mkoa",
       "auth.label_dob": "Tarehe ya kuzaliwa (si lazima ikiwa umri umeonyeshwa)",
       "auth.label_age": "Kundi la umri",
       "auth.label_business": "Hali ya biashara",
       "auth.label_pref_lang": "Lugha unayopendelea",
-      "auth.opt_lang_en": "Kiingereza (msingi)",
-      "auth.opt_lang_sw": "Kiswahili (kinakuja)",
+      "auth.opt_lang_en": "Kiingereza",
+      "auth.opt_lang_sw": "Kiswahili",
       "auth.label_pw": "Nenosiri",
       "auth.label_pw_confirm": "Thibitisha nenosiri",
       "auth.submit_register": "Fungua akaunti na pokea M-ID",
@@ -440,14 +460,14 @@
       "dash.stat_member_label": "Mwanachama tangu",
       "topbar.role_member": "Mwanachama",
       "topbar.role_admin": "Msimamizi",
-      "sidebar.section_overview": "Muhtasari",
+      "sidebar.section_overview": "Nyumbani",
       "sidebar.section_identity": "Utambulisho",
       "sidebar.section_opportunities": "Fursa",
       "sidebar.section_account": "Akaunti",
-      "sidebar.m_score": "M-SCORE",
+      "sidebar.m_score": "Kiwango chako",
       "sidebar.opportunities_link": "Fursa",
       "sidebar.trainings": "Mafunzo",
-      "sidebar.m_fund": "M-Fund (Mikopo)",
+      "sidebar.m_fund": "Mikopo",
       "sidebar.m_partners": "M-Washirika",
       "sidebar.notifications": "Arifa",
       "dash.stat_completion_label": "Ukamilishaji wa wasifu",
@@ -523,6 +543,26 @@
       "profile.form_save": "Hifadhi mabadiliko",
       "profile.opt_choose": "Chagua...",
       "profile.hero_member_since": "Mwanachama tangu",
+      "register.help_full_name": "Tumia jina unalotumia kila siku; kama una kitambulisho, liwe sawa nacho.",
+      "register.help_phone": "Tumia namba ya simu unayotumia kila siku.",
+      "register.help_email": "Tutatumia anwani hii kwa taarifa muhimu.",
+      "admin.sec_dashboard": "Nyumbani",
+      "admin.sec_members": "Wanachama",
+      "admin.sec_platform": "Jukwaa",
+      "admin.sec_system": "Mfumo",
+      "admin.link_mscore": "Ufuatiliaji wa M-SCORE",
+      "admin.link_documents": "Hakiki nyaraka",
+      "admin.link_pending": "Inasubiri uhakiki",
+      "admin.link_score_mgmt": "Usimamizi wa M-Score",
+      "admin.link_partners": "Washirika",
+      "admin.link_loans": "Maombi ya mikopo",
+      "admin.link_benefits": "Manufaa (M-Benefits)",
+      "admin.link_opportunities": "Fursa",
+      "admin.link_trainings": "Mafunzo",
+      "admin.link_announcements": "Matangazo",
+      "admin.link_analytics": "Takwimu",
+      "admin.link_reports": "Ripoti",
+      "admin.link_team": "Timu ya usimamizi",
     },
   };
 
@@ -545,7 +585,7 @@
         'A dashboard that grows with <strong>documents, offers, and verification</strong>.',
       "benefits.li3_html": 'Future <strong>M-Score</strong> tiering with transparent milestones.',
       "benefits.li4_html":
-        '<strong>English</strong> as the primary experience today; <strong>Kiswahili</strong> layers in as translations and modules expand.',
+        '<strong>Kiswahili</strong> is the default experience; <strong>English</strong> is one click away for anyone who prefers it.',
     },
     sw: {
       "footer.brand_lead":
@@ -557,7 +597,7 @@
       "faq.a1":
         "M-ID ni kitambulisho chako cha kipekee cha Malkia Grid (kwa mfano <code>M-2026-000001</code>). Hutengenezwa kiotomatiki, harihariwi, na hubaki nawe programu zinapoendelea.",
       "faq.a2":
-        "M-Score ni safu ya uaminifu inayopangwa. Leo utaona kishika nafasi kwenye dashibodi yako wakati mbinu na utawala unakamilishwa.",
+        "M-Score ni safu ya uaminifu inayopangwa. Leo utaona kishika nafasi kwenye ukurasa wako wakati mbinu na utawala vinakamilika.",
       "faq.a3":
         "Unaingia kwenye Wasifu wa M wako mwenyewe. Wasimamizi wanaweza kuona maoni ya uendeshaji kwa msaada na uzingatifu wa sheria — daima ndani ya majukumu yaliyowekwa na programu.",
       "benefits.li1_html": '<strong>M-ID</strong> moja unayoweza kutaja katika programu mbalimbali.',
@@ -565,16 +605,19 @@
         'Dashibodi inayokua na <strong>nyaraka, ofa, na uhakiki</strong>.',
       "benefits.li3_html": 'Hatua za <strong>M-Score</strong> zijazo kwa uwazi.',
       "benefits.li4_html":
-        '<strong>Kiingereza</strong> kinaongoza leo; <strong>Kiswahili</strong> kinajumuishwa unapoendelea tafsiri na moduli.',
+        '<strong>Kiswahili</strong> ndicho msingi; <strong>Kiingereza</strong> kipo kitufe kimoja tu ukipenda.',
     },
   };
 
   function pick(lang, key, table) {
-    const L = table[lang] || table.en;
-    if (L[key]) {
-      return L[key];
+    const order = lang === "en" ? ["en", "sw"] : ["sw", "en"];
+    for (let i = 0; i < order.length; i++) {
+      const pack = table[order[i]];
+      if (pack && pack[key]) {
+        return pack[key];
+      }
     }
-    return table.en[key] || "";
+    return "";
   }
 
   function t(lang, key) {
@@ -587,7 +630,7 @@
 
   function applyLanguage(lang) {
     if (!MGRID_STRINGS[lang]) {
-      lang = "en";
+      lang = "sw";
     }
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       const key = el.getAttribute("data-i18n");
@@ -662,7 +705,7 @@
       stored = null;
     }
     const appShell = document.body && document.body.classList.contains("mgrid-app");
-    let initial = "en";
+    let initial = "sw";
     if (fromDoc === "sw" || fromDoc === "en") {
       initial = fromDoc;
     }

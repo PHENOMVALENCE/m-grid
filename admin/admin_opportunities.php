@@ -8,7 +8,7 @@ $pdo = db();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/admin_opportunities.php');
     }
     $action = clean_string($_POST['action'] ?? '');
@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($oid > 0 && opportunities_module_ready($pdo)) {
         if ($action === 'toggle_active') {
             $pdo->prepare('UPDATE opportunities SET is_active = 1 - is_active WHERE id = :id LIMIT 1')->execute(['id' => $oid]);
-            flash_set('success', 'Updated.');
+            flash_set('success', __('admin.generic.updated'));
         } elseif ($action === 'toggle_archive') {
             $pdo->prepare('UPDATE opportunities SET is_archived = 1 - is_archived WHERE id = :id LIMIT 1')->execute(['id' => $oid]);
-            flash_set('success', 'Archive flag updated.');
+            flash_set('success', __('admin.opp.archive_updated'));
         }
     }
     redirect('admin/admin_opportunities.php');
@@ -41,7 +41,7 @@ if ($ready) {
     $rows = $pdo->query($sql)->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Opportunities — Admin';
+$mgrid_page_title = mgrid_title('title.admin_opportunities');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

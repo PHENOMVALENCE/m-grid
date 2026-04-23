@@ -7,7 +7,7 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 $userId = (int) ($_GET['user_id'] ?? 0);
 if ($userId <= 0) {
-    flash_set('error', 'Invalid user.');
+    flash_set('error', __('admin.user.invalid'));
     redirect('admin/admin_mscores.php');
 }
 
@@ -15,7 +15,7 @@ $userStmt = $pdo->prepare('SELECT id, full_name, m_id, email FROM users WHERE id
 $userStmt->execute(['id' => $userId]);
 $user = $userStmt->fetch();
 if (!$user) {
-    flash_set('error', 'User not found.');
+    flash_set('error', __('admin.user.not_found'));
     redirect('admin/admin_mscores.php');
 }
 
@@ -34,7 +34,7 @@ $histStmt = $pdo->prepare('
 $histStmt->execute(['uid' => $userId]);
 $history = $histStmt->fetchAll() ?: [];
 
-$mgrid_page_title = 'M-SCORE Detail — Admin';
+$mgrid_page_title = mgrid_title('title.admin_mscore_detail');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/includes/init_admin.php';
 
-$mgrid_page_title = 'Platform Settings — M GRID';
+$mgrid_page_title = mgrid_title('title.admin_platform_settings');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

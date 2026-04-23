@@ -39,7 +39,7 @@ if ($ready) {
     $rows = $st->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Training registrations — Admin';
+$mgrid_page_title = mgrid_title('title.admin_training_reg');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -11,18 +11,18 @@ $score = mscore_current_for_user($uid);
 if ($score === null || isset($_GET['recalculate'])) {
     try {
         $score = calculateUserMScore($uid);
-        flash_set('success', 'M-SCORE recalculated successfully.');
+        flash_set('success', __('mscore.user.ok'));
         if (isset($_GET['recalculate'])) {
             redirect('user/my_mscore.php');
         }
     } catch (Throwable $e) {
         if ($score === null) {
-            flash_set('error', 'M-SCORE could not be calculated yet: ' . $e->getMessage());
+            flash_set('error', __('mscore.user.fail', ['msg' => $e->getMessage()]));
         }
     }
 }
 
-$mgrid_page_title = 'My M-SCORE — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.mscore');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

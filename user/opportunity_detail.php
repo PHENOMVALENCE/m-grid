@@ -9,13 +9,13 @@ $uid = (int) auth_user()['user_id'];
 $id = (int) ($_GET['id'] ?? 0);
 
 if (!opportunities_module_ready($pdo) || $id <= 0) {
-    flash_set('error', 'Listing not found.');
+    flash_set('error', __('opp.detail.not_found'));
     redirect('user/opportunities.php');
 }
 
 $o = opportunities_get_by_id($pdo, $id);
 if ($o === null || (int) $o['is_archived'] === 1 || (int) ($o['is_active'] ?? 0) !== 1) {
-    flash_set('error', 'Listing not found.');
+    flash_set('error', __('opp.detail.not_found'));
     redirect('user/opportunities.php');
 }
 
@@ -27,7 +27,7 @@ $canApply = (int) ($o['is_active'] ?? 0) === 1
 
 $hasExternal = trim((string) ($o['external_link'] ?? '')) !== '';
 
-$mgrid_page_title = (string) $o['title'] . ' — Opportunities';
+$mgrid_page_title = (string) $o['title'] . ' — ' . __('site.brand');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

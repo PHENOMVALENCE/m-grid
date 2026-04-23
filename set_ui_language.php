@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Persists UI language (EN/SW) for logged-in members or admins.
+ * Persists UI language (EN/SW) in session for everyone; updates DB for signed-in members.
  * POST JSON: { "lang": "en"|"sw", "_csrf": "..." }
  */
 
@@ -19,11 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $user = auth_user();
 $admin = auth_admin();
-if ($user === null && $admin === null) {
-    http_response_code(403);
-    echo json_encode(['ok' => false, 'error' => 'Not signed in']);
-    exit;
-}
 
 $raw = (string) file_get_contents('php://input');
 $body = $raw !== '' ? json_decode($raw, true) : null;

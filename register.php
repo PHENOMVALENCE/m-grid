@@ -18,7 +18,7 @@ $form = [
     'date_of_birth' => '',
     'age_range' => '',
     'business_status' => '',
-    'preferred_language' => 'en',
+    'preferred_language' => 'sw',
 ];
 
 $regions = [
@@ -30,7 +30,7 @@ $regions = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify($_POST['_csrf'] ?? null)) {
-        $errors[] = 'Invalid security token. Please try again.';
+        $errors[] = __('register.error.token');
     } else {
         foreach (array_keys($form) as $k) {
             if (isset($_POST[$k])) {
@@ -41,40 +41,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $confirm = (string) ($_POST['confirm_password'] ?? '');
 
         if ($form['full_name'] === '' || mb_strlen($form['full_name']) < 2) {
-            $errors[] = 'Please enter your full name.';
+            $errors[] = __('register.error.full_name');
         }
         if ($form['phone'] === '') {
-            $errors[] = 'Phone number is required.';
+            $errors[] = __('register.error.phone');
         }
         $phoneNorm = normalise_phone($form['phone']);
         if ($form['email'] === '' || !filter_var($form['email'], FILTER_VALIDATE_EMAIL)) {
-            $errors[] = 'A valid email address is required.';
+            $errors[] = __('register.error.email');
         } else {
             $form['email'] = strtolower($form['email']);
         }
         if ($form['region'] === '') {
-            $errors[] = 'Please select your region.';
+            $errors[] = __('register.error.region');
         }
         if ($form['business_status'] === '') {
-            $errors[] = 'Please select your business status.';
+            $errors[] = __('register.error.business');
         }
         if (!in_array($form['preferred_language'], ['en', 'sw'], true)) {
-            $errors[] = 'Please choose a preferred language.';
+            $errors[] = __('register.error.language');
         }
         if ($form['date_of_birth'] === '' && $form['age_range'] === '') {
-            $errors[] = 'Provide either your date of birth or an age range.';
+            $errors[] = __('register.error.dob_or_age');
         }
         if ($form['date_of_birth'] !== '') {
             $d = DateTime::createFromFormat('Y-m-d', $form['date_of_birth']);
             if (!$d || $d->format('Y-m-d') !== $form['date_of_birth']) {
-                $errors[] = 'Date of birth must be a valid YYYY-MM-DD value.';
+                $errors[] = __('register.error.dob_invalid');
             }
         }
         if (strlen($password) < 8) {
-            $errors[] = 'Password must be at least 8 characters.';
+            $errors[] = __('register.error.password_short');
         }
         if (!hash_equals($password, $confirm)) {
-            $errors[] = 'Password confirmation does not match.';
+            $errors[] = __('register.error.password_mismatch');
         }
 
         if ($errors === []) {
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $chk = $pdo->prepare('SELECT id FROM users WHERE email = :e OR phone = :p LIMIT 1');
             $chk->execute(['e' => $form['email'], 'p' => $phoneNorm]);
             if ($chk->fetch()) {
-                $errors[] = 'An account already exists with this email or phone.';
+                $errors[] = __('register.error.duplicate');
             }
         }
 
@@ -130,20 +130,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sc->execute(['uid' => $userId]);
 
                 $pdo->commit();
-                flash_set('success', 'Your M-ID is ' . $mId . '. Sign in and upload your National ID for admin approval.');
+                flash_set('success', __('register.flash_ok', ['mid' => $mId]));
                 redirect('login.php');
             } catch (Throwable $e) {
                 $tx = db();
                 if ($tx->inTransaction()) {
                     $tx->rollBack();
                 }
-                $errors[] = 'Registration could not be completed. Please try again or contact support.';
+                $errors[] = __('register.error.generic');
             }
         }
     }
 }
 
-$mgrid_page_title = 'Create your M-ID — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.register');
 $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>
@@ -174,19 +174,22 @@ require __DIR__ . '/includes/header.php';
       <div>
         <label class="mgrid-form-label" for="full_name" data-i18n="auth.label_full_name">Full name</label>
         <input class="mgrid-form-control" type="text" id="full_name" name="full_name" required value="<?= e($form['full_name']) ?>">
+        <p class="small text-muted mb-0 mt-1" data-i18n="register.help_full_name">Use your everyday name as on your ID if you have one.</p>
       </div>
       <div>
         <label class="mgrid-form-label" for="phone" data-i18n="auth.label_phone">Phone</label>
         <input class="mgrid-form-control" type="text" id="phone" name="phone" required value="<?= e($form['phone']) ?>" placeholder="+255...">
+        <p class="small text-muted mb-0 mt-1" data-i18n="register.help_phone">Use the phone number you use every day.</p>
       </div>
       <div>
         <label class="mgrid-form-label" for="email" data-i18n="auth.label_email">Email</label>
         <input class="mgrid-form-control" type="email" id="email" name="email" required value="<?= e($form['email']) ?>">
+        <p class="small text-muted mb-0 mt-1" data-i18n="register.help_email">We will send important updates here.</p>
       </div>
       <div>
         <label class="mgrid-form-label" for="region" data-i18n="auth.label_region">Region</label>
         <select class="mgrid-form-control" id="region" name="region" required>
-          <option value="">Choose...</option>
+          <option value=""><?= e(__('register.choose')) ?></option>
           <?php foreach ($regions as $r): ?>
             <option value="<?= e($r) ?>" <?= $form['region'] === $r ? 'selected' : '' ?>><?= e($r) ?></option>
           <?php endforeach; ?>
@@ -199,7 +202,7 @@ require __DIR__ . '/includes/header.php';
       <div>
         <label class="mgrid-form-label" for="age_range" data-i18n="auth.label_age">Age range</label>
         <select class="mgrid-form-control" id="age_range" name="age_range">
-          <option value="">Choose...</option>
+          <option value=""><?= e(__('register.choose')) ?></option>
               <?php
                 $ranges = ['18-25', '26-35', '36-45', '46-55', '56-65', '65+'];
 foreach ($ranges as $ar) {
@@ -213,19 +216,19 @@ foreach ($ranges as $ar) {
       <div>
         <label class="mgrid-form-label" for="business_status" data-i18n="auth.label_business">Business status</label>
         <select class="mgrid-form-control" id="business_status" name="business_status" required>
-          <option value="">Choose...</option>
+          <option value=""><?= e(__('register.choose')) ?></option>
               <?php
     $bss = [
-        'employed' => 'Employed',
-        'self_employed' => 'Self-employed',
-        'student' => 'Student',
-        'homemaker' => 'Homemaker / caregiver',
-        'seeking' => 'Seeking opportunity',
-        'other' => 'Other',
+        'employed' => 'register.bs.employed',
+        'self_employed' => 'register.bs.self_employed',
+        'student' => 'register.bs.student',
+        'homemaker' => 'register.bs.homemaker',
+        'seeking' => 'register.bs.seeking',
+        'other' => 'register.bs.other',
     ];
-foreach ($bss as $val => $label) {
+foreach ($bss as $val => $labelKey) {
     ?>
-                <option value="<?= e($val) ?>" <?= $form['business_status'] === $val ? 'selected' : '' ?>><?= e($label) ?></option>
+                <option value="<?= e($val) ?>" <?= $form['business_status'] === $val ? 'selected' : '' ?>><?= e(__($labelKey)) ?></option>
               <?php
 }
 ?>
@@ -234,8 +237,8 @@ foreach ($bss as $val => $label) {
       <div>
         <label class="mgrid-form-label" for="preferred_language" data-i18n="auth.label_pref_lang">Preferred language</label>
         <select class="mgrid-form-control" id="preferred_language" name="preferred_language">
-          <option value="en" <?= $form['preferred_language'] === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English (default)</option>
-          <option value="sw" <?= $form['preferred_language'] === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili (coming)</option>
+          <option value="en" <?= $form['preferred_language'] === 'en' ? 'selected' : '' ?> data-i18n="auth.opt_lang_en">English</option>
+          <option value="sw" <?= $form['preferred_language'] === 'sw' ? 'selected' : '' ?> data-i18n="auth.opt_lang_sw">Kiswahili</option>
         </select>
       </div>
       <div>

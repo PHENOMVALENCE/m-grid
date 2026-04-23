@@ -22,7 +22,7 @@ if ($ready) {
     $rows = $st->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'My trainings — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.my_trainings');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

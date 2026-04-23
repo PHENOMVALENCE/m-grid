@@ -16,7 +16,7 @@ $stmt = $pdo->prepare('
 $stmt->execute(['id' => $appId]);
 $app = $stmt->fetch();
 if (!$app) {
-    flash_set('error', 'Funding application not found.');
+    flash_set('error', __('fund.review.not_found'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -29,7 +29,7 @@ $logsStmt->execute(['id' => $appId]);
 $repayLogs = $logsStmt->fetchAll() ?: [];
 $totals = fundingRepaymentTotals($pdo, $appId);
 
-$mgrid_page_title = 'Manage Repayments — Admin';
+$mgrid_page_title = mgrid_title('title.manage_repayments');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

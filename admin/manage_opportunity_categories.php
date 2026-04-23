@@ -6,14 +6,14 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 
 if (!opportunities_module_ready($pdo)) {
-    flash_set('error', 'Schema missing.');
+    flash_set('error', __('error.schema_missing'));
     redirect('admin/admin_opportunities.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/manage_opportunity_categories.php');
     }
     $action = clean_string($_POST['action'] ?? '');
@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sort = (int) ($_POST['sort_order'] ?? 10);
         $active = isset($_POST['is_active']) ? 1 : 0;
         if ($name === '' || $slug === '') {
-            flash_set('error', 'Name and slug required.');
+            flash_set('error', __('error.name_slug_required'));
         } else {
             try {
                 $pdo->prepare('INSERT INTO opportunity_categories (name, slug, sort_order, is_active) VALUES (:n,:s,:o,:a)')
                     ->execute(['n' => $name, 's' => $slug, 'o' => $sort, 'a' => $active]);
-                flash_set('success', 'Added.');
+                flash_set('success', __('admin.generic.added'));
             } catch (Throwable $e) {
-                flash_set('error', 'Could not add.');
+                flash_set('error', __('opp.cat.add_fail'));
             }
         }
     } elseif ($action === 'update') {
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sort = (int) ($_POST['sort_order'] ?? 10);
         $active = isset($_POST['is_active']) ? 1 : 0;
         if ($id <= 0 || $name === '' || $slug === '') {
-            flash_set('error', 'Invalid.');
+            flash_set('error', __('opp.cat.invalid'));
         } else {
             try {
                 $pdo->prepare('UPDATE opportunity_categories SET name=:n, slug=:s, sort_order=:o, is_active=:a WHERE id=:id LIMIT 1')
                     ->execute(['n' => $name, 's' => $slug, 'o' => $sort, 'a' => $active, 'id' => $id]);
-                flash_set('success', 'Saved.');
+                flash_set('success', __('admin.generic.saved'));
             } catch (Throwable $e) {
-                flash_set('error', 'Could not save.');
+                flash_set('error', __('opp.cat.save_fail'));
             }
         }
     } elseif ($action === 'delete') {
@@ -58,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id > 0) {
             try {
                 $pdo->prepare('DELETE FROM opportunity_categories WHERE id = :id LIMIT 1')->execute(['id' => $id]);
-                flash_set('success', 'Deleted.');
+                flash_set('success', __('admin.generic.deleted'));
             } catch (Throwable $e) {
-                flash_set('error', 'Cannot delete: listings still use this category.');
+                flash_set('error', __('opp.cat.delete_blocked'));
             }
         }
     }
@@ -76,7 +76,7 @@ if ($editId > 0) {
     $editRow = $st->fetch() ?: null;
 }
 
-$mgrid_page_title = 'Opportunity categories — Admin';
+$mgrid_page_title = mgrid_title('title.opp_categories');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

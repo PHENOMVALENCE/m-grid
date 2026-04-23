@@ -6,7 +6,7 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 
 if (!opportunities_module_ready($pdo)) {
-    flash_set('error', 'Schema missing.');
+    flash_set('error', __('error.schema_missing'));
     redirect('admin/admin_opportunities.php');
 }
 
@@ -17,7 +17,7 @@ $formats = ['physical', 'online', 'hybrid', 'unspecified'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/add_opportunity.php');
     }
     $categoryId = (int) ($_POST['category_id'] ?? 0);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $arch = isset($_POST['is_archived']) ? 1 : 0;
 
     if ($categoryId <= 0 || $title === '' || $slug === '' || $provider === '' || $desc === '') {
-        flash_set('error', 'Fill required fields.');
+        flash_set('error', __('error.fill_required'));
     } else {
         try {
             $pdo->prepare('
@@ -76,15 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'act' => $active,
                 'arch' => $arch,
             ]);
-            flash_set('success', 'Created.');
+            flash_set('success', __('admin.generic.created'));
             redirect('admin/admin_opportunities.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Save failed (duplicate slug?).');
+            flash_set('error', __('error.save_duplicate_slug'));
         }
     }
 }
 
-$mgrid_page_title = 'Add opportunity — Admin';
+$mgrid_page_title = mgrid_title('title.add_opp');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

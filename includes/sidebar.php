@@ -31,57 +31,57 @@ $isActive = static function (array $files) use ($current): bool {
   </div>
   <nav class="mgrid-sidebar-nav">
     <?php if ($isAdmin): ?>
-      <div class="mgrid-nav-section-label">Dashboard</div>
+      <div class="mgrid-nav-section-label" data-i18n="admin.sec_dashboard">Dashboard</div>
       <a class="mgrid-nav-link <?= $isActive(['dashboard.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/dashboard.php')) ?>">
         <i class="ti ti-layout-dashboard"></i><span data-i18n="sidebar.dashboard">Overview</span>
       </a>
-      <div class="mgrid-nav-section-label">Members</div>
+      <div class="mgrid-nav-section-label" data-i18n="admin.sec_members">Members</div>
       <a class="mgrid-nav-link <?= $isActive(['users.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/users.php')) ?>">
         <i class="ti ti-users"></i><span data-i18n="sidebar.members">All Members</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_mscores.php','admin_mscore_detail.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_mscores.php')) ?>">
-        <i class="ti ti-chart-dots-3"></i><span>M-SCORE Monitoring</span>
+        <i class="ti ti-chart-dots-3"></i><span data-i18n="admin.link_mscore">M-SCORE Monitoring</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_documents.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_documents.php')) ?>">
-        <i class="ti ti-file-certificate"></i><span>Document Verification</span>
+        <i class="ti ti-file-certificate"></i><span data-i18n="admin.link_documents">Document Verification</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['pending-verification.php']) ? 'is-active' : '' ?>" href="javascript:void(0)" onclick="return false;">
-        <i class="ti ti-shield-check"></i><span>Pending Verification</span>
+        <i class="ti ti-shield-check"></i><span data-i18n="admin.link_pending">Pending Verification</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['score-management.php']) ? 'is-active' : '' ?>" href="javascript:void(0)" onclick="return false;">
-        <i class="ti ti-chart-arcs"></i><span>M-Score Management</span>
+        <i class="ti ti-chart-arcs"></i><span data-i18n="admin.link_score_mgmt">M-Score Management</span>
       </a>
-      <div class="mgrid-nav-section-label">Platform</div>
+      <div class="mgrid-nav-section-label" data-i18n="admin.sec_platform">Platform</div>
       <a class="mgrid-nav-link" href="javascript:void(0)" onclick="return false;">
-        <i class="ti ti-handshake"></i><span>Partners</span>
+        <i class="ti ti-handshake"></i><span data-i18n="admin.link_partners">Partners</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_funding_applications.php','admin_funding_review.php','manage_repayments.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_funding_applications.php')) ?>">
-        <i class="ti ti-cash-banknote"></i><span>Loan Applications</span>
+        <i class="ti ti-cash-banknote"></i><span data-i18n="admin.link_loans">Loan Applications</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_benefits.php','add_benefit.php','edit_benefit.php','admin_benefit_claims.php','manage_benefit_categories.php','manage_benefit_providers.php','update_benefit_claim_status.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_benefits.php')) ?>">
-        <i class="ti ti-gift"></i><span>M-Benefits</span>
+        <i class="ti ti-gift"></i><span data-i18n="admin.link_benefits">M-Benefits</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_opportunities.php','add_opportunity.php','edit_opportunity.php','admin_applications.php','manage_opportunity_categories.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_opportunities.php')) ?>">
-        <i class="ti ti-briefcase"></i><span>Opportunities</span>
+        <i class="ti ti-briefcase"></i><span data-i18n="admin.link_opportunities">Opportunities</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_trainings.php','add_training.php','edit_training.php','admin_training_registrations.php','update_training_completion.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_trainings.php')) ?>">
-        <i class="ti ti-school"></i><span>Trainings</span>
+        <i class="ti ti-school"></i><span data-i18n="admin.link_trainings">Trainings</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_announcements.php','create_announcement.php','view_announcement.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_announcements.php')) ?>">
-        <i class="ti ti-bell-ringing"></i><span>Announcements</span>
+        <i class="ti ti-bell-ringing"></i><span data-i18n="admin.link_announcements">Announcements</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_analytics.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_analytics.php')) ?>">
-        <i class="ti ti-chart-line"></i><span>Analytics</span>
+        <i class="ti ti-chart-line"></i><span data-i18n="admin.link_analytics">Analytics</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['admin_reports.php','export_report.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_reports.php')) ?>">
-        <i class="ti ti-file-analytics"></i><span>Reports</span>
+        <i class="ti ti-file-analytics"></i><span data-i18n="admin.link_reports">Reports</span>
       </a>
-      <div class="mgrid-nav-section-label">System</div>
+      <div class="mgrid-nav-section-label" data-i18n="admin.sec_system">System</div>
       <a class="mgrid-nav-link <?= $isActive(['admin_accounts.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/admin_accounts.php')) ?>">
-        <i class="ti ti-user-star"></i><span>Administration team</span>
+        <i class="ti ti-user-star"></i><span data-i18n="admin.link_team">Administration team</span>
       </a>
       <a class="mgrid-nav-link <?= $isActive(['platform_settings.php']) ? 'is-active' : '' ?>" href="<?= e(url('admin/platform_settings.php')) ?>">
-        <i class="ti ti-settings"></i><span>Settings</span>
+        <i class="ti ti-settings"></i><span data-i18n="sidebar.settings">Settings</span>
       </a>
     <?php else: ?>
       <div class="mgrid-nav-section-label" data-i18n="sidebar.section_overview">Overview</div>

@@ -12,7 +12,7 @@ $certStatuses = ['n_a', 'none', 'issued', 'verified'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/admin_applications.php');
     }
     $aid = (int) ($_POST['application_id'] ?? 0);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'n' => $notes !== '' ? $notes : null,
             'id' => $aid,
         ]);
-        flash_set('success', 'Application updated.');
+        flash_set('success', __('opp.admin.application_updated'));
     }
     redirect('admin/admin_applications.php');
 }
@@ -77,7 +77,7 @@ if ($ready) {
     $rows = $st->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Opportunity applications — Admin';
+$mgrid_page_title = mgrid_title('title.admin_applications');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

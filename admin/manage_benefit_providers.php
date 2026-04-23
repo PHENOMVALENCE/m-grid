@@ -6,14 +6,14 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 
 if (!mbenefits_module_ready($pdo)) {
-    flash_set('error', 'M-Benefits schema missing.');
+    flash_set('error', __('ben.schema_missing'));
     redirect('admin/admin_benefits.php');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/manage_benefit_providers.php');
     }
     $action = clean_string($_POST['action'] ?? '');
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $desc = clean_string($_POST['description'] ?? '');
         $active = isset($_POST['is_active']) ? 1 : 0;
         if ($name === '' || $slug === '') {
-            flash_set('error', 'Name and slug required.');
+            flash_set('error', __('error.name_slug_required'));
         } else {
             try {
                 $pdo->prepare('
@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'd' => $desc !== '' ? $desc : null,
                     'a' => $active,
                 ]);
-                flash_set('success', 'Provider added.');
+                flash_set('success', __('ben.prov.added'));
             } catch (Throwable $e) {
-                flash_set('error', 'Could not add (duplicate slug?).');
+                flash_set('error', __('error.save_duplicate_slug'));
             }
         }
     } elseif ($action === 'update') {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $desc = clean_string($_POST['description'] ?? '');
         $active = isset($_POST['is_active']) ? 1 : 0;
         if ($id <= 0 || $name === '' || $slug === '') {
-            flash_set('error', 'Invalid provider.');
+            flash_set('error', __('error.invalid_selection'));
         } else {
             try {
                 $pdo->prepare('
@@ -71,9 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'a' => $active,
                     'id' => $id,
                 ]);
-                flash_set('success', 'Provider saved.');
+                flash_set('success', __('ben.prov.saved'));
             } catch (Throwable $e) {
-                flash_set('error', 'Could not save.');
+                flash_set('error', __('error.save_failed'));
             }
         }
     } elseif ($action === 'delete') {
@@ -81,9 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id > 0) {
             try {
                 $pdo->prepare('DELETE FROM benefit_providers WHERE id = :id LIMIT 1')->execute(['id' => $id]);
-                flash_set('success', 'Provider deleted.');
+                flash_set('success', __('ben.prov.deleted'));
             } catch (Throwable $e) {
-                flash_set('error', 'Cannot delete: offers still reference this provider.');
+                flash_set('error', __('ben.prov.delete_blocked'));
             }
         }
     }
@@ -99,7 +99,7 @@ if ($editId > 0) {
     $editRow = $st->fetch() ?: null;
 }
 
-$mgrid_page_title = 'Benefit providers — Admin';
+$mgrid_page_title = mgrid_title('title.ben_providers');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

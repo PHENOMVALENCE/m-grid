@@ -6,7 +6,7 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 
 if (!trainings_module_ready($pdo)) {
-    flash_set('error', 'Schema missing.');
+    flash_set('error', __('error.schema_missing'));
     redirect('admin/admin_trainings.php');
 }
 
@@ -16,7 +16,7 @@ $formats = ['physical', 'online', 'hybrid', 'unspecified'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/add_training.php');
     }
     $title = clean_string($_POST['title'] ?? '');
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $arch = isset($_POST['is_archived']) ? 1 : 0;
 
     if ($title === '' || $slug === '' || $prov === '' || $desc === '') {
-        flash_set('error', 'Required fields missing.');
+        flash_set('error', __('error.required_fields'));
     } else {
         try {
             $pdo->prepare('
@@ -73,15 +73,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'act' => $act,
                 'arch' => $arch,
             ]);
-            flash_set('success', 'Programme created.');
+            flash_set('success', __('admin.generic.created'));
             redirect('admin/admin_trainings.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Save failed.');
+            flash_set('error', __('error.save_failed'));
         }
     }
 }
 
-$mgrid_page_title = 'Add training — Admin';
+$mgrid_page_title = mgrid_title('title.add_training');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

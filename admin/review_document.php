@@ -9,7 +9,7 @@ $docId = (int) ($_GET['id'] ?? 0);
 
 $doc = $docId > 0 ? mgrid_document_find_for_admin($pdo, $docId) : null;
 if ($doc === null) {
-    flash_set('error', 'Document not found.');
+    flash_set('error', __('doc.not_found'));
     redirect('admin/admin_documents.php');
 }
 
@@ -25,7 +25,7 @@ $logStmt = $pdo->prepare('
 $logStmt->execute(['id' => $docId]);
 $logs = $logStmt->fetchAll() ?: [];
 
-$mgrid_page_title = 'Review Document — Malkia Grid Admin';
+$mgrid_page_title = mgrid_title('title.admin_review_doc');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

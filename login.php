@@ -14,13 +14,13 @@ $loginValue = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify($_POST['_csrf'] ?? null)) {
-        $errors[] = 'Invalid security token. Please try again.';
+        $errors[] = __('auth.error.token');
     } else {
         $loginValue = clean_string($_POST['login'] ?? '');
         $password = (string) ($_POST['password'] ?? '');
 
         if ($loginValue === '' || $password === '') {
-            $errors[] = 'Enter your email or phone and password.';
+            $errors[] = __('auth.error.empty_login');
         } else {
             $pdo = db();
 
@@ -37,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $admin = $adminStmt->fetch();
             if ($admin && password_verify($password, (string) $admin['password_hash'])) {
                 if (($admin['status'] ?? '') !== 'active') {
-                    $errors[] = 'Admin account is not active.';
+                    $errors[] = __('auth.error.admin_inactive');
                 } else {
                     auth_login_admin($admin);
-                    flash_set('success', 'Welcome back, ' . $admin['full_name'] . '.');
+                    flash_set('success', __('auth.success.welcome_named', ['name' => (string) $admin['full_name']]));
                     redirect('admin/dashboard.php');
                 }
             }
@@ -57,23 +57,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ]);
             $row = $stmt->fetch();
             if (!$row || !password_verify($password, (string) $row['password_hash'])) {
-                $errors[] = 'We could not match those details. Check and try again.';
+                $errors[] = __('auth.error.credentials');
             } elseif (($row['status'] ?? '') === 'suspended') {
-                $errors[] = 'This account is suspended. Please contact support.';
+                $errors[] = __('auth.error.suspended');
             } else {
                 auth_login_user($row);
                 if (($row['status'] ?? '') !== 'active') {
-                    flash_set('success', 'Welcome. Please upload your National ID for admin approval.');
+                    flash_set('success', __('auth.success.verify_first'));
                     redirect('user/verify-id.php');
                 }
-                flash_set('success', 'Welcome back, ' . $row['full_name'] . '.');
+                flash_set('success', __('auth.success.welcome_named', ['name' => (string) $row['full_name']]));
                 redirect('user/dashboard.php');
             }
         }
     }
 }
 
-$mgrid_page_title = 'Sign in — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.login');
 $mgrid_layout = 'auth';
 require __DIR__ . '/includes/header.php';
 ?>

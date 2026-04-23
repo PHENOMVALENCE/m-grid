@@ -12,7 +12,7 @@ auth_require_login();
 $u = auth_user();
 if ($u === null) {
     http_response_code(403);
-    echo 'This area is for registered members.';
+    echo function_exists('__') ? __('member.error.auth_required') : 'This area is for registered members.';
     exit;
 }
 
@@ -32,6 +32,6 @@ $allowedPendingPages = [
     'document_view.php',
 ];
 if ($accountStatus !== 'active' && !in_array($currentScript, $allowedPendingPages, true)) {
-    flash_set('error', 'Your account is pending verification. Upload your National ID to continue.');
+    flash_set('error', __('member.flash.verify_pending'));
     redirect('user/verify-id.php');
 }

@@ -8,7 +8,7 @@ $pdo = db();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/admin_benefits.php');
     }
     $action = clean_string($_POST['action'] ?? '');
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($oid > 0 && mbenefits_module_ready($pdo)) {
             $st = $pdo->prepare('UPDATE benefit_offers SET is_active = 1 - is_active WHERE id = :id LIMIT 1');
             $st->execute(['id' => $oid]);
-            flash_set('success', 'Offer visibility updated.');
+            flash_set('success', __('admin.benefits.visibility_updated'));
         }
     }
     redirect('admin/admin_benefits.php');
@@ -40,7 +40,7 @@ if ($ready) {
     $offers = $pdo->query($sql)->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'M-Benefits — Offers — Admin';
+$mgrid_page_title = mgrid_title('title.admin_benefits');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

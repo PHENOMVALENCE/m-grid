@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $token = $_POST['_csrf'] ?? null;
 if (!csrf_verify(is_string($token) ? $token : null)) {
-    flash_set('error', 'Invalid token.');
+    flash_set('error', __('settings.error.token'));
     redirect('admin/admin_benefit_claims.php');
 }
 
@@ -26,7 +26,7 @@ $newStatus = clean_string($_POST['new_status'] ?? '');
 $remarks = clean_string($_POST['admin_remarks'] ?? '');
 
 if (!mbenefits_module_ready($pdo) || $claimId <= 0 || !in_array($newStatus, ['pending', 'approved', 'rejected', 'redeemed', 'cancelled'], true)) {
-    flash_set('error', 'Invalid request.');
+    flash_set('error', __('error.invalid_request'));
     redirect('admin/admin_benefit_claims.php');
 }
 
@@ -39,7 +39,7 @@ $st = $pdo->prepare('
 $st->execute(['id' => $claimId]);
 $row = $st->fetch();
 if (!$row) {
-    flash_set('error', 'Claim not found.');
+    flash_set('error', __('claim.admin.not_found'));
     redirect('admin/admin_benefit_claims.php');
 }
 
@@ -55,7 +55,7 @@ try {
     ]);
     mbenefits_log_claim_change($pdo, $claimId, $adminId, null, $old, $newStatus, $remarks !== '' ? $remarks : 'Status updated.');
     $pdo->commit();
-    flash_set('success', 'Claim updated.');
+    flash_set('success', __('claim.admin.updated'));
 
     $uidB = (int) $row['user_id'];
     $typeB = match ($newStatus) {
@@ -80,7 +80,7 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Update failed.');
+    flash_set('error', __('claim.admin.update_failed'));
 }
 
 redirect('admin/admin_benefit_claims.php');

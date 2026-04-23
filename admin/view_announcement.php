@@ -40,7 +40,7 @@ if (mscore_table_exists($pdo, 'notification_delivery_log')) {
     $logs = $lg->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'Announcement — Admin';
+$mgrid_page_title = mgrid_title('title.admin_view_announcement');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -24,7 +24,7 @@ $st = $pdo->prepare($sql);
 $st->execute($params);
 $users = $st->fetchAll();
 
-$mgrid_page_title = 'Members — Malkia Grid Admin';
+$mgrid_page_title = mgrid_title('title.admin_users');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

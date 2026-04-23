@@ -9,13 +9,13 @@ $uid = (int) auth_user()['user_id'];
 $id = (int) ($_GET['id'] ?? 0);
 
 if (!trainings_module_ready($pdo) || $id <= 0) {
-    flash_set('error', 'Programme not found.');
+    flash_set('error', __('train.detail.not_found'));
     redirect('user/trainings.php');
 }
 
 $p = trainings_get_by_id($pdo, $id);
 if ($p === null || (int) $p['is_archived'] === 1 || (int) ($p['is_active'] ?? 0) !== 1) {
-    flash_set('error', 'Programme not found.');
+    flash_set('error', __('train.detail.not_found'));
     redirect('user/trainings.php');
 }
 
@@ -27,7 +27,7 @@ $canRegister = (int) $p['is_active'] === 1
 
 $ext = trim((string) ($p['external_link'] ?? ''));
 
-$mgrid_page_title = (string) $p['title'] . ' — Trainings';
+$mgrid_page_title = (string) $p['title'] . ' — ' . __('site.brand');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

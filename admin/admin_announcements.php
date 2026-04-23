@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_verify(is_string($_POST['_csrf
     if ($act === 'send' && $id > 0 && announcements_module_ready($pdo)) {
         $res = sendAnnouncementToUsers($id);
         if ($res['ok']) {
-            flash_set('success', 'Sent to ' . (int) $res['count'] . ' recipients.');
+            flash_set('success', __('announce.sent', ['count' => (string) (int) $res['count']]));
         } else {
-            flash_set('error', (string) ($res['error'] ?? 'Send failed.'));
+            flash_set('error', (string) ($res['error'] ?? __('announce.send_failed')));
         }
     } elseif ($act === 'cancel' && $id > 0 && announcements_module_ready($pdo)) {
         $pdo->prepare('UPDATE announcements SET status = "cancelled" WHERE id = :id AND status = "draft" LIMIT 1')->execute(['id' => $id]);
-        flash_set('success', 'Announcement cancelled.');
+        flash_set('success', __('announce.cancelled'));
     }
     redirect('admin/admin_announcements.php');
 }
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_verify(is_string($_POST['_csrf
 $ready = announcements_module_ready($pdo);
 $rows = $ready ? ($pdo->query('SELECT a.*, ad.full_name AS admin_name FROM announcements a INNER JOIN admins ad ON ad.id = a.created_by_admin_id ORDER BY a.created_at DESC LIMIT 100')->fetchAll() ?: []) : [];
 
-$mgrid_page_title = 'Announcements — Admin';
+$mgrid_page_title = mgrid_title('title.admin_announcements');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

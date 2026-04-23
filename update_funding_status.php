@@ -9,7 +9,7 @@ $admin = auth_admin();
 $adminId = (int) $admin['admin_id'];
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_verify($_POST['_csrf'] ?? null)) {
-    flash_set('error', 'Invalid request.');
+    flash_set('error', __('error.invalid_request'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -23,7 +23,7 @@ $repayStart = clean_string($_POST['repayment_start_date'] ?? '');
 $partner = clean_string($_POST['funding_partner_name'] ?? '');
 
 if ($appId <= 0 || !in_array($newStatus, ['under_review','more_info_requested','approved','rejected','disbursed','active_repayment','completed','defaulted','cancelled'], true) || $remarks === '') {
-    flash_set('error', 'Missing required review inputs.');
+    flash_set('error', __('fund.status.missing_inputs'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -32,7 +32,7 @@ $appStmt = $pdo->prepare('SELECT * FROM funding_applications WHERE id = :id LIMI
 $appStmt->execute(['id' => $appId]);
 $app = $appStmt->fetch();
 if (!$app) {
-    flash_set('error', 'Funding application not found.');
+    flash_set('error', __('fund.review.not_found'));
     redirect('admin/admin_funding_applications.php');
 }
 $oldStatus = (string) $app['status'];
@@ -73,7 +73,7 @@ try {
     admin_log($pdo, $adminId, (int) $app['user_id'], 'mfund_status_update', 'Funding ' . $app['reference_number'] . ' moved from ' . $oldStatus . ' to ' . $newStatus);
 
     $pdo->commit();
-    flash_set('success', 'Funding status updated successfully.');
+    flash_set('success', __('fund.status.updated'));
 
     $uidF = (int) $app['user_id'];
     $refF = (string) $app['reference_number'];
@@ -96,7 +96,7 @@ try {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Could not update status: ' . $e->getMessage());
+    flash_set('error', __('fund.status.fail', ['msg' => $e->getMessage()]));
 }
 
 redirect('admin/admin_funding_review.php?id=' . $appId);

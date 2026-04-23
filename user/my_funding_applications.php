@@ -16,7 +16,7 @@ $stmt = $pdo->prepare('
 $stmt->execute(['uid' => $uid]);
 $rows = $stmt->fetchAll() ?: [];
 
-$mgrid_page_title = 'My Funding Applications — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.my_funding');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

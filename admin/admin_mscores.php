@@ -72,7 +72,7 @@ foreach ($tierCountsRaw as $t) {
     }
 }
 
-$mgrid_page_title = 'M-SCORE Monitoring — Malkia Grid Admin';
+$mgrid_page_title = mgrid_title('title.admin_mscores');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

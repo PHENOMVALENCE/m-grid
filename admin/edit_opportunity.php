@@ -24,7 +24,7 @@ $formats = ['physical', 'online', 'hybrid', 'unspecified'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/edit_opportunity.php?id=' . $id);
     }
     $categoryId = (int) ($_POST['category_id'] ?? 0);
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $arch = isset($_POST['is_archived']) ? 1 : 0;
 
     if ($categoryId <= 0 || $title === '' || $slug === '' || $provider === '' || $desc === '') {
-        flash_set('error', 'Fill required fields.');
+        flash_set('error', __('error.fill_required'));
     } else {
         try {
             $pdo->prepare('
@@ -83,17 +83,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'arch' => $arch,
                 'id' => $id,
             ]);
-            flash_set('success', 'Saved.');
+            flash_set('success', __('admin.generic.saved'));
             redirect('admin/admin_opportunities.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Save failed.');
+            flash_set('error', __('error.save_failed'));
         }
     }
     $st->execute(['id' => $id]);
     $o = $st->fetch() ?: $o;
 }
 
-$mgrid_page_title = 'Edit opportunity — Admin';
+$mgrid_page_title = mgrid_title('title.edit_opp');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

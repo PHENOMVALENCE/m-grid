@@ -22,5 +22,5 @@ foreach ($users as $u) {
 }
 
 admin_log($pdo, $adminId, null, 'mscore_bulk_recalculate', 'Bulk recalculated M-SCORE for users. Success: ' . $ok . ', failed: ' . $failed);
-flash_set('success', 'Bulk recalculation finished. Success: ' . $ok . ', failed: ' . $failed . '.');
+flash_set('success', __('mscore.bulk_done', ['ok' => (string) $ok, 'failed' => (string) $failed]));
 redirect('admin/admin_mscores.php');

@@ -167,24 +167,31 @@ function mbenefits_evaluate_eligibility(PDO $pdo, int $userId, array $offer): ar
 {
     $messages = [];
 
+    $t = static function (string $key, array $rep = []): string {
+        return function_exists('__') ? __($key, $rep) : $key;
+    };
+
     if ((int) ($offer['is_active'] ?? 0) !== 1) {
-        $messages[] = 'This offer is not active.';
+        $messages[] = $t('benefit.elig.inactive');
     }
 
     $today = date('Y-m-d');
     $from = (string) ($offer['valid_from'] ?? '');
     $to = (string) ($offer['valid_to'] ?? '');
     if ($from !== '' && $today < $from) {
-        $messages[] = 'This offer is not yet valid.';
+        $messages[] = $t('benefit.elig.not_yet');
     }
     if ($to !== '' && $today > $to) {
-        $messages[] = 'This offer has expired.';
+        $messages[] = $t('benefit.elig.expired');
     }
 
     $ctx = mbenefits_user_context($pdo, $userId);
     $minScore = (float) ($offer['min_mscore'] ?? 0);
     if ($ctx['score'] + 0.00001 < $minScore) {
-        $messages[] = 'Your M-SCORE must be at least ' . number_format($minScore, 2) . ' (yours is ' . number_format($ctx['score'], 2) . ').';
+        $messages[] = $t('benefit.elig.score_low', [
+            'min' => number_format($minScore, 2),
+            'have' => number_format($ctx['score'], 2),
+        ]);
     }
 
     $reqTier = trim((string) ($offer['eligible_tier'] ?? ''));
@@ -192,17 +199,23 @@ function mbenefits_evaluate_eligibility(PDO $pdo, int $userId, array $offer): ar
         $need = mbenefits_tier_min_rank($reqTier);
         $have = mbenefits_tier_min_rank($ctx['tier_slug']);
         if ($have < $need) {
-            $messages[] = 'Requires tier ' . ucwords(str_replace('_', ' ', strtolower($reqTier))) . ' or higher (you are ' . $ctx['tier_label'] . ').';
+            $messages[] = $t('benefit.elig.tier', [
+                'need' => ucwords(str_replace('_', ' ', strtolower($reqTier))),
+                'have' => (string) $ctx['tier_label'],
+            ]);
         }
     }
 
     if ((int) ($offer['requires_verified_documents'] ?? 0) === 1 && !mbenefits_user_has_verified_document($pdo, $userId)) {
-        $messages[] = 'At least one verified document is required.';
+        $messages[] = $t('benefit.elig.docs');
     }
 
     $needProf = (int) ($offer['requires_profile_complete_percent'] ?? 0);
     if ($needProf > 0 && $ctx['profile_completion'] < $needProf) {
-        $messages[] = 'M-Profile completion must be at least ' . $needProf . '% (yours is ' . $ctx['profile_completion'] . '%).';
+        $messages[] = $t('benefit.elig.profile', [
+            'need' => (string) $needProf,
+            'have' => (string) $ctx['profile_completion'],
+        ]);
     }
 
     $allowRepeat = (int) ($offer['allow_repeat_claims'] ?? 0) === 1;
@@ -224,8 +237,8 @@ function mbenefits_evaluate_eligibility(PDO $pdo, int $userId, array $offer): ar
         $st->execute(['u' => $userId, 'o' => $oid]);
         if ((int) $st->fetchColumn() > 0) {
             $messages[] = $allowRepeat
-                ? 'You already have a pending or approved claim for this offer.'
-                : 'You have already claimed this offer.';
+                ? $t('benefit.elig.pending_claim')
+                : $t('benefit.elig.already_claimed');
         }
     }
 
@@ -249,16 +262,19 @@ function mbenefits_can_user_claim_benefit(PDO $pdo, int $userId, int $benefitId)
 
 function mbenefits_get_eligibility_message(PDO $pdo, int $userId, int $benefitId): string
 {
+    $t = static function (string $key, array $rep = []): string {
+        return function_exists('__') ? __($key, $rep) : $key;
+    };
     if (!mbenefits_module_ready($pdo)) {
-        return 'Benefits module is not installed.';
+        return $t('benefit.elig.module_off');
     }
     $offer = mbenefits_get_offer($pdo, $benefitId);
     if ($offer === null) {
-        return 'Benefit not found.';
+        return $t('benefit.elig.offer_missing');
     }
     $ev = mbenefits_evaluate_eligibility($pdo, $userId, $offer);
     if ($ev['ok']) {
-        return 'You are eligible to claim this benefit.';
+        return $t('benefit.elig.ok');
     }
     return implode(' ', $ev['messages']);
 }

@@ -11,7 +11,7 @@ if ($admin === null) {
 $adminId = (int) $admin['admin_id'];
 
 if (!announcements_module_ready($pdo)) {
-    flash_set('error', 'Schema missing.');
+    flash_set('error', __('error.schema_missing'));
     redirect('admin/admin_announcements.php');
 }
 
@@ -34,22 +34,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_verify(is_string($_POST['_csrf
     }
 
     if ($title === '' || $message === '') {
-        flash_set('error', 'Title and message are required.');
+        flash_set('error', __('announce.create.title_body'));
     } elseif ($scope === 'tier' && $tier === '') {
-        flash_set('error', 'Enter a tier label for tier targeting (e.g. Growth).');
+        flash_set('error', __('announce.create.tier_label'));
     } elseif ($scope === 'users' && $ids === []) {
-        flash_set('error', 'Enter at least one numeric user ID for selected users.');
+        flash_set('error', __('announce.create.user_ids'));
     } else {
         $aid = announcement_create_draft($pdo, $adminId, $title, $message, $scope, $tier !== '' ? $tier : null, $ids);
         if ($aid) {
-            flash_set('success', 'Draft saved. Review and click Send on the announcements list.');
+            flash_set('success', __('announce.create.draft_ok'));
             redirect('admin/admin_announcements.php');
         }
-        flash_set('error', 'Could not save draft.');
+        flash_set('error', __('announce.create.draft_fail'));
     }
 }
 
-$mgrid_page_title = 'Create announcement — Admin';
+$mgrid_page_title = mgrid_title('title.admin_create_announcement');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -42,7 +42,7 @@ if ($vanilla) {
       <ul class="mgrid-nav-vanilla__links">
         <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#about')) ?>" data-i18n="nav.about">About</a></li>
         <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#how')) ?>" data-i18n="nav.how">How it works</a></li>
-        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#features')) ?>">Features</a></li>
+        <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#features')) ?>" data-i18n="nav.features">Features</a></li>
         <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#benefits')) ?>" data-i18n="nav.benefits">Benefits</a></li>
         <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#partners')) ?>" data-i18n="nav.partners">Partners</a></li>
         <li><a class="mgrid-nav-vanilla__link" href="<?= e(url('index.php#faq')) ?>" data-i18n="nav.faq">FAQ</a></li>

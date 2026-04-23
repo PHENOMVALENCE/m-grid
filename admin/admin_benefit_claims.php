@@ -40,7 +40,7 @@ if ($ready) {
     $claims = $st->fetchAll() ?: [];
 }
 
-$mgrid_page_title = 'M-Benefits — Claims — Admin';
+$mgrid_page_title = mgrid_title('title.admin_benefit_claims');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

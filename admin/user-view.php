@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ');
             $up->execute(['note' => ($note !== '' ? $note : 'Approved by admin'), 'aid' => (int) $admin['admin_id'], 'id' => $id]);
             admin_log($pdo, (int) $admin['admin_id'], $id, 'approve_national_id', 'Approved National ID for user #' . $id);
-            flash_set('success', 'National ID approved. Member can now use the platform.');
+            flash_set('success', __('admin.nid.approved'));
             redirect('admin/user-view.php?id=' . $id);
         } elseif ($action === 'reject_id') {
             $up = $pdo->prepare('
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ');
             $up->execute(['note' => ($note !== '' ? $note : 'Please upload a clearer photo.'), 'aid' => (int) $admin['admin_id'], 'id' => $id]);
             admin_log($pdo, (int) $admin['admin_id'], $id, 'reject_national_id', 'Rejected National ID for user #' . $id);
-            flash_set('success', 'National ID rejected. Member must re-upload.');
+            flash_set('success', __('admin.nid.rejected'));
             redirect('admin/user-view.php?id=' . $id);
         }
     }
@@ -82,7 +82,7 @@ admin_log(
     'Opened member record ' . $row['m_id']
 );
 
-$mgrid_page_title = 'Member ' . $row['m_id'] . ' — Admin';
+$mgrid_page_title = mgrid_title('title.admin_member_detail', ['mid' => (string) $row['m_id']]);
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

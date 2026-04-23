@@ -17,7 +17,7 @@ $stmt = $pdo->prepare('
 $stmt->execute(['id' => $id]);
 $app = $stmt->fetch();
 if (!$app) {
-    flash_set('error', 'Funding application not found.');
+    flash_set('error', __('fund.review.not_found'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -29,7 +29,7 @@ $reviewsStmt = $pdo->prepare('SELECT r.*, a.full_name AS admin_name FROM funding
 $reviewsStmt->execute(['id' => $id]);
 $reviews = $reviewsStmt->fetchAll() ?: [];
 
-$mgrid_page_title = 'Funding Review — Admin';
+$mgrid_page_title = mgrid_title('title.admin_funding_review');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

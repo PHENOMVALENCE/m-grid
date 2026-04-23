@@ -12,7 +12,7 @@ $appStmt = $pdo->prepare('SELECT * FROM funding_applications WHERE id = :id AND 
 $appStmt->execute(['id' => $appId, 'uid' => $uid]);
 $app = $appStmt->fetch();
 if (!$app) {
-    flash_set('error', 'Funding application not found.');
+    flash_set('error', __('fund.review.not_found'));
     redirect('user/my_funding_applications.php');
 }
 
@@ -25,7 +25,7 @@ $repSchedStmt->execute(['id' => $appId]);
 $schedules = $repSchedStmt->fetchAll() ?: [];
 $totals = fundingRepaymentTotals($pdo, $appId);
 
-$mgrid_page_title = 'Funding Application Detail — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.funding_detail');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -6,7 +6,7 @@ require __DIR__ . '/includes/init_admin.php';
 $pdo = db();
 
 if (!mbenefits_module_ready($pdo)) {
-    flash_set('error', 'M-Benefits schema missing.');
+    flash_set('error', __('ben.schema_missing'));
     redirect('admin/admin_benefits.php');
 }
 
@@ -16,7 +16,7 @@ $provs = $pdo->query('SELECT id, name FROM benefit_providers WHERE is_active = 1
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['_csrf'] ?? null;
     if (!csrf_verify(is_string($token) ? $token : null)) {
-        flash_set('error', 'Invalid token.');
+        flash_set('error', __('settings.error.token'));
         redirect('admin/add_benefit.php');
     }
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isActive = isset($_POST['is_active']) ? 1 : 0;
 
     if ($title === '' || $slug === '' || $short === '' || $valueLabel === '' || $validFrom === '' || $validTo === '' || $categoryId <= 0 || $providerId <= 0) {
-        flash_set('error', 'Please fill required fields.');
+        flash_set('error', __('error.fill_required'));
     } else {
         try {
             $ins = $pdo->prepare('
@@ -84,15 +84,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'vt' => $validTo,
                 'act' => $isActive,
             ]);
-            flash_set('success', 'Offer created.');
+            flash_set('success', __('ben.offer.created'));
             redirect('admin/admin_benefits.php');
         } catch (Throwable $e) {
-            flash_set('error', 'Could not save (duplicate slug?).');
+            flash_set('error', __('error.save_duplicate_slug'));
         }
     }
 }
 
-$mgrid_page_title = 'Add benefit offer — Admin';
+$mgrid_page_title = mgrid_title('title.add_benefit');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

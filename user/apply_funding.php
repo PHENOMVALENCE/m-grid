@@ -11,7 +11,7 @@ $pdo = db();
 $minAmount = (float) mfund_setting($pdo, 'min_funding_amount', '50000');
 $maxAmount = (float) mfund_setting($pdo, 'max_funding_amount', '20000000');
 
-$mgrid_page_title = 'Apply for Funding — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.apply_funding');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -24,7 +24,7 @@ $rows = $ready ? trainings_list_for_public(
     $q !== '' ? $q : null
 ) : [];
 
-$mgrid_page_title = 'Trainings — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.trainings');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

@@ -51,7 +51,7 @@ $verifiedStmt = $pdo->prepare('SELECT COUNT(*) FROM user_documents WHERE user_id
 $verifiedStmt->execute(['uid' => $uid]);
 $verifiedCount = (int) $verifiedStmt->fetchColumn();
 
-$mgrid_page_title = 'My Documents — Malkia Grid';
+$mgrid_page_title = mgrid_title('title.documents');
 require __DIR__ . '/includes/shell_open.php';
 ?>
 

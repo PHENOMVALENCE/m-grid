@@ -9,7 +9,7 @@ $admin = auth_admin();
 $adminId = (int) $admin['admin_id'];
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_verify($_POST['_csrf'] ?? null)) {
-    flash_set('error', 'Invalid request.');
+    flash_set('error', __('error.invalid_request'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -20,7 +20,7 @@ $method = clean_string($_POST['disbursement_method'] ?? '');
 $note = clean_string($_POST['reference_note'] ?? '');
 
 if ($appId <= 0 || $amount <= 0 || $date === '' || $method === '') {
-    flash_set('error', 'Please provide valid disbursement values.');
+    flash_set('error', __('fund.disburse.bad_input'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -29,7 +29,7 @@ $appStmt = $pdo->prepare('SELECT id, user_id, reference_number, status FROM fund
 $appStmt->execute(['id' => $appId]);
 $app = $appStmt->fetch();
 if (!$app) {
-    flash_set('error', 'Application not found.');
+    flash_set('error', __('fund.repay.app_not_found'));
     redirect('admin/admin_funding_applications.php');
 }
 
@@ -55,12 +55,12 @@ try {
     admin_log($pdo, $adminId, (int) $app['user_id'], 'mfund_disbursement', 'Disbursement recorded for ' . $app['reference_number']);
 
     $pdo->commit();
-    flash_set('success', 'Disbursement recorded successfully.');
+    flash_set('success', __('fund.disburse.recorded'));
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
-    flash_set('error', 'Disbursement failed: ' . $e->getMessage());
+    flash_set('error', __('fund.disburse.fail', ['msg' => $e->getMessage()]));
 }
 
 redirect('admin/admin_funding_review.php?id=' . $appId);
