@@ -24,9 +24,11 @@ if ($documentRoot !== '' && str_starts_with(str_replace('\\', '/', $projectRoot)
 define('MGRID_DB_HOST', getenv('MGRID_DB_HOST') ?: '127.0.0.1');
 $dbPort = getenv('MGRID_DB_PORT');
 define('MGRID_DB_PORT', ($dbPort !== false && $dbPort !== '') ? (int) $dbPort : 3306);
-define('MGRID_DB_NAME', getenv('MGRID_DB_NAME') ?: 'm_grid');
-define('MGRID_DB_USER', getenv('MGRID_DB_USER') ?: 'root');
-define('MGRID_DB_PASS', getenv('MGRID_DB_PASS') ?: '');
+
+define('MGRID_DB_NAME', getenv('MGRID_DB_NAME') ?: 'u145584795_mgrid');
+define('MGRID_DB_USER', getenv('MGRID_DB_USER') ?: 'u145584795_root');
+define('MGRID_DB_PASS', getenv('MGRID_DB_PASS') ?: 'Promaafrica@2026');
+
 define('MGRID_DB_CHARSET', 'utf8mb4');
 
 /** Session cookie name (avoid clashing with other PHP apps on same host) */
